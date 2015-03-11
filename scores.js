@@ -6,8 +6,6 @@ var month = process.argv[2];
 var day = process.argv[3];
 var year = process.argv[4];
 
-
-
 if (!Date.validateDay(parseInt(day), parseInt(year), parseInt(month))) // Date sanity check
 {
     console.error('Invalid date format');
@@ -41,6 +39,23 @@ xray(url)
         qtrs: ['td.qtr.ng-binding'],
         finl: 'td.final.ng-binding'
     },
+    vstats: {
+        pts: {
+            $root: 'div.col-sm-6.game-highs.ng-scope > div.game-highs-container > table > tbody > tr:nth-child(2)',
+            name: 'td:nth-child(2)',
+            q: 'td:nth-child(3)'
+        },
+        reb: {
+            $root: 'div.col-sm-6.game-highs.ng-scope > div.game-highs-container > table > tbody > tr:nth-child(3)',
+            name: 'td:nth-child(2)',
+            q: 'td:nth-child(3)'
+        },
+        ast:{
+            $root: 'div.col-sm-6.game-highs.ng-scope > div.game-highs-container > table > tbody > tr:nth-child(4)',
+            name: 'td:nth-child(2)',
+            q: 'td:nth-child(3)'
+        }
+    },
     hteam:{                   // home team
     	$root: '.game-row',
     	logo: 'img[src]',   // logo
@@ -52,7 +67,23 @@ xray(url)
         record: 'span',
         qtrs: ['td.qtr.ng-binding'],
         finl: 'td.final.ng-binding'
-
+    },
+    hstats: {
+        pts: {
+            $root: 'div.col-sm-6.game-highs.ng-scope > div.game-highs-container > table > tbody > tr:nth-child(2)',
+            name: 'td:nth-child(4)',
+            q: 'td:nth-child(5)'
+        },
+        reb: {
+            $root: 'div.col-sm-6.game-highs.ng-scope > div.game-highs-container > table > tbody > tr:nth-child(3)',
+            name: 'td:nth-child(4)',
+            q: 'td:nth-child(5)'
+        },
+        ast:{
+            $root: 'div.col-sm-6.game-highs.ng-scope > div.game-highs-container > table > tbody > tr:nth-child(4)',
+            name: 'td:nth-child(4)',
+            q: 'td:nth-child(5)'
+        }
     },
     time: {                 // start time
     	$root: '.game-header.clearfix',
