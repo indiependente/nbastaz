@@ -11,3 +11,4 @@ soup = BeautifulSoup(words)
 
 for news in soup.find_all('item'):
 	print news.title.text
+	print news.description.text
