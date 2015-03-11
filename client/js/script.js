@@ -33,11 +33,18 @@
 
    scotchApp.controller('nextMatchController', function($scope){
            $scope.results=[
-            {name:'SAC-CHA', time:19},
+            {name:'SAC-CHA', time:Date.yesterday()},
             {name:'CHI-PHI', time:20},
             {name:'MEM-BOS', time:21},
             {name:'MEM-BOS', time:22}
         ];
+
+        function customersController($scope,$http) {
+            var today = (new Date()).yesterday();
+            console.log(today);
+           // $http.get("http://http://localhost/nbastatz/next?date="+today)
+            //.success(function(response) {$scope.names = response;});
+        }
     });
 
     scotchApp.controller('prevMatchController', function($scope){
@@ -48,3 +55,4 @@
             {name:'MEM-BOS', score:'2-2'}
         ];
     });
+
