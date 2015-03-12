@@ -27,7 +27,7 @@ function nexts(month, day, year, out){
       .use(phantom())
       .select([{
         $root: '#main-container > div:nth-child(2) > div > div.row > div > div > div.row > div',
-        vteam:{                   // home team
+        vteam:{                   // visitor team
             $root: '.col-sm-6.team.vtm',
             abbr: 'span',       //  abbreviation
             link: 'a[href]',   //   team page
