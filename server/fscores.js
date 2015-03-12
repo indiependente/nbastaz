@@ -2,9 +2,6 @@ var xray        =   require('x-ray'),
     phantom     =   require('x-ray-phantom'),
     dateutils   =   require('date-utils');
 
-// var month = process.argv[2];
-// var day = process.argv[3];
-// var year = process.argv[4];
 module.exports = fscores;
 
 function fscores(month, day, year, out){
@@ -19,7 +16,7 @@ function fscores(month, day, year, out){
     var date = new Date(month+'/'+day+'/'+year);
 
     console.log('semantic check');
-    if (Date.compare(Date.UTCyesterday(), date) == -1) // Date must be
+    if (Date.compare(Date.UTCyesterday(), date) == -1) // Date must be previous to current one
     {
         console.error('I can\'t tell you the future...');
         process.exit(1);
@@ -69,25 +66,25 @@ function fscores(month, day, year, out){
                 text: 'a'
             },
             link: 'a[href]',   //   team page
-            record: 'span',
-            qtrs: ['td.qtr.ng-binding'],
-            finl: 'td.final.ng-binding'
+            record: 'span',    //   won-lost
+            qtrs: ['td.qtr.ng-binding'],    //  partial points in quarters
+            finl: 'td.final.ng-binding'     //  final result
         },
         hstats: {
             pts: {
                 $root: 'div.col-sm-6.game-highs.ng-scope > div.game-highs-container > table > tbody > tr:nth-child(2)',
-                name: 'td:nth-child(4)',
-                q: 'td:nth-child(5)'
+                name: 'td:nth-child(4)', // player name
+                q: 'td:nth-child(5)'    //  points
             },
             reb: {
                 $root: 'div.col-sm-6.game-highs.ng-scope > div.game-highs-container > table > tbody > tr:nth-child(3)',
-                name: 'td:nth-child(4)',
-                q: 'td:nth-child(5)'
+                name: 'td:nth-child(4)',    //  player name
+                q: 'td:nth-child(5)'       //   num of rebounds
             },
             ast:{
                 $root: 'div.col-sm-6.game-highs.ng-scope > div.game-highs-container > table > tbody > tr:nth-child(4)',
-                name: 'td:nth-child(4)',
-                q: 'td:nth-child(5)'
+                name: 'td:nth-child(4)',    //  player name
+                q: 'td:nth-child(5)'       //   num of assists
             }
         },
         time: {                 // start time
@@ -95,7 +92,7 @@ function fscores(month, day, year, out){
             hour: 'span' // ET
         }
       }])
-    .write(out)
+    .write(out) // out must be a variable or a WritableStream
 
 
 }
