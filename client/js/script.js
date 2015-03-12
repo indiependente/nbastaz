@@ -52,3 +52,6 @@
             .success(function(response) {$scope.results = response;});
     });
 
+function showMoreAboutTeam(teamID){
+    //request to the server for more info about team
+}
