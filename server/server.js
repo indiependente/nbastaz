@@ -3,6 +3,9 @@ var express   = require('express'),
  dateutils    = require('date-utils'),
  scores       = require('./scores.js'),
  nexts        = require('./next_matches.js')
+ path         = require('path')
+
+app.use(express.static(path.join(__dirname, 'views')));
 
 app.get('/', function (req, res) {
   res.render('index.html')

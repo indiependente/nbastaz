@@ -1,0 +1,78 @@
+doctype html(lang='en')
+head
+  meta(charset='utf-8')
+    title News
+    base(target='_blank')
+    style(type='text/css').
+      <!--
+      body	{
+      background-color: #FFFFFF;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      }
+      /* FONT COLORS */
+      div		{ color: #000000; font: 11px arial, sans-serif; font-weight: normal; }
+      .title		{ color: #0033FF; font: 12px arial, sans-serif; font-weight: bold; }
+      #NewsDiv	{ position: absolute; left: 0; top: 0; width: auto; }
+      /* PAGE LINK COLORS */
+      a:link		{ color: #0033FF; text-decoration: underline; }
+      a:visited	{ color: #6633FF; text-decoration: underline; }
+      a:active	{ color: #0033FF; text-decoration: underline; }
+      a:hover		{ color: #6699FF; text-decoration: none; }
+      -->
+    script(type='text/javascript').
+      <!-- HIDE CODE JAVASCRIPT NEWS SCROLLER ver 2.0 2013
+      var scrollspeed = 1;		// SET SCROLLER SPEED 1 = SLOWEST
+      var speedjump   = 30;		// ADJUST SCROLL JUMPING = RANGE 20 TO 40
+      var startdelay  = 2; 		// START SCROLLING DELAY IN SECONDS
+      var nextdelay   = 0; 		// SECOND SCROLL DELAY IN SECONDS 0 = QUICKEST
+      var topspace    = 0;		// TOP SPACING FIRST TIME SCROLLING
+      var frameheight = 204;		// IF YOU RESIZE THE WINDOW EDIT THIS HEIGHT TO MATCH
+      current = (scrollspeed);
+      function HeightData() {
+      AreaHeight = dataobj.offsetHeight;
+      if (AreaHeight === 0) {
+      setTimeout("HeightData()", (startdelay * 1000));
+      } else {
+      ScrollNewsDiv();
+      }
+      }
+      function NewsScrollStart() {
+      dataobj = document.all ? document.all.NewsDiv : document.getElementById("NewsDiv");
+      dataobj.style.top = topspace + 'px';
+      setTimeout("HeightData()", (startdelay * 1000));
+      }
+      function ScrollNewsDiv() {
+      dataobj.style.top = parseInt(dataobj.style.top) - scrollspeed + 'px';
+      if (parseInt(dataobj.style.top) < AreaHeight * (-1)) {
+      dataobj.style.top = frameheight + 'px';
+      setTimeout("ScrollNewsDiv()", (nextdelay * 1000));
+      } else {
+      setTimeout("ScrollNewsDiv()", speedjump);
+      }
+      }
+      // END HIDE CODE -->
+  body(onmouseover='scrollspeed=0', onmouseout='scrollspeed=current', onload='NewsScrollStart();')
+    #NewsDiv(style='text-align: left; padding: 5px;')
+      // SCROLLER CONTENT STARTS HERE
+      span.title
+        | Notizia 1
+        br
+      | You can list as many news paragraphs in this window as you need. You will edit the &quot;news_win.htm&quot; to change the text shown in this area.
+      br
+      br
+      br
+      span.title
+        | Notizia 2
+        br
+      | To have the scroller reload at the top for the second time through, change the &quot;frameheight&quot; to &quot;2&quot; and change the &quot;nextdelay&quot; to &quot;1&quot; or &quot;2&quot;.
+      br
+      br
+      br
+      span.title
+        | Notizia 3
+        br
+      | If you change the size of the IFrame window edit the &quot;frameheight&quot; variable in the &quot;news_win.htm&quot; to match your new window size.
+      br
+      // SCROLLER CONTENT ENDS HERE
