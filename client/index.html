@@ -45,7 +45,7 @@
     <th>time</th>
   </tr>
   <tr ng-repeat="match in results">
-    <td>{{ match.name }}</td>
+    <td>{{ match.vteam.abbr+' - 'match.hteam-abbr }}</td>
     <td>{{ match.time }}</td>
   </tr>
 </table>

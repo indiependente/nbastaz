@@ -19,9 +19,10 @@
                 controller  : 'contactController'
             });
     });
-    // create the controller and inject Angular's $scope
+    
+    /*
     scotchApp.controller('mainController', function($scope) {
-        // create a message to display in our view
+        
         $scope.message = 'Everyone come and see how good I look!';
     });
     scotchApp.controller('aboutController', function($scope) {
@@ -29,30 +30,25 @@
     });
     scotchApp.controller('contactController', function($scope) {
         $scope.message = 'Contact us! JK. This is just a demo.';
-    });
+    });*/
 
-   scotchApp.controller('nextMatchController', function($scope){
-           $scope.results=[
-            {name:'SAC-CHA', time:Date.yesterday()},
-            {name:'CHI-PHI', time:20},
-            {name:'MEM-BOS', time:21},
-            {name:'MEM-BOS', time:22}
-        ];
-
-        function customersController($scope,$http) {
-            var today = (new Date()).yesterday();
-            console.log(today);
-           // $http.get("http://http://localhost/nbastatz/next?date="+today)
-            //.success(function(response) {$scope.names = response;});
-        }
+   scotchApp.controller('nextMatchController', function($scope, $http){
+            var todayAll = (new Date()).today();
+            var month = todayAll.getMonth()+1;
+            var day = todayAll.toFormat('DD');
+            var year = todayAll.getFullYear();
+            var today = month+'-'+day+'-'+year;
+           $http.get("http://http://localhost:3000/matches?date="+today)
+            .success(function(response) {$scope.results = response;});
     });
 
     scotchApp.controller('prevMatchController', function($scope){
-           $scope.results=[
-            {name:'SAC-CHA', score:'1-9'},
-            {name:'CHI-PHI', score:'2-0'},
-            {name:'MEM-BOS', score:'2-1'},
-            {name:'MEM-BOS', score:'2-2'}
-        ];
+            var yesterdayAll = (new Date()).yesterday();
+            var month = yesterdayAll.getMonth()+1;
+            var day = yesterdayAll.toFormat('DD');
+            var year = yesterdayAll.getFullYear();
+            var yesterday = month+'-'+day+'-'+year;
+           $http.get("http://http://localhost:3000/matches?date="+yesterday)
+            .success(function(response) {$scope.results = response;});
     });
 
