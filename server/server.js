@@ -1,7 +1,8 @@
-var express = require('express')
-var app = express()
-var dateutils = require('date-utils')
-var fscores = require('./fscores.js')
+var express   = require('express'),
+ app          = express(),
+ dateutils    = require('date-utils'),
+ scores       = require('./scores.js'),
+ nexts        = require('./next_matches.js')
 
 app.get('/', function (req, res) {
   res.render('index.html')
@@ -13,14 +14,12 @@ app.get('/matches', function (req, res) {
   if(Date.compare(date, Date.today()) < 0)
 	{	// scores
 		console.log('date < today: '+date)
-		// console.log('month = '+date.getMonth()+1)
-		// console.log('day = '+date.toFormat('DD'))
-		// console.log('year = '+date.getFullYear())
-		fscores(date.getMonth()+1, date.toFormat('DD'), date.getFullYear(), res)
+		scores(date.getMonth()+1, date.toFormat('DD'), date.getFullYear(), res)
 	}
   else
   	{	// next matches
   		console.log('date >= today: '+date);
+      nexts(date.getMonth()+1, date.toFormat('DD'), date.getFullYear(), res)
   	}
 })
 
