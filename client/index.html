@@ -10,14 +10,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
   <script src="js/script.js"></script>
   <script type="text/javascript" src="js/date-utils.min.js"></script>
-  <style>
-  .tab {
-  margin: 0 auto;
-  font-size: 1.2em;
-  text-align: center;
-
-}
-</style>
+ 
 </head>
 <!-- define angular controller -->
 <body ng-controller="mainController">
@@ -27,44 +20,45 @@
         <a class="navbar-brand" href="/">NBAStatz</a>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-        <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
-        <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+        <li><a href="#"><i class="fa fa-home"></i> Home </a></li>
+        <li><a href="#about"><i class="fa fa-shield"></i> About </a></li>
+        <li><a href="#contact"><i class="fa fa-comment"></i> Contact </a></li>
       </ul>
     </div>
   </nav>
   <div id="main">
 
 <!-- Next matches-->
-
 <div style="display: inline-block; position:relative; left:3px; right=100px;" ng-app="" ng-controller="nextMatchController"> 
 <table class="tab" border >
-  <caption> Next Matches</caption>
+  <caption>Next Matches</caption>
   <tr>
-    <th>match</th>
-    <th>time</th>
+    <th>Match</th>
+    <th>Time</th>
   </tr>
   <tr ng-repeat="match in results">
-    <td>{{ match.name }}</td>
+    <td><span onclick="showMoreAboutTeam(match.vteam.id)">{{ match.vteam.abbr}}</span> <span> - </span> <span onclick="showMoreAboutTeam(match.hteam.id)">{{match.hteam.abbr}}</span></td>
     <td>{{ match.time }}</td>
   </tr>
 </table>
 
 </div>
-
+ 
+ <!-- A table for every previous match -->
 <div style="display: inline-block; position:relative; left:103px;" ng-app="" ng-controller="prevMatchController"> 
-<table class="tab" border>
-  <caption> Prev Matches</caption>
+<table class="tab" border ng-repeat="match in results">
   <tr>
-    <th>match</th>
-    <th>score</th>
+  	<td style="width:70px;"> <img src="match.vteam.logo"></img> </td>
+    <td> <span onclick="showMoreAboutTeam(match.vteam.id)">{{ match.vteam.abbr }}</span> </td>
+    <td> match.vteam.finl </td>
   </tr>
-  <tr ng-repeat="match in results">
-    <td>{{ match.name }}</td>
-    <td>{{ match.score }}</td>
+
+   <tr>
+  	<td style="width:70px;"> <img src="match.hteam.logo"></img> </td>
+    <td> <span onclick="showMoreAboutTeam(match.hteam.id)">{{ match.hteam.abbr }}</span> </td>
+    <td> match.hteam.finl </td>
   </tr>
 </table>
-
 </div>
 
 
