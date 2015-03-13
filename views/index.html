@@ -26,71 +26,9 @@
       </ul>
     </div>
   </nav>
-  <div id="main">
-
-<!-- Next matches-->
-<div style="display: inline-block; position:relative; left:3px; right=100px;" ng-app="nbastaz" ng-controller="nextMatchController">
-<table class="tab" border >
-  <caption>Next Matches</caption>
-  <thead>
-    <tr>
-      <th>VISITOR</th>
-      <th>HOME</th>
-      <th>TIME</th>
-    </tr>
-  </thead>
-
-  <tr ng-repeat="match in results">
-    <td>
-      <img ng-src="{{ match.vteam.logo }}" width="80" height="80" />
-      <span>{{ match.vteam.abbr }}</span>
-    </td>
-
-    <td>
-      <span>{{ match.hteam.abbr }}</span>
-      <img ng-src="{{ match.hteam.logo }}" width="80" height="80"/>
-    </td>
-
-    <td>{{ match.time }}</td>
-  </tr>
-</table>
-
-</div>
-
- <!-- A table for every previous match -->
-<div style="display: inline-block; position:relative; left:103px;" ng-app="nbastaz" ng-controller="prevMatchController">
-<table class="tab" border ng-repeat="match in results">
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th>FINAL</th>
-    </tr>
-  </thead>
-  <tr>
-  	<td> <img ng-src="{{match.vteam.logo}}" width="80" height="80"></img> </td>
-    <td> <!-- <span onclick="showMoreAboutTeam("+{{match.vteam.id}}+")" >-->{{ match.vteam.abbr }}</span> </td>
-    <td> {{match.vteam.finl}} </td>
-  </tr>
-
-   <tr>
-  	<td> <img ng-src="{{match.hteam.logo}}" width="80" height="80"></img> </td>
-    <td> <!-- <span onclick="showMoreAboutTeam("+{{match.hteam.id}}+")"> -->{{ match.hteam.abbr }}</span> </td>
-    <td> {{match.hteam.finl}} </td>
-  </tr>
-</table>
-</div>
 
 
-<!-- <div style="position:relative; top:75px; left:500px;"> -->
-  <!-- news -->
-<!--     <div style="border-radius: 10px 10px 10px 10px; width: 320px; border: #000000 1px solid; background-color: #006699; text-align: center; padding: 0px 2px 7px 2px;">
-<div style=" border-radius: 10px 10px 10px 10px; color: #FFFFFF; font: 13px arial, sans-serif; font-weight: bold; text-align: center; padding: 3px;">
-Latest News<br>
-</div>
-<iframe id="NewsWindow" seamless src="scroll/news_win.htm" height="300" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" style="display: block; margin: 0 auto; padding: 0; border: #000000 1px solid;"></iframe>
-</div>
-</div> -->
+<div ng-view></div>
 
 
   <footer class="text-center">
