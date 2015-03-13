@@ -5,7 +5,7 @@
         $routeProvider
             // route for the home page
             .when('/', {
-                templateUrl : 'pages/home.html',
+                templateUrl : 'home.html',
                 controller  : 'mainController'
             })
             // route for the about page
@@ -22,7 +22,7 @@
 
     app.controller('mainController', function($scope) {
 
-        $scope.message = 'Everyone come and see how good I look!';
+        
     });
 
     app.controller('aboutController', function($scope) {
