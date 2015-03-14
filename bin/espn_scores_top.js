@@ -31,9 +31,9 @@ function scores(url, out){
     xray(url)
      .select([{
      	$root: '.mod-container.mod-no-header-footer.mod-scorebox.mod-nba-scorebox.final-state',
-     	vteam:{                   // home team
+     	vteam:{                   // visitor team
      		$root: '.mod-content > .team.away',
-            name: '.team-capsule > .team-name > span > a',	
+            name: '.team-capsule > .team-name > span > a',
             link: '.team-capsule > .team-name > span > a[href]',
             record: '.team-capsule > .team-name > p',
             qtrs: ['.score > li:not(.finalScore)'],
@@ -41,7 +41,7 @@ function scores(url, out){
         },
         vstats: {
         	$root: '.mod-content > :nth-last-child(2) > table > tbody ',
-            pts: {        	
+            pts: {
             	$root: 'tr:nth-child(1)',
                 name: 'td:nth-child(2)',
                 q: 'td:nth-child(3)',
@@ -63,7 +63,7 @@ function scores(url, out){
         },
          hteam:{                   // home team
             $root: '.mod-content > .team.home',
-            name: '.team-capsule > .team-name > span > a',	
+            name: '.team-capsule > .team-name > span > a',
             link: '.team-capsule > .team-name > span > a[href]',
             record: '.team-capsule > .team-name > p',
             qtrs: ['.score > li:not(.finalScore)'],
@@ -71,7 +71,7 @@ function scores(url, out){
         },
         hstats: {
             $root: '.mod-content > :nth-last-child(2) > table > tbody ',
-            pts: {        	
+            pts: {
             	$root: 'tr:nth-child(1)',
                 name: 'td:nth-child(4)',
                 q: 'td:nth-child(5)',
