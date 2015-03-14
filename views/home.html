@@ -13,13 +13,13 @@
 
   <tr ng-repeat="match in results">
     <td>
-      <img ng-src="{{ match.vteam.logo }}" width="80" height="80" />
-      <span>{{ match.vteam.abbr }}</span>
+      <img ng-src="{{ match.vlogo }}" width="80" height="80" />
+      <span>{{ match.vteam }}</span>
     </td>
 
     <td>
-      <span>{{ match.hteam.abbr }}</span>
-      <img ng-src="{{ match.hteam.logo }}" width="80" height="80"/>
+      <span>{{ match.hteam }}</span>
+      <img ng-src="{{ match.hlogo }}" width="80" height="80"/>
     </td>
 
     <td>{{ match.time }}</td>
@@ -40,13 +40,13 @@
   </thead>
   <tr>
   	<td> <img ng-src="{{match.vteam.logo}}" width="80" height="80"></img> </td>
-    <td> <!-- <span onclick="showMoreAboutTeam("+{{match.vteam.id}}+")" >-->{{ match.vteam.abbr }}</span> </td>
+    <td> <!-- <span onclick="showMoreAboutTeam("+{{match.vteam.id}}+")" >-->{{ match.vteam.name }}</span> </td>
     <td> {{match.vteam.finl}} </td>
   </tr>
 
    <tr>
   	<td> <img ng-src="{{match.hteam.logo}}" width="80" height="80"></img> </td>
-    <td> <!-- <span onclick="showMoreAboutTeam("+{{match.hteam.id}}+")"> -->{{ match.hteam.abbr }}</span> </td>
+    <td> <!-- <span onclick="showMoreAboutTeam("+{{match.hteam.id}}+")"> -->{{ match.hteam.name }}</span> </td>
     <td> {{match.hteam.finl}} </td>
   </tr>
 </table>

@@ -1,8 +1,8 @@
-var express     = require('express');
-var router      = express.Router();
-var dateutils   = require('date-utils');
-var scores      = require('../bin/scores.js');
-var nexts       = require('../bin/next_matches.js');
+var express     = require('express'),
+    router      = express.Router(),
+    dateutils   = require('date-utils'),
+    scores      = require('../bin/espn_scores_top.js'),
+    schedule    = require('../bin/espn_schedule_matches.js')
 
 
 
@@ -12,13 +12,15 @@ router.get('/', function (req, res) {
   if(Date.compare(date, Date.today()) < 0)
   { // scores
     console.log('date < today: '+date)
-    scores(date.getMonth()+1, date.toFormat('DD'), date.getFullYear(), res)
+    var url = scores.getUrl(date.getMonth()+1, date.toFormat('DD'), date.getFullYear())
+    scores.scores(url, res)
   }
   else
     { // next matches
-      console.log('date >= today: '+date);
-      nexts(date.getMonth()+1, date.toFormat('DD'), date.getFullYear(), res)
+      console.log('date >= today: '+date)
+      var url = schedule.getUrl(date.getMonth()+1, date.toFormat('DD'), date.getFullYear())
+      schedule.schedule(url, res)
     }
 })
 
-module.exports = router;
+module.exports = router
