@@ -2,7 +2,7 @@ var fs 	=	require('fs')
 
 var logos
 
-fs.readFile('./bin/logos.json', 'utf8', function (err, data) {
+fs.readFile('./bin/data/logos.json', 'utf8', function (err, data) {
   if (err) throw err
   logos = JSON.parse(data)
 })

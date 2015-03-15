@@ -8,7 +8,10 @@ f = urllib.urlopen(rss)
 words = f.read().decode('utf-8')
 
 soup = BeautifulSoup(words)
-
+array = []
 for news in soup.find_all('item'):
-	print news.title.text
-	print news.description.text
+	array.append(
+		{'title': news.title.text,
+		 'descr': news.description.text})
+
+print array
