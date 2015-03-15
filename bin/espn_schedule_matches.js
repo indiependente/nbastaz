@@ -41,7 +41,7 @@ function schedule(url, out){
 	xray(url)
 		.prepare('logofy', logofy)
 		.select([{
-			$root: '#my-teams-table > div.mod-container.mod-table.mod-no-header-footer > div > table:nth-child(1) > tbody > tr[class*="team"]',
+			$root: '#my-teams-table > div.mod-container.mod-table.mod-no-header-footer > div > table:nth-child(1) > tr[class*="team"]',
 			match: 'td:nth-child(1)',								// match. Format: Boston at Indiana
 			vteam: 'td:nth-child(1) > a:first-child',				// visitor team
 			vlogo: 'td:nth-child(1) > a:first-child | logofy',		// visitor team logo
