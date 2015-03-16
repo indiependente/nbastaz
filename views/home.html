@@ -1,6 +1,10 @@
+    <div ng-hide=nm layout="row" layout-sm="column" layout-align="space-around" ng-controller="nextMatchController">
+      <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+    </div>
+
 
 <!-- Next matches-->
-<div style="display: inline-block; position:absolute; left:3px; right=100px;" ng-app="nbastaz" ng-controller="nextMatchController">
+<div ng-show=nm style="display: inline-block; position:absolute; left:3px; right=100px;" ng-app="nbastaz" ng-controller="nextMatchController">
 <table>
   <caption>Next Matches</caption>
   <thead>
@@ -30,7 +34,7 @@
 </div>
 
  <!-- A table for every previous match -->
-<div style="display: inline-block; position:absolute; left:50%;" ng-app="nbastaz" ng-controller="prevMatchController">
+<div ng-show=pm style="display: inline-block; position:absolute; left:50%;" ng-app="nbastaz" ng-controller="prevMatchController">
 <table ng-repeat="match in results">
   <thead>
     <tr>
