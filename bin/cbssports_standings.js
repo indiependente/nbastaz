@@ -1,15 +1,23 @@
-var xray 		= 	require('x-ray');
+var xray 		= 	require('x-ray'),
+    logofy      =   require('./logofy');
 
 var url = 'http://www.cbssports.com/nba/standings';
 
 module.exports = standing;
 
+function LosAngeles(la){	// enjoy ;)
+	return la.replace('L.A.', 'LA')
+}
+
 function standing(out){
 
 	xray(url)
+		.prepare('LosAngeles', LosAngeles)
+		.prepare('logofy', logofy)
 		.select([{
 			$root: '#sortableContent > table > tr.row1,tr.row2',
 			team: 'td > a',							// team name
+			logo: 'td > a | LosAngeles | logofy',	// team logo
 			link: 'td > a[href]',					// link to team
 			w: 'td:nth-child(2)',					// wins
 			l: 'td:nth-child(3)',					// losses
@@ -18,10 +26,10 @@ function standing(out){
 			home: 'td:nth-child(6)',				// record at home
 			road: 'td:nth-child(7)',				// record on the road
 			conf: 'td:nth-child(8)',				// record of a team against their conference
-			div: 'td:nth-child(9)',					// record of a team against their own division 
+			div: 'td:nth-child(9)',					// record of a team against their own division
 			streak: 'td:nth-child(10)',				// current streak
 			l10: 'td:nth-child(11)'					// how a team has done in their past ten games
 		}])
 		.write(out);
-} 
+}
 
