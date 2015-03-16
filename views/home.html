@@ -1,7 +1,7 @@
 
 <!-- Next matches-->
-<div style="display: inline-block; position:relative; left:3px; right=100px;" ng-app="nbastaz" ng-controller="nextMatchController">
-<table class="tab" border >
+<div style="display: inline-block; position:absolute; left:3px; right=100px;" ng-app="nbastaz" ng-controller="nextMatchController">
+<table>
   <caption>Next Matches</caption>
   <thead>
     <tr>
@@ -22,15 +22,16 @@
       <img ng-src="{{ match.hlogo }}" width="80" height="80"/>
     </td>
 
-    <td>{{ match.time }}</td>
+    <td>{{ match.time }}
+    </td>
   </tr>
 </table>
 
 </div>
 
  <!-- A table for every previous match -->
-<div style="display: inline-block; position:relative; left:103px;" ng-app="nbastaz" ng-controller="prevMatchController">
-<table class="tab" border ng-repeat="match in results">
+<div style="display: inline-block; position:absolute; left:50%;" ng-app="nbastaz" ng-controller="prevMatchController">
+<table ng-repeat="match in results">
   <thead>
     <tr>
       <th></th>
@@ -40,13 +41,13 @@
   </thead>
   <tr>
   	<td> <img ng-src="{{match.vteam.logo}}" width="80" height="80"></img> </td>
-    <td> <!-- <span onclick="showMoreAboutTeam("+{{match.vteam.id}}+")" >-->{{ match.vteam.name }}</span> </td>
+    <td> <!-- <span onclick="showMoreAboutTeam("+{{match.vteam.id}}+")" >-->{{ match.vteam.abbr }}</span> </td>
     <td> {{match.vteam.finl}} </td>
   </tr>
 
    <tr>
   	<td> <img ng-src="{{match.hteam.logo}}" width="80" height="80"></img> </td>
-    <td> <!-- <span onclick="showMoreAboutTeam("+{{match.hteam.id}}+")"> -->{{ match.hteam.name }}</span> </td>
+    <td> <!-- <span onclick="showMoreAboutTeam("+{{match.hteam.id}}+")"> -->{{ match.hteam.abbr }}</span> </td>
     <td> {{match.hteam.finl}} </td>
   </tr>
 </table>
