@@ -1,6 +1,6 @@
 var express     = require('express'),
     router      = express.Router(),
-    scrapeNews  = require('../bin/espn_news')
+    scrapeNews  = require('../bin/nba_news')
 
 
 router.get('/', function (req, res) {
