@@ -113,39 +113,15 @@ function scores(url, out){
 
 // need URL from getUrl function
 function topPlayers(url, out){
-
     xray(url)
         .select([{
-            $root: '.top-performer',
-            first: {                // first player of the day
-                $root: '#leader-1',
-                link: 'a[href]',                                            // link to player page
-                name: 'a >img[title]',                                      // name of player
-                image: 'a > img[src]',                                      // player image
-                team: '.top-performers > li:first-child > a:last-child',    // player team
-                stats: '.top-performers > li:nth-child(2)',                 // stats of player with format: x pts, y reb, z ast
-                game: '.top-performers > li:last-child > a',                // short preview of the opposing team
-                linkgame: '.top-performers > li:last-child > a[href]'       // link to game
-            },
-            second: {               // second player of the day
-                $root: '#leader-2',
-                link: 'a[href]',
-                name: 'a >img[title]',
-                image: 'a > img[src]',
-                team: '.top-performers > li:first-child > a:last-child',
-                stats: '.top-performers > li:nth-child(2)',
-                game: '.top-performers > li:last-child > a',
-                linkgame: '.top-performers > li:last-child > a[href]'
-            },
-            third: {                // third player of the day
-                $root: '#leader-3',
-                link: 'a[href]',
-                name: 'a >img[title]',
-                image: 'a > img[src]',
-                team: '.top-performers > li:first-child > a:last-child',
-                stats: '.top-performers > li:nth-child(2)',
-                game: '.top-performers > li:last-child > a',
-                linkgame: '.top-performers > li:last-child > a[href]'
-            }
+            $root: '#content > div.span-2.last > div.mod-container.mod-scoreboard > div.mod-content > ul > li',
+            link: 'a[href]',                                            // link to player page
+            name: 'a >img[title]',                                      // name of player
+            image: 'a > img[src]',                                      // player image
+            team: '.top-performers > li:first-child > a:last-child',    // player team
+            stats: '.top-performers > li:nth-child(2)',                 // stats of player with format: x pts, y reb, z ast
+            game: '.top-performers > li:last-child > a',                // short preview of the opposing team
+            linkgame: '.top-performers > li:last-child > a[href]'       // link to game
     }]).write(out); // out must be a variable or a WritableStream
 };
