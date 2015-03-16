@@ -3,11 +3,13 @@ var xray        =   require('x-ray');
 // var url = 'http://espn.go.com/nba/team/stats/_/name/bos/boston-celtics';
 // teamStats(url, process.stdout);
 // teamLeaders(url, process.stdout);
+var urlRoster = 'http://espn.go.com/nba/team/roster/_/name/bos/boston-celtics';
+teamRoster(urlRoster, process.stdout);
 
-module.exports = {
-	teamStats : teamStats,
-	teamLeaders : teamLeaders 
-};
+// module.exports = {
+// 	teamStats : teamStats,
+// 	teamLeaders : teamLeaders 
+// };
 
 // Remember to insert tooltip for each field. The tooltips are the comments, like Games played 
 function teamStats(url, out){
@@ -51,4 +53,22 @@ function teamLeaders(url, out){
 
 		}]).write(out);
 
+}
+
+
+function teamRoster(url, out){
+
+	xray(url)
+		.select([{
+			$root: '#my-players-table > .mod-container.mod-table.mod-no-header-footer > .mod-content > table > tr[class*="row"]',
+			name: 'td:nth-child(2) > a',									// player name
+			link: 'td:nth-child(2) > a[href]',								// link to player
+			number: 'td:nth-child()',										// number of player
+			pos: 'td:nth-child(1)',											// position
+			age: 'td:nth-child(3)',											// età
+			ht: 'td:nth-child(4)',											// height
+			wt: 'td:nth-child(5)',											// weight
+			college: 'td:nth-child(6)',										// college
+			salary: 'td:nth-child(7)'										// salary in 2014-2015
+		}]).write(out);
 }
