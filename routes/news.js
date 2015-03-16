@@ -1,13 +1,11 @@
 var express     = require('express'),
     router      = express.Router(),
-    wrapper     = require('../bin/wrapper')
+    scrapeNews  = require('../bin/espn_news')
 
 
 router.get('/', function (req, res) {
   res.type('json');
-  wrapper('python', ['./bin/news.py']).on('data', function(data){
-    res.send(data)
-  })
+  scrapeNews(res)
 })
 
 module.exports = router
