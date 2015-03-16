@@ -1,6 +1,6 @@
 var xray 		= 	require('x-ray'),
 	dateutils   =   require('date-utils'),
-	logofy      =   require('./logofy')
+	logofy      =   require('./logofy');
 
 // -----------------
 // Testing
@@ -49,12 +49,12 @@ function schedule(url, out){
 			hteam: 'td:nth-child(1) > a:last-child',				// home team
 			hlogo: 'td:nth-child(1) > a:last-child | logofy',		// home team logo
 			linkhteam: 'td:nth-child(1) > :last-child[href]',		// link to page of home  team. He doesn't like a[href]:last-child
-			time: 'td:nth-child(2)',								// time start of match
-			awaytv: 'td:nth-child(3)',								// away tv
-			hometv: 'td:nth-child(4)',								// home tv
-			nattv: 'td:nth-child(5)',								// nat tv. He can be empty
-			tickets: 'td:nth-child(6)',								// Ticket information from stubhub.com. Format: 637 available from $21
-			linktickets: 'td:nth-child(6) > a[href]'				// link to stubhub.com for the match
+			time: 'td:nth-child(2)'									// time start of match
+			// awaytv: 'td:nth-child(3)',								// away tv
+			// hometv: 'td:nth-child(4)',								// home tv
+			// nattv: 'td:nth-child(5)',								// nat tv. He can be empty
+			// tickets: 'td:nth-child(6)',								// Ticket information from stubhub.com. Format: 637 available from $21
+			// linktickets: 'td:nth-child(6) > a[href]'				// link to stubhub.com for the match
 		}])
 	.write(out);
 }
