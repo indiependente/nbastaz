@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var matches = require('./routes/matches');
 var news = require('./routes/news');
 var top_players = require('./routes/top_players');
+var standings = require('./routes/standings');
 
 var app = express();
 
@@ -31,6 +32,8 @@ app.use('/users', users);
 app.use('/matches', matches);
 app.use('/news', news);
 app.use('/top', top_players);
+app.use('/standings', standings);
+
 
 
 // catch 404 and forward to error handler

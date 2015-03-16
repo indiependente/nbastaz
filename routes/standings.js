@@ -1,11 +1,10 @@
 var express     = require('express'),
     router      = express.Router(),
-    scrapeNews  = require('../bin/nba_news')
-
+    stands 		= require('../bin/cbssports_standings')
 
 router.get('/', function (req, res) {
-  res.type('json');
-  scrapeNews(res)
+  res.type('json')
+  stands(res)
 })
 
 module.exports = router

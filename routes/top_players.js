@@ -3,7 +3,7 @@ var express     = require('express'),
     top    		= require('../bin/espn_scores_top.js')
 
 router.get('/', function (req, res) {
-  res.type('json');
+  res.type('json')
   var date = new Date(req.query.date)
   if(Date.compare(date, Date.today()) < 0)
   { // top
