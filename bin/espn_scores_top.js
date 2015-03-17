@@ -1,6 +1,6 @@
 var xray        =   require('x-ray'),
     dateutils   =   require('date-utils'),
-    logofy      =   require('./logofy')
+    logofy      =   require('./teamify').getLogo
 
 // -----------------
 // Testing
