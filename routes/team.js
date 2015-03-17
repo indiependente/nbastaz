@@ -23,4 +23,11 @@ router.get('/roster', function (req, res) {
   team.teamRoster(url, res)
 })
 
+router.get('/teamDepth', function (req, res) {
+  res.type('json')
+  // parse the request parameters and get the url
+  var url = '' // to be filled
+  team.teamDepth(url, res)
+})
+
 module.exports = router
