@@ -25,9 +25,15 @@ var app = angular.module('nbastaz', ['ngMaterial']);
 
 
     app.controller('standingsController',function($scope,$http){
+        $scope.erange=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+        $scope.wrange=[15,16,17,18,19,20,21,22,23,24,25,26,27,28,29];
         $http.get("http://localhost:3000/standings")
-        .success(function(response){$scope.results=response;$scope.erange=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];$scope.wrange=[15,16,17,18,19,20,21,22,23,24,25,26,27,28,29];})
+        .success(function(response){
+          $scope.results=response;
+        })
     });
+
+
 
 
 app.controller('AppCtrl', ['$scope', '$mdSidenav', 'pageService', '$timeout','$log', function($scope, $mdSidenav, pageService, $timeout, $log) {
