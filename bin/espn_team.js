@@ -3,23 +3,27 @@ var xray        =   require('x-ray');
 // var url = 'http://espn.go.com/nba/team/stats/_/name/bos/boston-celtics';
 // teamStats(url, process.stdout);
 // teamLeaders(url, process.stdout);
-var urlRoster = 'http://espn.go.com/nba/team/roster/_/name/bos/boston-celtics';
-teamRoster(urlRoster, process.stdout);
+// var urlRoster = 'http://espn.go.com/nba/team/roster/_/name/bos/boston-celtics';
+// teamRoster(urlRoster, process.stdout);
+// var urlDepth = 'http://espn.go.com/nba/team/depth/_/name/bos/boston-celtics';
+// teamDepth(urlDepth, process.stdout);
 
-// module.exports = {
-// 	teamStats : teamStats,
-// 	teamLeaders : teamLeaders 
-// };
+module.exports = {
+	teamStats : teamStats,
+	teamLeaders : teamLeaders,
+	teamRoster : teamRoster,
+	teamDepth : teamDepth
+};
 
-// Remember to insert tooltip for each field. The tooltips are the comments, like Games played 
+// Remember to insert TOOLTIP for each field. The tooltips are the comments, like Games played
 function teamStats(url, out){
 
 	xray(url)
 		.select([{
 			$root: '#my-players-table > .mod-container.mod-table > div:nth-child(2) > table > tr[class*="row"]',
-			name: 'td:nth-child(1) > a',				// player's name	
+			name: 'td:nth-child(1) > a',				// player's name
 			link: 'td:nth-child(1) > a[href]',			// link to player
-			 		
+
 			gp: 'td:nth-child(2)', 						// Games played
 			gs: 'td:nth-child(3)',						// Games started
 			min: 'td:nth-child(4)', 					// Minutes per game
@@ -70,5 +74,17 @@ function teamRoster(url, out){
 			wt: 'td:nth-child(5)',											// weight
 			college: 'td:nth-child(6)',										// college
 			salary: 'td:nth-child(7)'										// salary in 2014-2015
+		}]).write(out);
+}
+
+// Look at http://espn.go.com/nba/team/depth/_/name/bos/boston-celtics about how to visualize the info
+function teamDepth(url, out){
+
+	xray(url)
+		.select([{
+			$root: '#my-players-table > div.nba-visual-dc > ul',
+			pos: 'span',													// role
+			names: ['li > a'],												// name of the player in that role
+			links: ['li > a[href]']											// link to player in that role
 		}]).write(out);
 }

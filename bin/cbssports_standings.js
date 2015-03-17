@@ -1,5 +1,5 @@
 var xray 		= 	require('x-ray'),
-    logofy      =   require('./logofy');
+    logofy      =   require('./teamify').getLogo;
 
 var url = 'http://www.cbssports.com/nba/standings';
 

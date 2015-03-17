@@ -1,60 +1,77 @@
-    <div ng-hide=nm layout="row" layout-sm="column" layout-align="space-around" ng-controller="nextMatchController">
+<style>
+h4,h2{
+  text-align:center;
+}
+h3{
+  line-height: 110px;
+  text-align:center;
+}
+
+.list,.md-theme-light{
+  padding-left:10px;
+
+  padding-right: 10px;
+}
+</style>
+
+    <div style="display: inline-block; position:absolute; top:40%;left:20%;" ng-hide=nm layout="row" layout-sm="column" layout-align="space-around" ng-controller="nextMatchController">
       <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
     </div>
 
 
 <!-- Next matches-->
-<div ng-show=nm style="display: inline-block; position:absolute; left:3px; right=100px;" ng-app="nbastaz" ng-controller="nextMatchController">
-<table>
-  <caption>Next Matches</caption>
-  <thead>
-    <tr>
-      <th>VISITOR</th>
-      <th>HOME</th>
-      <th>TIME</th>
-    </tr>
-  </thead>
+<div ng-show=nm style="display: inline-block; position:absolute; left:5%;" ng-app="nbastaz" ng-controller="nextMatchController" flex>
+  <md-toolbar class="md-theme-light">
+  <h1>{{today}}</h1>
+    <h2 class="md-toolbar-tools">
+      <div flex>Visitor</div><div flex>Home</div><div flex>Time</div>
+    </h2>
+  </md-toolbar>
 
-  <tr ng-repeat="match in results">
-    <td>
-      <img ng-src="{{ match.vlogo }}" width="80" height="80" />
-      <span>{{ match.vteam }}</span>
-    </td>
-
-    <td>
-      <span>{{ match.hteam }}</span>
-      <img ng-src="{{ match.hlogo }}" width="80" height="80"/>
-    </td>
-
-    <td>{{ match.time }}
-    </td>
-  </tr>
-</table>
-
+  <md-content >
+    <md-list>
+    
+      <md-item data-ng-repeat="match in results">
+        <md-item-content>
+          <div class="md-tile-content">
+            <div layout="row">
+              <div flex  class="list"> <img ng-src="{{ match.vlogo }}" width="80" height="80" /><h4>{{match.vteam}}</h4></div>
+              <div flex  class="list">  <img ng-src="{{ match.hlogo }}" width="80" height="80" /><h4>{{match.hteam}}</h4></div> 
+              <div  class="list"> <h3>{{match.time}}</h3></div>
+              </div>
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-item>
+    </md-list>
+  </md-content>
 </div>
 
  <!-- A table for every previous match -->
-<div ng-show=pm style="display: inline-block; position:absolute; left:50%;" ng-app="nbastaz" ng-controller="prevMatchController">
-<table ng-repeat="match in results">
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th>FINAL</th>
-    </tr>
-  </thead>
-  <tr>
-  	<td> <img ng-src="{{match.vteam.logo}}" width="80" height="80"></img> </td>
-    <td> <!-- <span onclick="showMoreAboutTeam("+{{match.vteam.id}}+")" >-->{{ match.vteam.abbr }}</span> </td>
-    <td> {{match.vteam.finl}} </td>
-  </tr>
-
-   <tr>
-  	<td> <img ng-src="{{match.hteam.logo}}" width="80" height="80"></img> </td>
-    <td> <!-- <span onclick="showMoreAboutTeam("+{{match.hteam.id}}+")"> -->{{ match.hteam.abbr }}</span> </td>
-    <td> {{match.hteam.finl}} </td>
-  </tr>
-</table>
+<div ng-show=pm style="display: inline-block; position:absolute; left:50%;" ng-app="nbastaz" ng-controller="prevMatchController"  flex>
+ <md-toolbar class="md-theme-light" style="background-color:#ff1744">
+ <h1>{{yesterday}}</h1>
+    <h2 class="md-toolbar-tools">
+      <div flex>Visitor</div><div flex>Home</div><div flex>Final</div>
+    </h2>
+  </md-toolbar>
+   <md-content>
+    <md-list>
+    
+      <md-item data-ng-repeat="match in results">
+        <md-item-content>
+          <div class="md-tile-content">
+            <div layout="row">
+              <div flex  class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><h4>{{match.vteam.name}}</h4></div>
+              <div flex  class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><h4>{{match.hteam.name}}</h4></div>   
+              <div flex  class="list"> <h3>{{match.vteam.finl}}-{{match.hteam.finl}}</h3></div>
+              </div>
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-item>
+    </md-list>
+  </md-content>
 </div>
 
 
