@@ -1,0 +1,38 @@
+<!-- <h1>STANDINGS</h1> -->
+
+<div style="display: inline-block; position:absolute; left:20px;right:20px;text-decoration:none;" ng-app="nbastaz" ng-controller="standingsController">
+
+<!-- <span data-ng-repeat="i in erange">{{results[i].team}}</span> -->
+
+<md-toolbar class="md-theme-light">
+    <h1 class="md-toolbar-tools">
+      <span><strong>Eastern Conference</strong></span>&nbsp;&nbsp;&nbsp;<img width="60" height="60" ng-src="http://content.sportslogos.net/logos/6/999/full/2995.gif" align="right"></img>
+    </h1>
+  </md-toolbar>
+  <md-toolbar class="md-theme-light">
+    <h1 class="md-toolbar-tools">
+      <div flex>TEAM</div><div flex>W</div><div flex>L</div><div flex>PCT</div><div flex>S</div>
+    </h1>
+  </md-toolbar>
+  <md-content>
+    <md-list>
+    
+      <md-item data-ng-repeat="i in erange">
+        <md-item-content>
+          <div class="md-tile-content">
+          	<div layout="row">
+          		<div flex><a href={{results[i].link}} style="text-decoration:none;color:black;"><h3>{{results[i].team}}</h3></div><div flex>{{results[i].w}} </div><div flex>{{results[i].l}}</div><div flex>{{results[i].pct}}</div><div flex>{{results[i].streak}}</div>
+            <!-- </a><img ng-src={{results[i].}} -->
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-item>
+    </md-list>
+  </md-content>
+
+
+
+
+
+</div>
+

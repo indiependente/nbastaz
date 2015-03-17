@@ -30,7 +30,7 @@
             <md-item ng-repeat="it in pages">
               <md-item-content>
                 <md-button ng-click="selectPage(it)" ng-class="{'selected' : it === selected }">
-                  <img class="face" alt="">
+                  <img ng-src="{{it.iconurl}}" class="face" alt="">
                   {{it.name}}
                 </md-button>
               </md-item-content>
@@ -39,7 +39,7 @@
         </md-sidenav>
         <div layout="column" flex class="content-wrapper" id="primary-col">
             <md-content layout="column" flex class="md-padding">
-              <h2>{{selected.name}}</h2>
+              <!-- <h2>{{selected.name}}</h2> -->
               <div ng-include src="selected.href"></div>
             </md-content>
         </div>
