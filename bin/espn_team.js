@@ -5,11 +5,14 @@ var xray        =   require('x-ray');
 // teamLeaders(url, process.stdout);
 // var urlRoster = 'http://espn.go.com/nba/team/roster/_/name/bos/boston-celtics';
 // teamRoster(urlRoster, process.stdout);
+// var urlDepth = 'http://espn.go.com/nba/team/depth/_/name/bos/boston-celtics';
+// teamDepth(urlDepth, process.stdout);
 
 module.exports = {
 	teamStats : teamStats,
 	teamLeaders : teamLeaders,
-	teamRoster : teamRoster
+	teamRoster : teamRoster,
+	teamDepth : teamDepth
 };
 
 // Remember to insert TOOLTIP for each field. The tooltips are the comments, like Games played
@@ -71,5 +74,17 @@ function teamRoster(url, out){
 			wt: 'td:nth-child(5)',											// weight
 			college: 'td:nth-child(6)',										// college
 			salary: 'td:nth-child(7)'										// salary in 2014-2015
+		}]).write(out);
+}
+
+// Look at http://espn.go.com/nba/team/depth/_/name/bos/boston-celtics about how to visualize the info
+function teamDepth(url, out){
+
+	xray(url)
+		.select([{
+			$root: '#my-players-table > div.nba-visual-dc > ul',
+			pos: 'span',													// role
+			names: ['li > a'],												// name of the player in that role
+			links: ['li > a[href]']											// link to player in that role
 		}]).write(out);
 }
