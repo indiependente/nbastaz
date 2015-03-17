@@ -5,19 +5,19 @@ var url = 'http://www.cbssports.com/nba/standings';
 
 module.exports = standing;
 
-function LosAngeles(la){	// enjoy ;)
-	return la.replace('L.A.', 'LA')
+function LAGSW(la){	// enjoy ;)
+	return la.replace('L.A.', 'LA').replace('St.', 'State')
 }
 
 function standing(out){
 
 	xray(url)
-		.prepare('LosAngeles', LosAngeles)
+		.prepare('LAGSW', LAGSW)
 		.prepare('logofy', logofy)
 		.select([{
 			$root: '#sortableContent > table > tr.row1,tr.row2',
 			team: 'td > a',							// team name
-			logo: 'td > a | LosAngeles | logofy',	// team logo
+			logo: 'td > a | LAGSW | logofy',	// team logo
 			link: 'td > a[href]',					// link to team
 			w: 'td:nth-child(2)',					// wins
 			l: 'td:nth-child(3)',					// losses
