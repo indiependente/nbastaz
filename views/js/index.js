@@ -8,6 +8,7 @@ var app = angular.module('nbastaz', ['ngMaterial']);
         var year = todayAll.getFullYear();
         var today = month+'-'+day+'-'+year;
         $scope.nm=false;
+        $scope.today = today;
         $http.get("http://localhost:3000/matches?date="+today)
         .success(function(response) {$scope.results = response;$scope.nm=true;});
     });
@@ -19,6 +20,7 @@ var app = angular.module('nbastaz', ['ngMaterial']);
         var year = yesterdayAll.getFullYear();
         var yesterday = month+'-'+day+'-'+year;
         $scope.pm=false;
+        $scope.yesterday = yesterday;
         $http.get("http://localhost:3000/matches?date="+yesterday)
         .success(function(response) {$scope.results = response;$scope.pm=true;});
     });
@@ -66,11 +68,11 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'pageService', '$timeout','$l
 app.service('pageService', ['$q', function($q) {
   var pages = [{
       name: 'Home',
-      // iconurl: 'http://upload.wikimedia.org/wikipedia/en/thumb/0/07/NBALogo.svg/197px-NBALogo.svg.png',
+      //iconurl: 'mdi mdi-bell',
       href: '/home.html'
   }, {
       name: 'Teams',
-      //iconurl: 'http://www.jamesrobertwatson.com/images/Thunderlogo/nbalogos.jpg',
+      //iconurl: 'mdi mdi-bell',
       href: '/teams.html'
   }, {
       name: 'Players',
