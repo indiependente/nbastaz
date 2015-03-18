@@ -21,8 +21,8 @@ md-toolbar h1 {
   color: #03a9f4;
 }
 .face {
-  border-radius: 30px;
-  border: 1px solid #ddd;
+  /*border-radius: 30px;*/
+  border: 1px #ddd;   /*solid*/
   display: inline-block;
   margin: 4px 16px; 
   vertical-align: middle;
