@@ -1,7 +1,7 @@
 var xray        =   require('x-ray');
 
 var url = 'http://espn.go.com/nba/player/_/id/6576/quincy-acy'
-player(url, process.stdout)
+getPlayerInfo(url, process.stdout)
 
 // ___________________________ ADD TOOLTIP TO GAMELOG _________________________________________
 // output:
@@ -48,9 +48,25 @@ player(url, process.stdout)
 
 //	}
 // }
-function player(url, out){
+function born(str){
+	return str.substring(4);
+}
+
+function draf_coll(str){
+	return str.substring(7);
+}
+
+function experience(str){
+	return str.substring(10);
+}
+
+function getPlayerInfo(url, out){
 
 	xray(url)
+		.prepare('born', born)
+		.prepare('draf_coll', draf_coll)
+		.prepare('experience', experience)
+		// .prepare(born, draf_coll, experience)
 		.select([{
 			$root: '#content',
 			name : '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > h1',
@@ -58,10 +74,10 @@ function player(url, out){
 			height_weight: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:nth-child(2)',
 			team: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:nth-child(3) > a',
 			link_team: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:nth-child(3) > a[href]',
-			born: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > .player-metadata.floatleft > li:nth-child(1)',		// delete "Born"
-			drafted: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > .player-metadata.floatleft > li:nth-child(2)', 	// delete "Drafted"
-			college: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > .player-metadata.floatleft > li:nth-child(3)',	// delete "College"
-			experience: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > .player-metadata.floatleft > li:nth-child(4)',	// delete "Experience"
+			born: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > .player-metadata.floatleft > li:nth-child(1) | born',		// delete "Born"
+			drafted: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > .player-metadata.floatleft > li:nth-child(2) | draf_coll', 	// delete "Drafted"
+			college: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > .player-metadata.floatleft > li:nth-child(3) | draf_coll',	// delete "College"
+			experience: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > .player-metadata.floatleft > li:nth-child(4) | experience',	// delete "Experience"
 			season: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-stats > p',
 			ppg: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-stats > table.header-stats > tr:first-child > td:nth-child(1)',
 			apg: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-stats > table.header-stats > tr:first-child > td:nth-child(2)',
