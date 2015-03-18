@@ -47,15 +47,17 @@ def find_roster_urls(pathname):
 		abbr_normalize = unicodedata.normalize('NFKD', team[0]).encode('ascii', 'ignore')
 		if(len(abbr_normalize)==2):
 			abbr = (abbr_normalize+team[1].split('-')[2][0])
+		elif (abbr_normalize=='wsh'):
+			abbr = 'was'
 		else:
 			abbr = abbr_normalize
-		urlLogo = 'http://stats.nba.com/media/img/teams/logos/'+abbr.upper()+'_logo.svg';
+		urlLogo = 'http://stats.nba.com/media/img/teams/logos/'+abbr[:3].upper()+'_logo.svg';
 
 		team_normalize = unicodedata.normalize('NFKD', team[1]).encode('ascii', 'ignore')
 		team_split = team_normalize.split("-")
 		key = team_split[len(team_split) - 1]
 		teamsToFile[key] = {}
-		teamsToFile[key]['abbr'] = abbr
+		teamsToFile[key]['abbr'] = abbr_normalize
 		teamsToFile[key]['id'] = i
 		teamsToFile[key]['team'] = " ".join(team_normalize.split("-")).title()
 		teamsToFile[key]['roster'] = url
@@ -126,8 +128,8 @@ def getPlayersJSON(roster_urls, specific_teams, pathname):
 
 rosters = find_roster_urls('./data/espn_teams.json')
 
-f = urllib.urlopen('http://espn.go.com/nba/teams')
-words = f.read().decode('utf-8')
-teams = re.findall("http\://espn\.go\.com/nba/team/_/name/\w+?/.+?\"\sclass\=\"bi\">(.+?)</a>", words)
+# f = urllib.urlopen('http://espn.go.com/nba/teams')
+# words = f.read().decode('utf-8')
+# teams = re.findall("http\://espn\.go\.com/nba/team/_/name/\w+?/.+?\"\sclass\=\"bi\">(.+?)</a>", words)
 
-getPlayersJSON(rosters, teams, 'data/espn_players.json')
+# getPlayersJSON(rosters, teams, 'data/espn_players.json')
