@@ -15,8 +15,8 @@ router.get('/', function (req, res) {
   }
   else
     { // next matches
-      var url = schedule.getUrl(date.getMonth()+1, date.toFormat('DD'), date.getFullYear())
-      schedule.schedule(url, res)
+      var url = scores.getUrl(date.getMonth()+1, date.toFormat('DD'), date.getFullYear())
+      scores.schedule(url, res)
     }
 })
 

@@ -3,11 +3,11 @@ import urllib
 import json
 import unicodedata
 
-from urllib import urlopen 
+from urllib import urlopen
 
 # This method finds the urls for each of the rosters in the NBA using regexes.
 # This method generate file teams.json, give the teams.json pathname.
-# teams.json structure    	
+# teams.json structure
 # {
 # 	abbr: {
 #		abbr
@@ -16,7 +16,7 @@ from urllib import urlopen
 # 		stats: URL
 #		roster: URL
 #		espn: URL
-#		logo: URL	
+#		logo: URL
 # 	}
 # }
 def find_roster_urls(pathname):
@@ -47,28 +47,27 @@ def find_roster_urls(pathname):
 			abbr = abbr_normalize
 		urlLogo = 'http://stats.nba.com/media/img/teams/logos/'+abbr.upper()+'_logo.svg';
 
-		teamsToFile[abbr] = {}
-		teamsToFile[abbr]['abbr'] = abbr
-		teamsToFile[abbr]['id'] = i
-
 		team_normalize = unicodedata.normalize('NFKD', team[1]).encode('ascii', 'ignore')
-		teamsToFile[abbr]['team'] = " ".join(team_normalize.split("-")).title()
+		team_split = team_normalize.split("-")
+		key = team_split[len(team_split) - 1]
+		teamsToFile[key] = {}
+		teamsToFile[key]['abbr'] = abbr
+		teamsToFile[key]['id'] = i
+		teamsToFile[key]['team'] = " ".join(team_normalize.split("-")).title()
+		teamsToFile[key]['roster'] = url
+		teamsToFile[key]['logo'] = urlLogo
+		teamsToFile[key]['stats'] = url.replace('roster', 'stats')
+		teamsToFile[key]['depth'] = url.replace('roster', 'depth')
 
-		
-		teamsToFile[abbr]['roster'] = url
-		teamsToFile[abbr]['logo'] = urlLogo
-		teamsToFile[abbr]['stats'] = url.replace('roster', 'stats')
-		teamsToFile[abbr]['depth'] = url.replace('roster', 'depth')
-			
 		i+=1
 
-	with open(pathname, 'wb') as fp:
-		json.dump(teamsToFile, fp)
+	with open(pathname, 'wb') as outfile:
+		json.dump(teamsToFile, outfile)
 
 	return roster_urls
 
-    
-#Using the url of each roster, this function generate the file players.json 
+
+#Using the url of each roster, this function generate the file players.json
 def getPlayersJSON(roster_urls, specific_teams):
 
     #Open each roster, one by one.
@@ -102,7 +101,7 @@ def getPlayersJSON(roster_urls, specific_teams):
     # logo: http://stats.nba.com/media/img/teams/logos/UTA_logo.svg
     return players
 
-rosters = find_roster_urls('data/espn_teams.json')
+rosters = find_roster_urls('./data/espn_teams.json')
 
 # f = urllib.urlopen('http://espn.go.com/nba/teams')
 # words = f.read().decode('utf-8')

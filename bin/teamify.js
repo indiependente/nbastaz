@@ -2,7 +2,7 @@ var fs 	=	require('fs')
 
 var teams
 
-fs.readFile('./bin/data/teams.json', 'utf8', function (err, data) {
+fs.readFile('./bin/data/espn_teams.json', 'utf8', function (err, data) {
   if (err) throw err
   teams = JSON.parse(data)
 })
@@ -10,24 +10,59 @@ fs.readFile('./bin/data/teams.json', 'utf8', function (err, data) {
 
 module.exports =
 {
-	getLogo : function (team){
-    			for (var i = 0; i < teams.length; i++) {
-        			if (teams[i].team.indexOf(team) != -1)
-            			return teams[i].logo
-    			}
+	getLogo : function (abbr){
+                var low_split = abbr.toLowerCase().split(' ')
+                var k = low_split[low_split.length - 1]
+    			if (teams.hasOwnProperty(k))
+                    return teams[k].logo
+                return ''
 	},
-	getID	: function (team){
-				for (var i = 0; i < teams.length; i++) {
-        			if (teams[i].team.indexOf(team) != -1)
-            			return teams[i].id
-    			}
-	},
-	getTeam : function (id){
+    getLogoByName : function (team){
+                for (var k in teams) {
+                    if (teams.hasOwnProperty(k)) {
+                        if (teams[k].team == team)
+                            return teams[k].logo
+                    }
+                }
+    },
+	getID	: function (abbr){
+                var k = abbr.toLowerCase()
+                if (teams.hasOwnProperty(k))
+                    return teams[k].id
+                return ''
+    },
+    getTeamByAbbr : function (abbr){
+                var k = abbr.toLowerCase()
+                if (teams.hasOwnProperty(k))
+                    return teams[k]
+                return {}
+    },
+	getTeamByID : function (id){
 				if (id < 1 || id > 30)
 					return null
-				for (var i = 0; i < teams.length; i++) {
-        			if (teams[i].team.indexOf(team) != -1)
-            			return teams[i]
-    			}
-	}
+                for (var k in teams) {
+                    if (teams.hasOwnProperty(k)) {
+                        if (teams[k].id == id)
+                            return teams[k]
+                    }
+                }
+	},
+    getStats : function (abbr){
+                var k = abbr.toLowerCase()
+                if (teams.hasOwnProperty(k))
+                    return teams[k].stats
+                return ''
+    },
+    getRoster : function(abbr){
+                var k = abbr.toLowerCase()
+                if (teams.hasOwnProperty(k))
+                    return teams[k].roster
+                return ''
+    },
+    getDepth : function(abbr){
+                var k = abbr.toLowerCase()
+                if (teams.hasOwnProperty(k))
+                    return teams[k].depth
+                return ''
+    }
 }

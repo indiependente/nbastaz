@@ -13,6 +13,7 @@ var xray        =   require('x-ray'),
 module.exports = {
     getUrl : getUrl,
     scores : scores,
+    schedule : schedule,
     topPlayers : topPlayers
 };
 
@@ -27,11 +28,11 @@ function getUrl(month, day, year){
 
     var date = new Date(month+'/'+day+'/'+year);
 
-    if (Date.compare(Date.UTCyesterday(), date) == -1) // Date must be previous to current one
-    {
-        console.error('I can\'t tell you the future...');
-        process.exit(1);
-    }
+    // if (Date.compare(Date.UTCyesterday(), date) == -1) // Date must be previous to current one
+    // {
+    //     console.error('I can\'t tell you the future...');
+    //     process.exit(1);
+    // }
 
     return 'http://scores.espn.go.com/nba/scoreboard?date='+date.toFormat('YYYYMMDD');
 }
@@ -108,6 +109,32 @@ function scores(url, out){
                 linkPlayer: 'td:nth-child(4) > a[href]'
             }
         }
+     }]).write(out); // out must be a variable or a WritableStream
+};
+
+// need URL from getUrl function
+function schedule(url, out){
+
+    xray(url)
+     .prepare('logofy', logofy)
+     .select([{
+
+        $root: '.mod-container.mod-no-header-footer.mod-scorebox.mod-nba-scorebox.preview',
+        vteam:{                   // visitor team
+            $root:  '.mod-content > .team.away',
+            name:   '.team-capsule > .team-name > span > a',            // team name
+            logo:   '.team-capsule > .team-name > span > a | logofy',  // team logo
+            link:   '.team-capsule > .team-name > span > a[href]',    // team page
+            record: '.team-capsule > .team-name > p'                 // won-lost count
+        },
+         hteam:{                   // home team
+            $root: '.mod-content > .team.home',
+            name: '.team-capsule > .team-name > span > a',
+            logo:   '.team-capsule > .team-name > span > a | logofy', // team logo
+            link: '.team-capsule > .team-name > span > a[href]',
+            record: '.team-capsule > .team-name > p'
+        },
+        time: 'div.mod-content > div.game-header > div.game-status > p'
      }]).write(out); // out must be a variable or a WritableStream
 };
 

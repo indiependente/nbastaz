@@ -30,13 +30,13 @@ h3{
 
   <md-content >
     <md-list>
-    
+
       <md-item data-ng-repeat="match in results">
         <md-item-content>
           <div class="md-tile-content">
             <div layout="row">
-              <div flex  class="list"> <img ng-src="{{ match.vlogo }}" width="80" height="80" /><h4>{{match.vteam}}</h4></div>
-              <div flex  class="list">  <img ng-src="{{ match.hlogo }}" width="80" height="80" /><h4>{{match.hteam}}</h4></div> 
+              <div flex  class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><h4>{{match.vteam.name}}</h4></div>
+              <div flex  class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><h4>{{match.hteam.name}}</h4></div>
               <div  class="list"> <h3>{{match.time}}</h3></div>
               </div>
           </div>
@@ -57,13 +57,13 @@ h3{
   </md-toolbar>
    <md-content>
     <md-list>
-    
+
       <md-item data-ng-repeat="match in results">
         <md-item-content>
           <div class="md-tile-content">
             <div layout="row">
               <div flex  class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><h4>{{match.vteam.name}}</h4></div>
-              <div flex  class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><h4>{{match.hteam.name}}</h4></div>   
+              <div flex  class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><h4>{{match.hteam.name}}</h4></div>
               <div flex  class="list"> <h3>{{match.vteam.finl}}-{{match.hteam.finl}}</h3></div>
               </div>
           </div>
