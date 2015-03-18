@@ -15,7 +15,7 @@ module.exports =
                 var k = low_split[low_split.length - 1]
     			if (teams.hasOwnProperty(k))
                     return teams[k].logo
-                return ''
+                return {}
 	},
     getLogoByName : function (team){
                 for (var k in teams) {
@@ -29,7 +29,7 @@ module.exports =
                 var k = abbr.toLowerCase()
                 if (teams.hasOwnProperty(k))
                     return teams[k].id
-                return ''
+                return {}
     },
     getTeamByAbbr : function (abbr){
                 var k = abbr.toLowerCase()
@@ -51,18 +51,21 @@ module.exports =
                 var k = abbr.toLowerCase()
                 if (teams.hasOwnProperty(k))
                     return teams[k].stats
-                return ''
+                return {}
     },
     getRoster : function(abbr){
                 var k = abbr.toLowerCase()
                 if (teams.hasOwnProperty(k))
                     return teams[k].roster
-                return ''
+                return {}
     },
     getDepth : function(abbr){
                 var k = abbr.toLowerCase()
                 if (teams.hasOwnProperty(k))
                     return teams[k].depth
-                return ''
+                return {}
+    },
+    getTeams : function(){
+                return teams
     }
 }

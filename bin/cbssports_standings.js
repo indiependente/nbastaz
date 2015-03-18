@@ -6,9 +6,7 @@ var url = 'http://www.cbssports.com/nba/standings';
 module.exports = standing;
 
 function nick(link){	// enjoy ;)
-	// console.log(link);
 	var team_split = link.substr(link.lastIndexOf('/')+1, link.length).split('-')
-	// console.log(team_split[team_split.length - 1]);
 	return team_split[team_split.length - 1]
 }
 
