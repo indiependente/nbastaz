@@ -2,12 +2,16 @@ import re
 import urllib
 import json
 import unicodedata
+import requests
+import bs4
 
 from urllib import urlopen
 
 # This method finds the urls for each of the rosters in the NBA using regexes.
-# This method generate file teams.json, give the teams.json pathname.
-# teams.json structure
+# This method generate file teams.json, give the espn_teams.json pathname.
+
+# espn_teams.json structure
+
 # {
 # 	abbr: {
 #		abbr
@@ -67,44 +71,63 @@ def find_roster_urls(pathname):
 	return roster_urls
 
 
+
 #Using the url of each roster, this function generate the file players.json
-def getPlayersJSON(roster_urls, specific_teams):
+# espn_players.json structure
+# id: {
+# 	id: espn
+# 	teamID: --> id di teams
+# 	image: link image
+#   espn: URL
+#	name:
+# }
+def getPlayersJSON(roster_urls, specific_teams, pathname):
 
-    #Open each roster, one by one.
-    #print roster_urls
-    for url in roster_urls['url']:
-    	print url
-        f = urllib.urlopen (url)
-        stats = f.read().decode('utf-8')
+	#Open each roster, one by one.
+	players = {}
+	i = 1
+	for url in roster_urls['url']:
+		print url
+		index = roster_urls['url'].index(url)
 
-        #The salaries were embedded in the source code in this format:
-        '''
-                href="http://espn.go.com/nba/player/_/id/3200/glen-davis">
-                Glen Davis</a></td><td>PF</td><td >25</td><td >6-9</td><td
-                >289</td><td>LSU</td><td>$3,000,004</td>
-        '''
-        players = dict(re.findall('http\://espn\.go\.com/nba/player/_/id/\d*?/.*?\"', stats))
-        print players
-        # player_salaries = dict(re.findall('http\://espn\.go\.com/nba/player/_/id/\d*?/.*?\">(\w+\s\w+)</a></td><td>\w*?</td><td >\d*?</td><td >.*?</td><td >\d*?</td><td>.*?</td><td>\$(.*?)</td>', stats))
+		response = requests.get(url)
+		soup = bs4.BeautifulSoup(response.text)
 
 
-    #players
+		playersURL = [unicodedata.normalize('NFKD', a.attrs.get('href')).encode('ascii', 'ignore') for a in soup.select('#my-players-table > .mod-container.mod-table.mod-no-header-footer > .mod-content > table:first-child() > tr[class*="player"] > td.sortcell > a[href]')]
 
-    # {
-    # 	id: espn
-    # 	teamID: --> id di teams
-    # 	image: link image
-    #   espn: URL
+		for playerURL in playersURL:
 
-    # }
+			response = requests.get(playerURL)
+			soup = bs4.BeautifulSoup(response.content)
 
-    # logo: http://stats.nba.com/media/img/teams/logos/UTA_logo.svg
-    return players
+			playerURLsplit = playerURL.split('/')
+			id = playerURLsplit[7]
+
+			players[id] = {}
+			players[id]['id'] = id
+			players[id]['teamID'] = roster_urls['idTeam'][index]
+			players[id]['name'] = " ".join(playerURLsplit[8].split("-")).title()
+			players[id]['espn'] = playerURL
+
+
+			if playerURL == 'http://espn.go.com/nba/player/_/id/2959753/joffrey-lauvergne':
+				image = 'http://stats.nba.com/media/players/230x185/203530.png'
+			else:
+				image = soup.select('#content > .mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.main-headshot > img')[0]['src']
+				image = unicodedata.normalize('NFKD', image).encode('ascii', 'ignore')
+			players[id]['image'] = image
+
+			print players[id]
+
+	with open(pathname, 'wb') as fp:
+		json.dump(players, fp)
+	return players
 
 rosters = find_roster_urls('./data/espn_teams.json')
 
-# f = urllib.urlopen('http://espn.go.com/nba/teams')
-# words = f.read().decode('utf-8')
-# teams = re.findall("http\://espn\.go\.com/nba/team/_/name/\w+?/.+?\"\sclass\=\"bi\">(.+?)</a>", words)
+f = urllib.urlopen('http://espn.go.com/nba/teams')
+words = f.read().decode('utf-8')
+teams = re.findall("http\://espn\.go\.com/nba/team/_/name/\w+?/.+?\"\sclass\=\"bi\">(.+?)</a>", words)
 
-# getPlayersJSON(rosters, teams)
+getPlayersJSON(rosters, teams, 'data/espn_players.json')
