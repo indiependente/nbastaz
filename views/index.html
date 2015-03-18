@@ -8,7 +8,6 @@
   <title>NBAStaz</title>
 
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/tabstyle.css"> 
 
 </head>
 
@@ -16,23 +15,23 @@
 
   <html lang="en" ng-app="nbastaz">
   <head>
-     <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css">
   </head>
   <body layout="column" ng-controller="AppCtrl">
-    <md-toolbar layout="row" style="background-color:#303f9f;">
+    <md-toolbar layout="row" style="background:#0A3665;">
       <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
         <span class="visuallyhidden">Menu</span>
       </button>
-      <h1>NBAStaz</h1>
+      <!-- <h1>NBAStaz</h1> -->
+      <img ng-src="logos/nba-2.png" width="25%" height="25%"></img>
     </md-toolbar>
     <div layout="row" flex class="content-wrapper">
         <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-sm')">
-          <md-list class="muppet-list">
+          <md-list class="element-list">
             <md-item ng-repeat="it in pages">
               <md-item-content>
                 <md-button ng-click="selectPage(it)" ng-class="{'selected' : it === selected }">
-                  <i ng-class="{{it.iconurl}}" alt=""></i>
+                  <img ng-src="{{it.iconurl}}" class="face" alt="">
                   {{it.name}}
                 </md-button>
               </md-item-content>
@@ -52,8 +51,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
     <script type="text/javascript" src="js/date-utils.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.js"></script>
-
-   
   </body>
 </html>
 

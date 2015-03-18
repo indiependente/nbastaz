@@ -74,25 +74,25 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'pageService', '$timeout','$l
 app.service('pageService', ['$q', function($q) {
   var pages = [{
       name: 'Home',
-      //iconurl: 'mdi mdi-bell',
+      iconurl: '/icons/home.svg',
       href: '/home.html'
   }, {
       name: 'Teams',
-      //iconurl: 'mdi mdi-bell',
+      iconurl: '/icons/teams.svg',
       href: '/teams.html'
   }, {
       name: 'Players',
-      // iconurl:'http://www.killthecablebill.com/images/cancelcable/2014/12/derrick-rose-nba-chicago-bulls-basketball-slam-dunk-stuck-shape-white-background-ball.jpg',
+      iconurl:'/icons/player.svg',
       href: '/players.html'
   }, {
       name: 'Highlights',
+      iconurl:'/icons/video.svg',
       href: '/highlights.html'
   }, {
       name: 'Standings',
-      // iconurl: 'http://www.scoresreport.com/wp-content/uploads/2010/04/nba-playoffs-bracket.jpg',
+      iconurl: '/icons/table.svg',
       href: '/standings.html'
   }];
-
   // Promise-based API
   return {
       loadAll: function() {

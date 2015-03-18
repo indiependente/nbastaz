@@ -43,7 +43,7 @@
         <md-item-content>
           <div class="md-tile-content">
             <div layout="row">
-              <div style="position:relative; top:-15px;" flex><img ng-src="{{results[i].logo}}" width="55" height="55"></img></div><div flex><a href={{results[i].link}} style="text-decoration:none;color:black;"><h3>{{results[i].team}}</h3></div><div flex>{{results[i].w}} </div><div flex>{{results[i].l}}</div><div flex>{{results[i].pct}}</div><div flex>{{results[i].streak}}</div>
+              <div style="position:relative; top:-15px;" flex><img ng-src="{{results[i].logo}}" width="55" height="55"></img></div><div flex><a href={{results[i].link}} style="text-decoration:none;color:black;"><h3>{{results[i].team}}</h3></a></div><div flex>{{results[i].w}} </div><div flex>{{results[i].l}}</div><div flex>{{results[i].pct}}</div><div flex>{{results[i].streak}}</div>
           </div>
         </md-item-content>
         <md-divider ng-if="!$last"></md-divider>
@@ -53,3 +53,4 @@
 
 </div>
 
+<z
