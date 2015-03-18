@@ -8,6 +8,7 @@ var app = angular.module('nbastaz', ['ngMaterial']);
         var year = todayAll.getFullYear();
         var today = month+'-'+day+'-'+year;
         $scope.nm=false;
+        $scope.today = today;
         $http.get("http://localhost:3000/matches?date="+today)
         .success(function(response) {$scope.results = response;$scope.nm=true;});
     });
@@ -19,15 +20,22 @@ var app = angular.module('nbastaz', ['ngMaterial']);
         var year = yesterdayAll.getFullYear();
         var yesterday = month+'-'+day+'-'+year;
         $scope.pm=false;
+        $scope.yesterday = yesterday;
         $http.get("http://localhost:3000/matches?date="+yesterday)
         .success(function(response) {$scope.results = response;$scope.pm=true;});
     });
 
 
     app.controller('standingsController',function($scope,$http){
+        $scope.erange=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+        $scope.wrange=[15,16,17,18,19,20,21,22,23,24,25,26,27,28,29];
         $http.get("http://localhost:3000/standings")
-        .success(function(response){$scope.results=response;$scope.erange=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];$scope.wrange=[15,16,17,18,19,20,21,22,23,24,25,26,27,28,29];})
+        .success(function(response){
+          $scope.results=response;
+        })
     });
+
+
 
 
 app.controller('AppCtrl', ['$scope', '$mdSidenav', 'pageService', '$timeout','$log', function($scope, $mdSidenav, pageService, $timeout, $log) {
@@ -66,25 +74,25 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', 'pageService', '$timeout','$l
 app.service('pageService', ['$q', function($q) {
   var pages = [{
       name: 'Home',
-      // iconurl: 'http://upload.wikimedia.org/wikipedia/en/thumb/0/07/NBALogo.svg/197px-NBALogo.svg.png',
+      iconurl: '/icons/home.svg',
       href: '/home.html'
   }, {
       name: 'Teams',
-      //iconurl: 'http://www.jamesrobertwatson.com/images/Thunderlogo/nbalogos.jpg',
+      iconurl: '/icons/teams.svg',
       href: '/teams.html'
   }, {
       name: 'Players',
-      // iconurl:'http://www.killthecablebill.com/images/cancelcable/2014/12/derrick-rose-nba-chicago-bulls-basketball-slam-dunk-stuck-shape-white-background-ball.jpg',
+      iconurl:'/icons/player.svg',
       href: '/players.html'
   }, {
       name: 'Highlights',
+      iconurl:'/icons/video.svg',
       href: '/highlights.html'
   }, {
       name: 'Standings',
-      // iconurl: 'http://www.scoresreport.com/wp-content/uploads/2010/04/nba-playoffs-bracket.jpg',
+      iconurl: '/icons/table.svg',
       href: '/standings.html'
   }];
-
   // Promise-based API
   return {
       loadAll: function() {

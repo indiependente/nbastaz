@@ -2,7 +2,6 @@
 
 <div style="display: inline-block; position:absolute; left:20px;right:20px;text-decoration:none;" ng-app="nbastaz" ng-controller="standingsController">
 
-<!-- <span data-ng-repeat="i in erange">{{results[i].team}}</span> -->
 
 <md-toolbar class="md-theme-light">
     <h1 class="md-toolbar-tools">
@@ -11,28 +10,45 @@
   </md-toolbar>
   <md-toolbar class="md-theme-light">
     <h1 class="md-toolbar-tools">
-      <div flex>TEAM</div><div flex>W</div><div flex>L</div><div flex>PCT</div><div flex>S</div>
+      <div flex></div><div flex>TEAM</div><div flex>W</div><div flex>L</div><div flex>PCT</div><div flex>S</div>
     </h1>
   </md-toolbar>
   <md-content>
     <md-list>
-    
       <md-item data-ng-repeat="i in erange">
         <md-item-content>
           <div class="md-tile-content">
-          	<div layout="row">
-          		<div flex><a href={{results[i].link}} style="text-decoration:none;color:black;"><h3>{{results[i].team}}</h3></div><div flex>{{results[i].w}} </div><div flex>{{results[i].l}}</div><div flex>{{results[i].pct}}</div><div flex>{{results[i].streak}}</div>
-            <!-- </a><img ng-src={{results[i].}} -->
+            <div layout="row">
+              <div style="position:relative; top:-15px;" flex><img ng-src="{{results[i].logo}}" width="55" height="55"></img></div><div flex><a href={{results[i].link}} style="text-decoration:none;color:black;"><h3>{{results[i].team}}</h3></a></div><div flex>{{results[i].w}} </div><div flex>{{results[i].l}}</div><div flex>{{results[i].pct}}</div><div flex>{{results[i].streak}}</div>
+          </div>
           </div>
         </md-item-content>
         <md-divider ng-if="!$last"></md-divider>
       </md-item>
     </md-list>
   </md-content>
-
-
-
-
+  <md-toolbar class="md-theme-light">
+    <h1 class="md-toolbar-tools" style="background:#FF1744;">
+      <span><strong>Western Conference</strong></span>&nbsp;&nbsp;&nbsp;<img width="60" height="60" ng-src="http://content.sportslogos.net/logos/6/1001/full/2996.gif" align="right"></img>
+    </h1>
+  </md-toolbar>
+  <md-toolbar class="md-theme-light" style="background:#FF1744;">
+    <h1 class="md-toolbar-tools" >
+      <div flex></div><div flex>TEAM</div><div flex>W</div><div flex>L</div><div flex>PCT</div><div flex>S</div>
+    </h1>
+  </md-toolbar>
+  <md-content>
+    <md-list>
+    <md-item data-ng-repeat="i in wrange">
+        <md-item-content>
+          <div class="md-tile-content">
+            <div layout="row">
+              <div style="position:relative; top:-15px;" flex><img ng-src="{{results[i].logo}}" width="55" height="55"></img></div><div flex><a href={{results[i].link}} style="text-decoration:none;color:black;"><h3>{{results[i].team}}</h3></a></div><div flex>{{results[i].w}} </div><div flex>{{results[i].l}}</div><div flex>{{results[i].pct}}</div><div flex>{{results[i].streak}}</div>
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-item>  
+    </md-list>
+  </md-content>
 
 </div>
-

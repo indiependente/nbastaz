@@ -11,6 +11,7 @@ var matches = require('./routes/matches');
 var news = require('./routes/news');
 var top_players = require('./routes/top_players');
 var standings = require('./routes/standings');
+var team = require('./routes/team');
 
 var app = express();
 
@@ -33,7 +34,7 @@ app.use('/matches', matches);
 app.use('/news', news);
 app.use('/top', top_players);
 app.use('/standings', standings);
-
+app.use('/team', team);
 
 
 // catch 404 and forward to error handler
