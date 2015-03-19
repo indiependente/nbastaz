@@ -1,7 +1,7 @@
 var xray        =   require('x-ray');
 
-var url = 'http://espn.go.com/nba/player/_/id/3209/jeff-green'
-getPlayerInfo(url, process.stdout)
+// var url = 'http://espn.go.com/nba/player/_/id/3978/demar-derozan'
+// getPlayerInfo(url, process.stdout)
 
 function born(str){
 	return str.substring(4);

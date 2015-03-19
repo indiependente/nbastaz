@@ -6,7 +6,6 @@ var express     = require('express'),
 router.get('/', function (req, res) {
   res.type('json') // example: /player?id=3978
   var pInfo = playerify.getPlayerByID(req.query.id)
-  console.log(pInfo.espn);
   player(pInfo.espn, res)
 })
 
