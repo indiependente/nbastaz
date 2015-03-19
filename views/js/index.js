@@ -40,51 +40,56 @@ var app = angular.module('nbastaz', ['ngMaterial']);
     /*********GRID LIST*******/
 
     app.controller('gridList', function($scope,$http) {
+      
+
       $http.get("/teams")
         .success(function(response){
           $scope.res=response;
-
-        })
-
-      this.tiles = buildGridModel({
+          $scope.tiles = buildGridModel({
             icon : "avatar:svg-",
             title: "Svg-",
             background: ""
           });
+        })
+
 
     function buildGridModel(tileTmpl){
       var it, results = [ ];
-      for (var j=0; j<30; j++) {
+      var j=0;
+      for (key in $scope.res) {
         it = angular.extend({},tileTmpl);
         
-        console.log($scope.res);
+        console.log($scope.res[key]['logo']);
         
-        it.icon  = $scope.res[j][0];
-        it.title = it.title + (j+1);
+        it.icon  = $scope.res[key]['logo'];
+        it.title = $scope.res[key]['team']
         it.span  = { row : "1", col : "1" };
-        switch(j+1) {
-          case 1:
-            it.background = "red";
-            it.span.row = it.span.col = 2;
-            break;
-          case 2: it.background = "green";         break;
-          case 3: it.background = "darkBlue";      break;
-          case 4:
-            it.background = "blue";
-            it.span.col = 2;
-            break;
+        it.background = "white";
+         switch(j+1) {
+        //   case 1:
+        //     it.background = "red";
+        //     it.span.row = it.span.col = 2;
+        //     break;
+        //   case 2: it.background = "green";         break;
+        //   case 3: it.background = "darkBlue";      break;
+        //   case 4:
+        //     it.background = "blue";
+        //     it.span.col = 2;
+        //     break;
           case 5:
-            it.background = "yellow";
-            it.span.row = it.span.col = 2;
+            it.span.row = it.span.col = 1;
+            it.icon="http://content.sportslogos.net/logos/6/5120/thumbs/512019262015.gif";
+            //it.span.row = it.span.col = 1;
             break;
-          case 6: it.background = "pink";          break;
-          case 7: it.background = "darkBlue";      break;
-          case 8: it.background = "purple";        break;
-          case 9: it.background = "deepBlue";      break;
-          case 10: it.background = "lightPurple";  break;
-          case 11: it.background = "yellow";       break;
+          // case 6: it.background = "pink";          break;
+          // case 7: it.background = "darkBlue";      break;
+          // case 8: it.background = "purple";        break;
+          // case 9: it.background = "deepBlue";      break;
+          // case 10: it.background = "lightPurple";  break;
+          // case 11: it.background = "yellow";       break;
         }
         results.push(it);
+        j++;
       }
       return results;
     }
