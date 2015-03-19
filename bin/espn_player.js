@@ -1,8 +1,28 @@
 var xray        =   require('x-ray');
 
-var url = 'http://espn.go.com/nba/player/_/id/6576/quincy-acy'
+var url = 'http://espn.go.com/nba/player/_/id/3209/jeff-green'
 getPlayerInfo(url, process.stdout)
 
+function born(str){
+	return str.substring(4);
+}
+
+function draf_coll(str){
+	return str.substring(7);
+}
+
+function experience(str){
+	return str.substring(10);
+}
+
+function getID(){
+	return urlPlayer.split('/')[7];
+}
+
+function getTeamID(str){
+	var array = str.split(" ");
+	return array[array.length-1].toLowerCase();
+}
 // ___________________________ ADD TOOLTIP TO GAMELOG _________________________________________
 // output:
 // {
@@ -48,32 +68,24 @@ getPlayerInfo(url, process.stdout)
 
 //	}
 // }
-function born(str){
-	return str.substring(4);
-}
-
-function draf_coll(str){
-	return str.substring(7);
-}
-
-function experience(str){
-	return str.substring(10);
-}
-
 function getPlayerInfo(url, out){
-
+	urlPlayer = url; 
 	xray(url)
 		.prepare('born', born)
 		.prepare('draf_coll', draf_coll)
 		.prepare('experience', experience)
-		// .prepare(born, draf_coll, experience)
+		.prepare('getID', getID)
+		.prepare('getTeamID', getTeamID)
 		.select([{
 			$root: '#content',
+			id: '| getID',
+			teamID: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:nth-child(3) > a | getTeamID',
 			name : '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > h1',
-			numb_pos: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:first-child',
-			height_weight: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:nth-child(2)',
 			team: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:nth-child(3) > a',
 			link_team: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:nth-child(3) > a[href]',
+			// image: dal file
+			numb_pos: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:first-child',
+			height_weight: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:nth-child(2)',
 			born: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > .player-metadata.floatleft > li:nth-child(1) | born',		// delete "Born"
 			drafted: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > .player-metadata.floatleft > li:nth-child(2) | draf_coll', 	// delete "Drafted"
 			college: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > .player-metadata.floatleft > li:nth-child(3) | draf_coll',	// delete "College"
@@ -86,7 +98,6 @@ function getPlayerInfo(url, out){
 			career_ppg: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-stats > table.header-stats > tr.career > td:nth-child(1)',
 			career_apg: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-stats > table.header-stats > tr.career > td:nth-child(2)',
 			career_rpg: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-stats > table.header-stats > tr.career > td:nth-child(3)',
-			// image: dal file
 			salary: 'div.bg-opaque > .span-2.last > .mod-container.mod-no-footer.mod-open-list.mod-quick-facts > div.mod-content > ul > li > dl > dt > strong',
 			expiration_salary: 'div.bg-opaque > .span-2.last > .mod-container.mod-no-footer.mod-open-list.mod-quick-facts > div.mod-content > ul > li > dl > dd > span',
 			gamelog:{
