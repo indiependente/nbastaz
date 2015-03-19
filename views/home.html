@@ -4,7 +4,12 @@ h4,h2, h5{
 }
 
 h3{
-  line-height: 110px;
+  line-height: 90px;
+  text-align:center;
+}
+
+.secondQtr{
+  line-height: 170px;
   text-align:center;
 }
 
@@ -57,7 +62,7 @@ padding-left:3px;
  <md-toolbar class="md-theme-light" style="background-color:#ff1744; width:625px">
  <h1>{{yesterday}}</h1>
     <h2 class="md-toolbar-tools">
-      <div flex>Visitor</div><div flex>Home</div><div flex>Q1</div><div flex>Q2</div><div flex>Q3</div><div flex>Q4</div><div flex>OT</div><div flex>Final</div>
+      <div flex>Team</div><div flex>Q1</div><div flex>Q2</div><div flex>Q3</div><div flex>Q4</div><div flex>OT</div><div flex>Final</div>
     </h2>
   </md-toolbar>
    <md-content>
@@ -67,14 +72,19 @@ padding-left:3px;
         <md-item-content>
           <div class="md-tile-content">
             <div layout="row">
-              <div flex  class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><h4>{{match.vteam.name}}</h4></div>
-              <div flex  class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><h4>{{match.hteam.name}}</h4></div>
-			  <div flex class="list"> <h5> {{match.vteam.qtrs[0]}} </h5> <h5> {{match.hteam.qtrs[0]}} </h5>  </div>
-              <div flex class="list"> <h5> {{match.vteam.qtrs[1]}} </h5> <h5> {{match.hteam.qtrs[1]}} </h5>  </div>
+              <div flex  class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><h4>{{match.vteam.name}}</h4>
+              <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><h4>{{match.hteam.name}}</h4></div>
+            <!--   <div flex  class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><h4>{{match.hteam.name}}</h4></div> -->
+			  <div flex class="list"> <h5> {{match.vteam.qtrs[0]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[0]}} </h5> </div>
+			  <div flex class="list"> <h5> {{match.vteam.qtrs[1]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[1]}} </h5> </div>
+			   <div flex class="list"> <h5> {{match.vteam.qtrs[2]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[2]}} </h5> </div>
+			   <div flex class="list"> <h5> {{match.vteam.qtrs[3]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[3]}} </h5> </div>
+			   <div flex class="list"> <h5> {{match.vteam.qtrs[4]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[4]}} </h5> </div>
+             <!--  <div flex class="list"> <h5> {{match.vteam.qtrs[1]}} </h5> <h5> {{match.hteam.qtrs[1]}} </h5>  </div>
               <div flex class="list"> <h5> {{match.vteam.qtrs[2]}} </h5> <h5> {{match.hteam.qtrs[2]}} </h5>  </div> 
               <div flex class="list"> <h5> {{match.vteam.qtrs[3]}} </h5> <h5> {{match.hteam.qtrs[3]}} </h5>  </div> 
-              <div flex class="list"> <h5> {{match.vteam.qtrs[4]}} </h5> <h5> {{match.hteam.qtrs[4]}} </h5>  </div> 
-              <div flex  class="list"> <h3>{{match.vteam.finl}}-{{match.hteam.finl}}</h3></div>
+              <div flex class="list"> <h5> {{match.vteam.qtrs[4]}} </h5> <h5> {{match.hteam.qtrs[4]}} </h5>  </div>  -->
+              <div flex  class="list"> <h3>{{match.vteam.finl}}</h3><h3>{{match.hteam.finl}}</h3></div>
               </div>
           </div>
         </md-item-content>
