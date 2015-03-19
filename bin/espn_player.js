@@ -31,7 +31,7 @@ function getTeamID(str){
 // 	height_weight:					like this 6' 7", 240 lbs
 // 	team: 							name of team
 // 	link_team: 						link to team
-// 	born: 							info about born like Oct 6, 1990 in Tyler, TX (Age: 24) 
+// 	born: 							info about born like Oct 6, 1990 in Tyler, TX (Age: 24)
 // 	drafted: 						like 2012: 2nd Rnd, 37th by TOR
 // 	college: 						like Baylor
 // 	experience: 					like years
@@ -40,14 +40,14 @@ function getTeamID(str){
 // 	apg: 							assist for game
 // 	rpg: 							rebounds for game
 // 	per: 							player efficiency rating
-// 	career_ppg		
+// 	career_ppg
 // 	career_apg
 // 	career_rpg
 // 	salary: 						like $915,243
 // 	expiration_salary: 				like 1 year remaining
 // 	gamelog: {		// all values are array. ______REMEMBER TOOLTIP_______
 //		date: 						dates of matches  					--- Tooltip: DATE
-//		opponent_team: 				abbr of teams opponent  			---	Tooltip: OPP     
+//		opponent_team: 				abbr of teams opponent  			---	Tooltip: OPP
 //		link_opponent_team: 		link to team
 //		win_or_lose: 				like W or L 						---	Tooltip: SCORE
 //		result: 					result of matches					--- Tooltip: SCORE, together to win_or_lose
@@ -56,9 +56,9 @@ function getTeamID(str){
 //		fg: 						Field Goal Percentage 				--- Tooltip: FG%
 //		pm3_pa3						3 Point Field Goals Made-Attempted	--- Tooltip: 3PM-3PA
 // 		p3: 						3 Point Field Goal Percentage 		--- Tooltip: 3P%
-// 		ftm_fta: 					Free Throws Made-Attempted			--- Tooltip: FTM-FTA	
+// 		ftm_fta: 					Free Throws Made-Attempted			--- Tooltip: FTM-FTA
 // 		ft: 						Free Throw Percentage 				--- Tooltip: FT%
-// 		reb: 						Rebounds 							--- Tooltip: REB 							
+// 		reb: 						Rebounds 							--- Tooltip: REB
 // 		ast: 						Assists 							--- Tooltip: AST
 // 		blk: 						Blocks 								--- Tooltip: BLK
 // 		stl: 						Steals 								--- Tooltip: STL
@@ -69,7 +69,7 @@ function getTeamID(str){
 //	}
 // }
 function getPlayerInfo(url, out){
-	urlPlayer = url; 
+	urlPlayer = url;
 	xray(url)
 		.prepare('born', born)
 		.prepare('draf_coll', draf_coll)
@@ -109,19 +109,20 @@ function getPlayerInfo(url, out){
 				result: ['td:nth-child(3) > a'],
 				min: ['td:nth-child(4)'],
 				fgm_fga: ['td:nth-child(5)'],
-				fg: ['td:nth-child(6)'],	
-				pm3_pa3: ['td:nth-child(7)'],	
+				fg: ['td:nth-child(6)'],
+				pm3_pa3: ['td:nth-child(7)'],
 				p3: ['td:nth-child(8)'],	//percentage
 				ftm_fta: ['td:nth-child(9)'],
-				ft: ['td:nth-child(10)'],	
+				ft: ['td:nth-child(10)'],
 				reb: ['td:nth-child(11)'],
 				ast: ['td:nth-child(12)'],
 				blk: ['td:nth-child(13)'],
 				stl: ['td:nth-child(14)'],
 				pf: ['td:nth-child(15)'],
 				to: ['td:nth-child(16)'],
-				pts: ['td:nth-child(17)']		
+				pts: ['td:nth-child(17)']
 			}
 		}]).write(out)
 }
 
+module.exports = getPlayerInfo;
