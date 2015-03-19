@@ -1,16 +1,21 @@
 <style>
-h4,h2{
+h4,h2, h5{
   text-align:center;
 }
+
 h3{
   line-height: 110px;
   text-align:center;
 }
 
-.list,.md-theme-light{
-  padding-left:10px;
+h4{
+  word-wrap: break-word;
+}
 
-  padding-right: 10px;
+.list,.md-theme-light{
+padding-left:3px;
+
+  padding-right: 3px;
 }
 </style>
 
@@ -20,8 +25,8 @@ h3{
 
 
 <!-- Next matches-->
-<div ng-show=nm style="display: inline-block; position:absolute; left:5%;" ng-app="nbastaz" ng-controller="nextMatchController" flex>
-  <md-toolbar class="md-theme-light">
+<div ng-show=nm style="display: inline-block; position:absolute;" ng-app="nbastaz" ng-controller="nextMatchController" flex>
+  <md-toolbar class="md-theme-light" style="width:360px">
   <h1>{{today}}</h1>
     <h2 class="md-toolbar-tools">
       <div flex>Visitor</div><div flex>Home</div><div flex>Time</div>
@@ -48,11 +53,11 @@ h3{
 </div>
 
  <!-- A table for every previous match -->
-<div ng-show=pm style="display: inline-block; position:absolute; left:50%;" ng-app="nbastaz" ng-controller="prevMatchController"  flex>
- <md-toolbar class="md-theme-light" style="background-color:#ff1744">
+<div ng-show=pm style="display: inline-block; position:absolute; left:40%;" ng-app="nbastaz" ng-controller="prevMatchController"  flex>
+ <md-toolbar class="md-theme-light" style="background-color:#ff1744; width:625px">
  <h1>{{yesterday}}</h1>
     <h2 class="md-toolbar-tools">
-      <div flex>Visitor</div><div flex>Home</div><div flex>Final</div>
+      <div flex>Visitor</div><div flex>Home</div><div flex>Q1</div><div flex>Q2</div><div flex>Q3</div><div flex>Q4</div><div flex>OT</div><div flex>Final</div>
     </h2>
   </md-toolbar>
    <md-content>
@@ -64,6 +69,11 @@ h3{
             <div layout="row">
               <div flex  class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><h4>{{match.vteam.name}}</h4></div>
               <div flex  class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><h4>{{match.hteam.name}}</h4></div>
+			  <div flex class="list"> <h5> {{match.vteam.qtrs[0]}} </h5> <h5> {{match.hteam.qtrs[0]}} </h5>  </div>
+              <div flex class="list"> <h5> {{match.vteam.qtrs[1]}} </h5> <h5> {{match.hteam.qtrs[1]}} </h5>  </div>
+              <div flex class="list"> <h5> {{match.vteam.qtrs[2]}} </h5> <h5> {{match.hteam.qtrs[2]}} </h5>  </div> 
+              <div flex class="list"> <h5> {{match.vteam.qtrs[3]}} </h5> <h5> {{match.hteam.qtrs[3]}} </h5>  </div> 
+              <div flex class="list"> <h5> {{match.vteam.qtrs[4]}} </h5> <h5> {{match.hteam.qtrs[4]}} </h5>  </div> 
               <div flex  class="list"> <h3>{{match.vteam.finl}}-{{match.hteam.finl}}</h3></div>
               </div>
           </div>
