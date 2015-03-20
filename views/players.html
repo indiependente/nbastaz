@@ -5,8 +5,8 @@
 
 <style type="text/css">
 .foot{
-	background-color:#ffffff; 
-	color:#000000;
+	background-color:#0069b3; 
+	color:#FFFFFF;
 }
 
 md-grid-tile-footer figcaption  {
@@ -18,7 +18,7 @@ md-grid-tile-footer figcaption  {
 md-grid-tile-footer figcaption h3 {
 	position:relative;
 	left:-10px;
-  text-align: center; 
+  	text-align: center; 
 }
 
 </style>
@@ -33,7 +33,7 @@ md-grid-tile-footer figcaption h3 {
           md-gutter="8px" md-gutter-gt-sm="4px" >
         <md-grid-tile ng-repeat="player in items  | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
             <img ng-src="{{player.image}}" width="120" height="120"></img>
-             <md-grid-tile-footer class="foot" ><h3>{{player.name}}</h3></md-grid-tile-footer>
+             <md-grid-tile-footer class="foot" ><h3 style="font-weight: bold;">{{player.name}}</h3></md-grid-tile-footer>
         </md-grid-tile>
       </md-grid-list>
 

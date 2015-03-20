@@ -3,19 +3,30 @@ h4,h2, h5{
   text-align:center;
 }
 
-h3{
-  line-height: 90px;
+.time{
+  line-height: 100px;
   text-align:center;
 }
 
 .secondQtr{
-  line-height: 170px;
+  line-height: 100px;
   text-align:center;
 }
 
 h4{
   word-wrap: break-word;
 }
+
+.first_finl{
+   line-height: 65px;
+  text-align:center;
+}
+
+.second_finl{
+   line-height: 85px;
+  text-align:center;
+}
+
 
 .list,.md-theme-light{
 padding-left:3px;
@@ -45,9 +56,9 @@ padding-left:3px;
         <md-item-content>
           <div class="md-tile-content">
             <div layout="row">
-              <div flex  class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><h4>{{match.vteam.name}}</h4></div>
-              <div flex  class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><h4>{{match.hteam.name}}</h4></div>
-              <div  class="list"> <h3>{{match.time}}</h3></div>
+              <div flex  class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><!-- <h4>{{match.vteam.name}}</h4> --></div>
+              <div flex  class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><!-- <h4>{{match.hteam.name}}</h4> --></div>
+              <div  class="list"> <h3 class="time">{{match.time}}</h3></div>
               </div>
           </div>
         </md-item-content>
@@ -72,9 +83,8 @@ padding-left:3px;
         <md-item-content>
           <div class="md-tile-content">
             <div layout="row">
-              <div flex  class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><h4>{{match.vteam.name}}</h4>
-              <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><h4>{{match.hteam.name}}</h4></div>
-            <!--   <div flex  class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><h4>{{match.hteam.name}}</h4></div> -->
+              <div  flex class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><!-- <h4>{{match.vteam.name}} </h4> -->
+              <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><!-- <h4> {{match.hteam.name}}</h4> --></div>
 			  <div flex class="list"> <h5> {{match.vteam.qtrs[0]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[0]}} </h5> </div>
 			  <div flex class="list"> <h5> {{match.vteam.qtrs[1]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[1]}} </h5> </div>
 			   <div flex class="list"> <h5> {{match.vteam.qtrs[2]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[2]}} </h5> </div>
@@ -84,7 +94,7 @@ padding-left:3px;
               <div flex class="list"> <h5> {{match.vteam.qtrs[2]}} </h5> <h5> {{match.hteam.qtrs[2]}} </h5>  </div> 
               <div flex class="list"> <h5> {{match.vteam.qtrs[3]}} </h5> <h5> {{match.hteam.qtrs[3]}} </h5>  </div> 
               <div flex class="list"> <h5> {{match.vteam.qtrs[4]}} </h5> <h5> {{match.hteam.qtrs[4]}} </h5>  </div>  -->
-              <div flex  class="list"> <h3>{{match.vteam.finl}}</h3><h3>{{match.hteam.finl}}</h3></div>
+              <div flex  class="list"> <h3 class="first_finl">{{match.vteam.finl}}</h3><h3 class="second_finl">{{match.hteam.finl}}</h3></div>
               </div>
           </div>
         </md-item-content>
