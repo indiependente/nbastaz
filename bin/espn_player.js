@@ -1,4 +1,5 @@
-var xray        =   require('x-ray');
+var xray        =   require('x-ray'),
+	imagify 	=	require('./playerify').getImage;
 
 // var url = 'http://espn.go.com/nba/player/_/id/3978/demar-derozan'
 // getPlayerInfo(url, process.stdout)
@@ -76,14 +77,15 @@ function getPlayerInfo(url, out){
 		.prepare('experience', experience)
 		.prepare('getID', getID)
 		.prepare('getTeamID', getTeamID)
+		.prepare('imagify', imagify)
 		.select([{
 			$root: '#content',
 			id: '| getID',
 			teamID: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:nth-child(3) > a | getTeamID',
 			name : '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > h1',
 			team: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:nth-child(3) > a',
-			link_team: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:nth-child(3) > a[href]',
-			// image: dal file
+			// link_team: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:nth-child(3) > a | getTeamID | rosterfy',
+			image: '| getID | imagify',
 			numb_pos: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:first-child',
 			height_weight: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > ul.general-info > li:nth-child(2)',
 			born: '.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.player-bio > .player-metadata.floatleft > li:nth-child(1) | born',		// delete "Born"
