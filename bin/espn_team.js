@@ -16,30 +16,43 @@ module.exports = {
 };
 
 // Remember to insert TOOLTIP for each field. The tooltips are the comments, like Games played
+// JSON structure:
+// {
+	// 	"record": "30-38, 2nd in Atlantic Division"
+	// 	"stats": [
+	// 		{name: "", link: "" ....}, 
+	// 		{name: "", link: "" ...},
+	// 		{name: "", link: ""}
+	// 		]
+	// }
 function teamStats(url, out){
 
 	xray(url)
-		.select([{
-			$root: '#my-players-table > .mod-container.mod-table > div:nth-child(2) > table > tr[class*="row"]',
-			name: 'td:nth-child(1) > a',				// player's name
-			link: 'td:nth-child(1) > a[href]',			// link to player
-
-			gp: 'td:nth-child(2)', 						// Games played
-			gs: 'td:nth-child(3)',						// Games started
-			min: 'td:nth-child(4)', 					// Minutes per game
-			ppg: 'td:nth-child(5)', 					// Points per game
-			offr: 'td:nth-child(6)',					// Offensive Rebounds per game
-			defr: 'td:nth-child(7)',					// Defensive Rebounds per game
-			rpg: 'td:nth-child(8)',						// Rebounds per game
-			apg: 'td:nth-child(9)',						// Assists per game
-			spg: 'td:nth-child(10)',					// Steals per game
-			bpg: 'td:nth-child(11)',					// Blocks per game
-			tpg: 'td:nth-child(12)',					// Turnovers per game
-			fpg: 'td:nth-child(13)',					// Fouls per game
-			ato: 'td:nth-child(14)',					// Assist to turnover ratio
-			per: 'td:nth-child(15)'						// Player Efficiency Rating
-		}]).write(out);
+		.select({
+			$root: '#content',
+			stats: [{
+				$root: '#my-players-table > .mod-container.mod-table > div:nth-child(2) > table > tr[class*="row"]',
+				name: 'td:nth-child(1) > a',				// player's name
+				link: 'td:nth-child(1) > a[href]',			// link to player
+				gp: 'td:nth-child(2)', 						// Games played
+				gs: 'td:nth-child(3)',						// Games started
+				min: 'td:nth-child(4)', 					// Minutes per game
+				ppg: 'td:nth-child(5)', 					// Points per game
+				offr: 'td:nth-child(6)',					// Offensive Rebounds per game
+				defr: 'td:nth-child(7)',					// Defensive Rebounds per game
+				rpg: 'td:nth-child(8)',						// Rebounds per game
+				apg: 'td:nth-child(9)',						// Assists per game
+				spg: 'td:nth-child(10)',					// Steals per game
+				bpg: 'td:nth-child(11)',					// Blocks per game
+				tpg: 'td:nth-child(12)',					// Turnovers per game
+				fpg: 'td:nth-child(13)',					// Fouls per game
+				ato: 'td:nth-child(14)',					// Assist to turnover ratio
+				per: 'td:nth-child(15)'						// Player Efficiency Rating
+			}],
+			record: '#sub-branding > div.sub-title'
+		}).write(out);
 }
+
 
 
 
