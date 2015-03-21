@@ -1,5 +1,69 @@
 var app = angular.module('nbastaz', ['ngMaterial']);
 
+
+app.filter('offset', function() {
+return function(input, start) {
+start = parseInt(start, 10);
+return input.slice(start);
+};
+});
+app.controller("PaginationCtrl", function($scope, $http) {
+  $scope.itemsPerPage = 24;
+  $scope.currentPage = 0;
+  $scope.items = [];
+  $http.get("http://localhost:3000/players")
+        .success(function(response) {
+          $scope.results = response;
+
+  $scope.size = $scope.results.length;
+    for (key in response) {
+      $scope.items.push(response[key]);
+    }
+  });
+  $scope.range = function() {
+    var rangeSize = 5;
+    var ret = [];
+    var start;
+    start = $scope.currentPage;
+    if ( start > $scope.pageCount()-rangeSize ) {
+    start = $scope.pageCount()-rangeSize+1;
+    }
+    for (var i=start; i<start+rangeSize; i++) {
+    ret.push(i);
+    }
+    return ret;
+  };
+
+  $scope.prevPage = function() {
+    if ($scope.currentPage > 0) {
+    $scope.currentPage--;
+    }
+  };
+
+  $scope.prevPageDisabled = function() {
+    return $scope.currentPage === 0 ? "disabled" : "";
+  };
+
+  $scope.pageCount = function() {
+    return Math.ceil($scope.items.length/$scope.itemsPerPage)-1;
+  };
+
+  $scope.nextPage = function() {
+    if ($scope.currentPage < $scope.pageCount()) {
+      $scope.currentPage++;
+    }
+  };
+
+  $scope.nextPageDisabled = function() {
+    return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+  };
+
+  $scope.setPage = function(n) {
+    $scope.currentPage = n;
+  };
+});
+
+
  app.controller('nextMatchController', function($scope, $http){
         var todayAll = Date.today();
         var month = todayAll.getMonth()+1;
@@ -39,7 +103,6 @@ var app = angular.module('nbastaz', ['ngMaterial']);
   var allPages = [];
 
   // $rootScope.val = 5;
-
   
   $rootScope.selected = null;
   $scope.pages = allPages;

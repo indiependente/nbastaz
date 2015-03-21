@@ -15,5 +15,10 @@ module.exports = {
 	},
 	getPlayers : function(){
 		return players
+	},
+	getImage : function(id){
+		if (players.hasOwnProperty(id))
+            return players[id].image
+        return {}
 	}
 }
