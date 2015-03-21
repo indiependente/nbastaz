@@ -15,6 +15,10 @@ module.exports = {
 	teamDepth : teamDepth
 };
 
+function getID(URL){
+	return URL.split('/')[7];
+}
+
 // Remember to insert TOOLTIP for each field. The tooltips are the comments, like Games played
 // JSON structure:
 // {
@@ -28,11 +32,13 @@ module.exports = {
 function teamStats(url, out){
 
 	xray(url)
+		.prepare('getID', getID)
 		.select({
 			$root: '#content',
 			stats: [{
 				$root: '#my-players-table > .mod-container.mod-table > div:nth-child(2) > table > tr[class*="row"]',
 				name: 'td:nth-child(1) > a',				// player's name
+				id: 'td:nth-child(1) > a[href] | getID',			// id player
 				link: 'td:nth-child(1) > a[href]',			// link to player
 				gp: 'td:nth-child(2)', 						// Games played
 				gs: 'td:nth-child(3)',						// Games started
@@ -59,10 +65,12 @@ function teamStats(url, out){
 function teamLeaders(url, out){
 
 	xray(url)
+		.prepare('getID', getID)
 		.select([{
 			$root: '#my-players-table > .mod-container.mod-stat-leaders > div.span-1 > div.mod-container.mod-stat',
 			category: 'div.mod-header > h4',								// category like points
 			name: 'div.mod-content > ul.player-info > li.name > a',			// top player in the category
+			id: 'div.mod-content > a[href] | getID',						// id player
 			link: 'div.mod-content > a[href]',								// link to top player in the category
 			number: 'div.mod-content > ul.player-info > li.number',			// number of top player in the category
 			stat: 'div.mod-content > ul.player-info > li.stat',				// stat of top player in the category
@@ -76,9 +84,11 @@ function teamLeaders(url, out){
 function teamRoster(url, out){
 
 	xray(url)
+		.prepare('getID', getID)
 		.select([{
 			$root: '#my-players-table > .mod-container.mod-table.mod-no-header-footer > .mod-content > table > tr[class*="row"]',
 			name: 'td:nth-child(2) > a',									// player name
+			id: 'td:nth-child(2) > a[href] | getID',						// id player
 			link: 'td:nth-child(2) > a[href]',								// link to player
 			number: 'td:nth-child()',										// number of player
 			pos: 'td:nth-child(1)',											// position
@@ -94,10 +104,12 @@ function teamRoster(url, out){
 function teamDepth(url, out){
 
 	xray(url)
+		.prepare('getID', getID)
 		.select([{
 			$root: '#my-players-table > div.nba-visual-dc > ul',
 			pos: 'span',													// role
-			names: ['li > a'],												// name of the player in that role
-			links: ['li > a[href]']											// link to player in that role
+			names: ['li > a'],												// names of the players in that role
+			ids: ['li > a[href] | getID'],									// ids of players
+			links: ['li > a[href]']											// links to players in that role
 		}]).write(out);
 }
