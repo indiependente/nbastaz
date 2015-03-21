@@ -235,7 +235,7 @@ app.service('pageService', ['$q', function($q) {
 
   /*********GRID LIST*******/
 
-  app.controller('teamCtrl',['$rootScope','$scope','$http',function($rootScope,$scope,$http) {
+  app.controller('teamCtrl',['$rootScope','$scope','$http','$mdDialog',function($rootScope,$scope,$http,$mdDialog) {
 
     var url = "/team?abbr="+$rootScope.team_name;
 
@@ -250,13 +250,14 @@ app.service('pageService', ['$q', function($q) {
     $http.get(url_staz)
     .success(function(response){
       $scope.staz  = response;
-      console.log($scope.staz);
+      //console.log($scope.staz);
     });
 
     var url_roster = "/team/roster?abbr="+$rootScope.team_name;
     $http.get(url_roster)
     .success(function(response){
       $scope.roster = response;
+      console.log(response);
     });
 
 
@@ -270,7 +271,24 @@ app.service('pageService', ['$q', function($q) {
     $http.get(url_top)
     .success(function(response){
       $scope.leaders = response;
-      console.log(response);
-    })
+      //console.log(response);
+    });
+
+    $scope.showAlert = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    // Modal dialogs should fully cover application
+    // to prevent interaction outside of dialog
+    //console.log(ev);
+
+    var roles = {"PG":"Point Guard","SG":"Shooting Guard","PF":"Power Forward","SF":"Small Forward","C":"Center"}
+
+
+    $mdDialog.show(
+      $mdDialog.alert()
+        .title(roles[$scope.depth[ev].pos])
+        .content($scope.depth[ev].names[0])
+        .ok('Close')
+        .targetEvent(ev)
+    );}
     
   }]);

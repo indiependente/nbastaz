@@ -69,13 +69,7 @@ md-grid-tile-header figcaption h4 {
              ng-switch-when="0"
              md-swipe-left="next()"
              md-swipe-right="previous()" >
-            <md-content>
-    <!-- <md-toolbar class="md-theme-light" style="background:#f3f6ff;color:black;height:15%">
-    <h1 class="md-toolbar-tools">
-      <div flex>Player</div><div flex>GP</div><div flex>GS</div><div flex>MIN</div><div flex>PPG</div><div flex>OFFR</div>
-      <div flex>DEFR</div><div flex>RPG</div><div flex>APG</div><div flex>SPG</div><div flex>BPG</div><div flex>TPG</div><div flex>FPG</div><div flex>A/TO</div><div flex>PER</div>
-    </h1>
-  </md-toolbar> -->
+    <md-content>
     <md-list>
       <md-item>
         <md-item-content>
@@ -108,17 +102,62 @@ md-grid-tile-header figcaption h4 {
              ng-switch-when="1"
              md-swipe-left="next()"
              md-swipe-right="previous()" >
-            <span style="color:black;">View for Item #2<br/></span>
-            data.selectedIndex = 1
+            
+    <md-content>
+    <md-list>
+      <md-item>
+        <md-item-content>
+          <div class="md-tile-content" style="background:#f3f6ff;color:black;font-weight:bold;color:black;">
+            <div layout="row">
+            <div flex></div><div flex>NAME</div><div flex>POS</div><div flex>AGE</div><div flex>HT</div><div flex>WT</div><div flex>COLLEGE</div><div flex>SALARY</div>
+          </div>
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-item>
+    </md-list>
+      <md-item ng-repeat="element in roster">
+        <md-item-content>
+          <div class="md-tile-content htab" style="color:black;">
+            <div layout="row">
+              <div style="position:relative; top:-8px;" flex><img ng-src="{{element.image}}" width="55" height="55"></img></div><div flex>{{element.name}}</div><div flex>{{element.pos}}</div><div flex>{{element.age}}</div><div flex>{{element.ht}}</div><div flex>{{element.wt}}</div><div flex>{{element.college}}</div><div flex>{{element.salary}}</div>
+          </div>
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-item>
+    </md-list>
+  </md-content>
+
         </div>
-        <div role="tabpanel"
+        <div style="background:url(./img/nba-chart.jpg) no-repeat center; " role="tabpanel"
              id="tab3-content"
              aria-labelledby="tab3"
              ng-switch-when="2"
              md-swipe-left="next()"
              md-swipe-right="previous()" >
-            View for Item #3<br/>
-            data.selectedIndex = 2
+            
+             <!-- <img style="opacity:0.6" ng-src="img/nba-chart.jpg"></img> -->
+              <md-button ng-click="showAlert(4)" style="position:relative;left:50%;top:85%;" class="md-fab md-primary" aria-label="Use Android">
+              PG
+              </md-button>
+
+              <md-button ng-click="showAlert(3)" style="position:relative;left:18%;top:75%;" class="md-fab md-primary" aria-label="Use Android">
+              SG
+              </md-button>
+
+              <md-button ng-click="showAlert(2)"style="position:relative;left:55%;top:40%;"class="md-fab md-primary" aria-label="Use Android">
+              SF
+              </md-button>
+
+              <md-button ng-click="showAlert(0)" style="position:relative;left:12%;top:48%;"class="md-fab md-primary" aria-label="Use Android">
+              PF
+              </md-button>
+
+              <md-button ng-click="showAlert(1)" style="position:relative;left:35%;top:57%;"class="md-fab md-primary" aria-label="Use Android">
+              C
+              </md-button>
+
         </div>
         <div role="tabpanel"
              id="tab4-content"
