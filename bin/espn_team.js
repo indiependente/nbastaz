@@ -5,8 +5,8 @@ var xray        =   require('x-ray'),
 // var url = 'http://espn.go.com/nba/team/stats/_/name/bos/boston-celtics';
 // teamStats(url, process.stdout);
 // teamLeaders(url, process.stdout);
-// var urlRoster = 'http://espn.go.com/nba/team/roster/_/name/bos/boston-celtics';
-// teamRoster(urlRoster, process.stdout);
+var urlRoster = 'http://espn.go.com/nba/team/roster/_/name/bos/boston-celtics';
+teamRoster(urlRoster, process.stdout);
 // var urlDepth = 'http://espn.go.com/nba/team/depth/_/name/bos/boston-celtics';
 // teamDepth(urlDepth, process.stdout);
 
@@ -77,7 +77,7 @@ function teamLeaders(url, out){
 			link: 'div.mod-content > a[href]',								// link to top player in the category
 			number: 'div.mod-content > ul.player-info > li.number',			// number of top player in the category
 			stat: 'div.mod-content > ul.player-info > li.stat',				// stat of top player in the category
-			image: 'div.mod-content > a[href] | getID | imagify'						// image of top player in the category
+			image: 'div.mod-content > a[href] | getID | imagify'			// image of top player in the category
 
 		}]).write(out);
 
@@ -88,10 +88,12 @@ function teamRoster(url, out){
 
 	xray(url)
 		.prepare('getID', getID)
+		.prepare('imagify', imagify)
 		.select([{
 			$root: '#my-players-table > .mod-container.mod-table.mod-no-header-footer > .mod-content > table > tr[class*="row"]',
 			name: 'td:nth-child(2) > a',									// player name
 			id: 'td:nth-child(2) > a[href] | getID',						// id player
+			image: 'td:nth-child(2) > a[href] | getID | imagify',			// image
 			link: 'td:nth-child(2) > a[href]',								// link to player
 			number: 'td:nth-child()',										// number of player
 			pos: 'td:nth-child(1)',											// position
