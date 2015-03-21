@@ -1,4 +1,55 @@
-<div ng-app="nbastaz" ng-controller="teamCtrl as tc" flex>
-<h1>{{$root.team_name}}</h1>
-
+<html>
+<head>
+<link rel="stylesheet" href="css/tabs.css">
+</head>
+<body>
+<div ng-app="nbastaz" ng-controller="teamCtrl as tc" class="tabsdemoStaticTabs sample">
+    <md-toolbar>
+      <h2 style="background:#1976D2;" class="md-toolbar-tools">
+        <span>{{results.team}}</span>
+        <img ng-src="{{results.logo}}" width="60px" height="60px" style="position:absolute;right:0px;"></img>
+      </h2>
+    </md-toolbar>
+    <md-tabs class="md-accent" md-selected="data.selectedIndex">
+      <md-tab id="tab1" aria-controls="tab1-content">
+        STATS
+      </md-tab>
+      <md-tab id="tab2" aria-controls="tab2-content">
+        ROSTER
+      </md-tab>
+      <md-tab id="tab3" aria-controls="tab3-content">
+        DEPTH
+      </md-tab>
+    </md-tabs>
+    <ng-switch on="data.selectedIndex" class="tabpanel-container">
+        <div role="tabpanel"
+             id="tab1-content"
+             aria-labelledby="tab1"
+             ng-switch-when="0"
+             md-swipe-left="next()"
+             md-swipe-right="previous()" >
+            View for Item #1<br/>
+            data.selectedIndex = 0
+        </div>
+        <div role="tabpanel"
+             id="tab2-content"
+             aria-labelledby="tab2"
+             ng-switch-when="1"
+             md-swipe-left="next()"
+             md-swipe-right="previous()" >
+            View for Item #2<br/>
+            data.selectedIndex = 1
+        </div>
+        <div role="tabpanel"
+             id="tab3-content"
+             aria-labelledby="tab3"
+             ng-switch-when="2"
+             md-swipe-left="next()"
+             md-swipe-right="previous()" >
+            View for Item #3<br/>
+            data.selectedIndex = 2
+        </div>
+    </ng-switch>
 </div>
+</body>
+</html>
