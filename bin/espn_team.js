@@ -1,4 +1,6 @@
-var xray        =   require('x-ray');
+var xray        =   require('x-ray'),
+	imagify 	=	require('./playerify').getImage;
+
 
 // var url = 'http://espn.go.com/nba/team/stats/_/name/bos/boston-celtics';
 // teamStats(url, process.stdout);
@@ -66,6 +68,7 @@ function teamLeaders(url, out){
 
 	xray(url)
 		.prepare('getID', getID)
+		.prepare('imagify', imagify)
 		.select([{
 			$root: '#my-players-table > .mod-container.mod-stat-leaders > div.span-1 > div.mod-container.mod-stat',
 			category: 'div.mod-header > h4',								// category like points
@@ -74,7 +77,7 @@ function teamLeaders(url, out){
 			link: 'div.mod-content > a[href]',								// link to top player in the category
 			number: 'div.mod-content > ul.player-info > li.number',			// number of top player in the category
 			stat: 'div.mod-content > ul.player-info > li.stat',				// stat of top player in the category
-			image: 'div.mod-content > a > img[src]' 						// image of top player in the category
+			image: 'div.mod-content > a[href] | getID | imagify'						// image of top player in the category
 
 		}]).write(out);
 
