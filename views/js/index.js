@@ -89,14 +89,21 @@ app.controller("PaginationCtrl", function($scope, $http) {
     });
 
 
-    app.controller('standingsController',function($scope,$http){
+    app.controller('standingsController',['$rootScope','$scope','$http',function($rootScope,$scope,$http){
         $scope.erange=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
         $scope.wrange=[15,16,17,18,19,20,21,22,23,24,25,26,27,28,29];
         $http.get("/standings")
         .success(function(response){
           $scope.results=response;
+          $rootScope.team_name=$rootScope.team;
+          $rootScope.teams = [];
+          for(i = 0;i< response.length;i++){
+          $rootScope.teams[i] = response[i].link.split('-')[response[i].link.split('-').length-1];
+          }
+
+          //console.log(response[0].link.split('-')[response[0].link.split('-').length-1]);
         })
-    });
+    }]);
 
 
   app.controller('AppCtrl', ['$rootScope','$scope', '$mdSidenav', 'pageService', '$timeout','$log', function($rootScope,$scope, $mdSidenav, pageService, $timeout, $log) {
@@ -183,7 +190,6 @@ app.service('pageService', ['$q', function($q) {
             background: "",
             id:""
           });
-
         })
 
 
@@ -236,6 +242,7 @@ app.service('pageService', ['$q', function($q) {
     $http.get(url)
     .success(function(response) {
       $scope.results = response;
+      console.log(response);
     });
     
     var url_staz = "/team/stats?abbr="+$rootScope.team_name;
