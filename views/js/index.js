@@ -242,7 +242,7 @@ app.service('pageService', ['$q', function($q) {
     $http.get(url)
     .success(function(response) {
       $scope.results = response;
-      console.log(response);
+      //console.log(response);
     });
     
     var url_staz = "/team/stats?abbr="+$rootScope.team_name;
@@ -250,6 +250,7 @@ app.service('pageService', ['$q', function($q) {
     $http.get(url_staz)
     .success(function(response){
       $scope.staz  = response;
+      console.log($scope.staz);
     });
 
     var url_roster = "/team/roster?abbr="+$rootScope.team_name;

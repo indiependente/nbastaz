@@ -20,6 +20,9 @@
       <md-tab id="tab3" aria-controls="tab3-content">
         DEPTH
       </md-tab>
+      <md-tab id="tab4" aria-control="tab4-content">
+      TOP PLAYERS
+  	  </md-tab>
     </md-tabs>
     <ng-switch on="data.selectedIndex" class="tabpanel-container">
         <div role="tabpanel"
@@ -28,8 +31,38 @@
              ng-switch-when="0"
              md-swipe-left="next()"
              md-swipe-right="previous()" >
-            View for Item #1<br/>
-            data.selectedIndex = 0
+            <md-content>
+    <!-- <md-toolbar class="md-theme-light" style="background:#f3f6ff;color:black;height:15%">
+    <h1 class="md-toolbar-tools">
+      <div flex>Player</div><div flex>GP</div><div flex>GS</div><div flex>MIN</div><div flex>PPG</div><div flex>OFFR</div>
+      <div flex>DEFR</div><div flex>RPG</div><div flex>APG</div><div flex>SPG</div><div flex>BPG</div><div flex>TPG</div><div flex>FPG</div><div flex>A/TO</div><div flex>PER</div>
+    </h1>
+  </md-toolbar> -->
+    <md-list>
+      <md-item>
+        <md-item-content>
+          <div class="md-tile-content" style="background:#f3f6ff;color:black;font-weight:bold;color:black;">
+            <div layout="row">
+            <div flex>Player</div><div flex>GP</div><div flex>GS</div><div flex>MIN</div><div flex>PPG</div><div flex>OFFR</div>
+      		<div flex>DEFR</div><div flex>RPG</div><div flex>APG</div><div flex>SPG</div><div flex>BPG</div><div flex>TPG</div><div flex>FPG</div><div flex>A/TO</div><div flex>PER</div>
+          </div>
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-item>
+    </md-list>
+      <md-item ng-repeat="element in staz['stats']">
+        <md-item-content>
+          <div class="md-tile-content htab" style="color:black;">
+            <div layout="row">
+              <div flex>{{element.name}}</div><div flex>{{element.gp}}</div><div flex>{{element.gs}}</div><div flex>{{element.min}}</div><div flex>{{element.ppg}}</div><div flex>{{element.offr}}</div><div flex>{{element.defr}}</div><div flex>{{element.rpg}}</div><div flex>{{element.apg}}</div><div flex>{{element.spg}}</div><div flex>{{element.spg}}</div><div flex>{{element.tpg}}</div><div flex>{{element.fpg}}</div><div flex>{{element.ato}}</div><div flex>{{element.per}}</div>
+          </div>
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-item>
+    </md-list>
+  </md-content>
         </div>
         <div role="tabpanel"
              id="tab2-content"
@@ -37,7 +70,7 @@
              ng-switch-when="1"
              md-swipe-left="next()"
              md-swipe-right="previous()" >
-            View for Item #2<br/>
+            <span style="color:black;">View for Item #2<br/></span>
             data.selectedIndex = 1
         </div>
         <div role="tabpanel"
@@ -48,6 +81,16 @@
              md-swipe-right="previous()" >
             View for Item #3<br/>
             data.selectedIndex = 2
+        </div>
+        <div role="tabpanel"
+             id="tab4-content"
+             aria-labelledby="tab4"
+             ng-switch-when="3"
+             md-swipe-left="next()"
+             md-swipe-right="previous()" >
+             
+             top_players
+
         </div>
     </ng-switch>
 </div>

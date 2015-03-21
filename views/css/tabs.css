@@ -1,4 +1,7 @@
- 
+ .htab:hover{
+  background: #f8bbd0;
+ }
+
 .tabsdemoStaticTabs .sample {
     height: 450px; }
   .tabsdemoStaticTabs #tab1-content {
@@ -12,8 +15,9 @@
     position: relative;
     background: white;
     border: 1px solid #D8D8D8;
-    height: 300px;
-    overflow: hidden; }
+    height: 330px;
+    overflow: scroll;
+    }
   .tabsdemoStaticTabs [role="tabpanel"] {
     color: white;
     width: 100%;
