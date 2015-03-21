@@ -266,4 +266,11 @@ app.service('pageService', ['$q', function($q) {
       $scope.depth = response;
     });
 
+    var url_top = "/team/leaders?abbr="+$rootScope.team_name;
+    $http.get(url_top)
+    .success(function(response){
+      $scope.leaders = response;
+      console.log(response);
+    })
+    
   }]);

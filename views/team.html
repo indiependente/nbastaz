@@ -1,6 +1,44 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/tabs.css">
+<style type="text/css">
+.foot{
+  background-color:#0069b3; 
+  color:#FFFFFF;
+  opacity: 0.6;
+}
+
+.head{
+  background-color:#FF5722; 
+  color:#FFFFFF;
+  opacity: 0.6
+}
+
+md-grid-tile-footer figcaption  {
+  margin: 0px;
+  font-weight: 30;
+  width: 100%;
+}
+
+md-grid-tile-footer figcaption h3 {
+  position:relative;
+  left:-10px;
+  text-align: center; 
+}
+
+md-grid-tile-header figcaption  {
+  margin: 0px;
+  font-weight: 30;
+  width: 100%;
+}
+
+md-grid-tile-header figcaption h4 {
+  position:relative;
+  left:-10px;
+  text-align: center; 
+}
+
+</style>
 </head>
 <body>
 <div ng-app="nbastaz" ng-controller="teamCtrl as tc" class="tabsdemoStaticTabs sample">
@@ -88,10 +126,20 @@
              ng-switch-when="3"
              md-swipe-left="next()"
              md-swipe-right="previous()" >
-             
-             top_players
 
-        </div>
+             <md-grid-list
+          md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
+          md-row-height-gt-md="1:1.4" md-row-height="4:3"
+          md-gutter="8px" md-gutter-gt-sm="4px" >
+        <md-grid-tile ng-repeat="element in leaders"
+                      md-rowspan="1"
+                      md-colspan="1">
+            <img ng-src="{{element.image}}"></img>
+            <md-grid-tile-header class="head"><h4 style="font-weight: bold;">{{element.name}} {{element.number}}</h4></md-grid-tile-header>
+            <md-grid-tile-footer class="foot" ><h3 style="font-weight: bold;">{{element.stat}} {{element.category}}</h3></md-grid-tile-footer>
+        </md-grid-tile>
+      </md-grid-list>
+      </div>
     </ng-switch>
 </div>
 </body>
