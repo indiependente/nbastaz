@@ -5,8 +5,8 @@ var xray        =   require('x-ray'),
 // var url = 'http://espn.go.com/nba/team/stats/_/name/bos/boston-celtics';
 // teamStats(url, process.stdout);
 // teamLeaders(url, process.stdout);
-var urlRoster = 'http://espn.go.com/nba/team/roster/_/name/bos/boston-celtics';
-teamRoster(urlRoster, process.stdout);
+// var urlRoster = 'http://espn.go.com/nba/team/roster/_/name/bos/boston-celtics';
+// teamRoster(urlRoster, process.stdout);
 // var urlDepth = 'http://espn.go.com/nba/team/depth/_/name/bos/boston-celtics';
 // teamDepth(urlDepth, process.stdout);
 
@@ -26,7 +26,7 @@ function getID(URL){
 // {
 	// 	"record": "30-38, 2nd in Atlantic Division"
 	// 	"stats": [
-	// 		{name: "", link: "" ....}, 
+	// 		{name: "", link: "" ....},
 	// 		{name: "", link: "" ...},
 	// 		{name: "", link: ""}
 	// 		]
