@@ -238,7 +238,8 @@ app.service('pageService', ['$q', function($q) {
   app.controller('teamCtrl',['$rootScope','$scope','$http','$mdDialog',function($rootScope,$scope,$http,$mdDialog) {
 
     var url = "/team?abbr="+$rootScope.team_name;
-
+    $rootScope.roles = {"PG":"Point Guard","SG":"Shooting Guard","PF":"Power Forward","SF":"Small Forward","C":"Center"}
+    
     $http.get(url)
     .success(function(response) {
       $scope.results = response;
@@ -257,7 +258,7 @@ app.service('pageService', ['$q', function($q) {
     $http.get(url_roster)
     .success(function(response){
       $scope.roster = response;
-      console.log(response);
+      //console.log(response);
     });
 
 
@@ -274,21 +275,55 @@ app.service('pageService', ['$q', function($q) {
       //console.log(response);
     });
 
-    $scope.showAlert = function(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
-    // Modal dialogs should fully cover application
-    // to prevent interaction outside of dialog
-    //console.log(ev);
+    // $scope.showAlert = function(ev) {
+    // // Appending dialog to document.body to cover sidenav in docs app
+    // // Modal dialogs should fully cover application
+    // // to prevent interaction outside of dialog
+    // //console.log(ev);
 
-    var roles = {"PG":"Point Guard","SG":"Shooting Guard","PF":"Power Forward","SF":"Small Forward","C":"Center"}
-
-
-    $mdDialog.show(
-      $mdDialog.alert()
-        .title(roles[$scope.depth[ev].pos])
-        .content($scope.depth[ev].names[0])
-        .ok('Close')
-        .targetEvent(ev)
-    );}
     
-  }]);
+
+
+    // $mdDialog.show(
+    //   $mdDialog.alert()
+    //     .title(roles[$scope.depth[ev].pos])
+    //     .content($scope.depth[ev].names[0])
+    //     .ok('Close')
+    //     .targetEvent(ev)
+    // );}
+
+     $rootScope.prange = [1,2];
+    
+
+    $scope.showAdvanced = function(ev) {
+
+    for(i=1;i<$scope.depth[ev].names.length;i++){
+      $rootScope.prange[i-1]=[i];
+    }
+
+    //console.log($scope.prange);
+
+    $mdDialog.show({
+      controller: DialogController,
+      template: '<md-dialog ng-app="nbastaz" ng-controller="teamCtrl as tc">'+
+  '<md-content class="sticky-container">'+
+    '<md-toolbar class="md-theme-light"><h1 class="md-toolbar-tools">'+$rootScope.roles[$scope.depth[ev].pos]+'</h1></md-toolbar>'+
+    '<div class="dialog-content"><h1 style="color:#0069b3">'+$scope.depth[ev].names[0]+'</h1>'+
+    '<md-item data-ng-repeat="i in $root.prange"><md-item-content><div class="md-tile-content">{{depth['+ev+'].names[i]}}</div></md-item-content></md-item>'+
+    '</div>',
+      targetEvent: ev,
+    })
+  };
+
+function DialogController($scope, $mdDialog) {
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+}
+}]);
