@@ -21,6 +21,7 @@
     "jade": "~1.9.2",
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
+    "streamifier": "^0.1.0",
     "weak": "^0.4.0",
     "x-ray": "^1.0.5",
     "x-ray-phantom": "0.0.1"
