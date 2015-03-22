@@ -147,12 +147,12 @@ app.controller("PaginationCtrl", function($scope, $http) {
   $http.get("/news")
   .success(function(response){
     $scope.news="";
-    console.log(response);
+    //console.log(response);
     for(i=0;i<response.length;i++){
       $scope.news+=response[i].descr;
       $scope.news+="    ";
     }
-    console.log($scope.news);
+    //console.log($scope.news);
   });
 
 
