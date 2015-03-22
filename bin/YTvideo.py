@@ -3,7 +3,7 @@ import re
 import urllib
 from urllib import urlopen
 from bs4 import BeautifulSoup
-
+import json
 # TEAM = sys.argv[1]
 
 
@@ -33,4 +33,7 @@ def scrapeURL(team):
 if __name__ == '__main__':
 	url = scrapeURL(sys.argv[1])
 	if url is not None:
-		print url
+		print json.dumps({
+		"team".encode('ascii') : sys.argv[1].lower().encode('ascii'),
+		"url".encode('ascii') : url.encode('ascii')
+		}, sort_keys=True)
