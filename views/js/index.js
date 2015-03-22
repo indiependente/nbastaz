@@ -325,11 +325,11 @@ app.service('pageService', ['$q', function($q) {
     //     .targetEvent(ev)
     // );}
 
-     $rootScope.prange = [1,2];
+     
     
 
     $scope.showAdvanced = function(ev) {
-
+    $rootScope.prange = [];
     for(i=1;i<$scope.depth[ev].names.length;i++){
       $rootScope.prange[i-1]=[i];
     }
