@@ -1,25 +1,24 @@
 var app = angular.module('nbastaz', ['ngMaterial']);
 
-
-app.filter('offset', function() {
-return function(input, start) {
-start = parseInt(start, 10);
-return input.slice(start);
-};
-});
 app.controller("PaginationCtrl", function($scope, $http) {
   $scope.itemsPerPage = 24;
   $scope.currentPage = 0;
   $scope.items = [];
+  $scope.names = [];
   $http.get("http://localhost:3000/players")
         .success(function(response) {
-          $scope.results = response;
+            $scope.results = response;
 
-  $scope.size = $scope.results.length;
-    for (key in response) {
-      $scope.items.push(response[key]);
-    }
+            $scope.size = $scope.results.length;
+            for (key in response) {
+                $scope.items.push(response[key]);
+                $scope.names.push(response[key].name);
+            }
+            
+            $scope.loadAll();
+ 
   });
+
   $scope.range = function() {
     var rangeSize = 5;
     var ret = [];
@@ -34,33 +33,67 @@ app.controller("PaginationCtrl", function($scope, $http) {
     return ret;
   };
 
-  $scope.prevPage = function() {
-    if ($scope.currentPage > 0) {
-    $scope.currentPage--;
+
+  $scope.selectedItem  = null;
+  $scope.searchText    = "";
+  $scope.isDisabled    = false;
+  $scope.querySearch   = $scope.querySearchFunc;
+
+  $scope.querySearchFunc= function(query) {
+    $scope.loadAll();
+    console.log("querySearchFunc "+query);
+    console.log("Search "+$scope.searchText);
+
+    if($scope.searchText == ""){
+       return $scope.players;
+    } 
+    lowercase_query = angular.lowercase(query);
+    query_result = {}
+      
+    for (key in $scope.players){
+      lower_key = angular.lowercase(key)
+      split_key = lower_key.split(" ")
+      if(split_key[0].indexOf(lowercase_query) === 0 || split_key[1].indexOf(lowercase_query) === 0){
+        query_result[key] = key
+        for (item_key in $scope.items){
+          // console.log("Item_key "+item_key+" item_key.name"+$scope.items[item_key].name)
+          lower_item_key = angular.lowercase($scope.items[item_key].name)
+          split_item_name = lower_item_key.split(' ')
+          if(split_item_name[0].indexOf(lowercase_query) === 0 || split_item_name[1].indexOf(lowercase_query) === 0){
+             // console.log("Match "+key+" and "+$scope.items[item_key].name)
+            $scope.items_filtered[item_key] = $scope.items[item_key]
+          }
+         }
+       }
     }
-  };
 
-  $scope.prevPageDisabled = function() {
-    return $scope.currentPage === 0 ? "disabled" : "";
-  };
+    $scope.players = query_result
 
-  $scope.pageCount = function() {
-    return Math.ceil($scope.items.length/$scope.itemsPerPage)-1;
-  };
-
-  $scope.nextPage = function() {
-    if ($scope.currentPage < $scope.pageCount()) {
-      $scope.currentPage++;
+    return $scope.players;
+   }
+    
+    $scope.loadAll = function() {  
+      $scope.players = {}
+      $scope.items_filtered = {}    
+      size = $scope.names.length
+      for (var i=0; i<size; i++){
+        $scope.players[$scope.names[i]] = $scope.names[i]
+      }
+      for (key in $scope.items){
+        $scope.items_filtered[key] = $scope.items[key]
+        // console.log("LoadAll items, id "+key+" name "+$scope.items_filtered[key].name)
+      }
     }
-  };
 
-  $scope.nextPageDisabled = function() {
-    return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
-  };
+    $scope.filterPlayer = function(player){
+      if($scope.searchText == "")
+        return true
+      player = angular.lowercase(player)
+      split_player = player.split(" ")
+      lower_searchText = $scope.searchText
+      return split_player[0].indexOf(lower_searchText) === 0 || split_player[1].indexOf(lower_searchText) === 0
+    }
 
-  $scope.setPage = function(n) {
-    $scope.currentPage = n;
-  };
 });
 
 

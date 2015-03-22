@@ -27,34 +27,38 @@ md-grid-tile-footer figcaption h3 {
 <body>
 <div ng-controller="PaginationCtrl">
 
+  <div layout="column">
+    <md-content class="md-padding" layout="column">
 
-<md-grid-list
-          md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
-          md-row-height-gt-md="1:1" md-row-height="4:3"
-          md-gutter="8px" md-gutter-gt-sm="4px" >
-        <md-grid-tile ng-repeat="player in items  | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
-            <img ng-src="{{player.image}}" width="120" height="120"></img>
-             <md-grid-tile-footer class="foot" ><h3 style="font-weight: bold;">{{player.name}}</h3></md-grid-tile-footer>
-        </md-grid-tile>
-      </md-grid-list>
+      <md-autocomplete
+          ng-disabled="isDisabled"
+          md-no-cache="noCache"
+          md-selected-item="selectedItem"
+          md-search-text="searchText"
+          md-items="item in querySearchFunc(searchText)"
+          md-item-text="item"
+          md-search-text-change = "querySearchFunc(searchText)"
+          placeholder="Search a player">
+        <span md-highlight-text="searchText">{{item}}</span>
+      </md-autocomplete>
+    </md-content>
+  </div>
 
-<table class="table table-striped">
-<td colspan="3"> 
-<div class="pagination">
-<ul>
-<li ng-class="prevPageDisabled()">
-<a href ng-click="prevPage()">« Prev</a>
-</li>
-<li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
-<a href="#">{{n+1}}</a>
-</li>
-<li ng-class="nextPageDisabled()">
-<a href ng-click="nextPage()">Next »</a>
-</li>
-</ul>
+
+
+
+
+  <md-grid-list
+            md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
+            md-row-height-gt-md="1:1" md-row-height="4:3"
+            md-gutter="8px" md-gutter-gt-sm="4px" >
+          <md-grid-tile ng-repeat="player in items_filtered" ng-if="filterPlayer(player.name)" >
+              <img ng-src="{{player.image}}" width="120" height="120"></img>
+               <md-grid-tile-footer class="foot" ><h3 style="font-weight: bold;">{{player.name}}</h3></md-grid-tile-footer>
+          </span>
+          </md-grid-tile>
+        </md-grid-list>
 </div>
-</td>
-</table>
-</div>
+
 </body>
 </html>
