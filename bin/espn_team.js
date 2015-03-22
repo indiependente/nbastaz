@@ -95,13 +95,13 @@ function teamRoster(url, out){
 			id: 'td:nth-child(2) > a[href] | getID',						// id player
 			image: 'td:nth-child(2) > a[href] | getID | imagify',			// image
 			link: 'td:nth-child(2) > a[href]',								// link to player
-			number: 'td:nth-child()',										// number of player
-			pos: 'td:nth-child(1)',											// position
-			age: 'td:nth-child(3)',											// età
-			ht: 'td:nth-child(4)',											// height
-			wt: 'td:nth-child(5)',											// weight
-			college: 'td:nth-child(6)',										// college
-			salary: 'td:nth-child(7)'										// salary in 2014-2015
+			number: 'td:nth-child(1)',										// number of player
+			pos: 'td:nth-child(3)',											// position
+			age: 'td:nth-child(4)',											// età
+			ht: 'td:nth-child(5)',											// height
+			wt: 'td:nth-child(6)',											// weight
+			college: 'td:nth-child(7)',										// college
+			salary: 'td:nth-child(8)'										// salary in 2014-2015
 		}]).write(out);
 }
 
