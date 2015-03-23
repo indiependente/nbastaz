@@ -73,7 +73,7 @@ md-grid-tile-header figcaption h4 {
     <md-list>
       <md-item>
         <md-item-content>
-          <div class="md-tile-content" style="background:#f3f6ff;color:black;font-weight:bold;color:black;">
+          <div class="md-tile-content" style="background:#f3f6ff;font-weight:bold;color:black;">
             <div layout="row">
             <div flex>Player</div><div flex>GP</div><div flex>GS</div><div flex>MIN</div><div flex>PPG</div><div flex>OFFR</div>
       		<div flex>DEFR</div><div flex>RPG</div><div flex>APG</div><div flex>SPG</div><div flex>BPG</div><div flex>TPG</div><div flex>FPG</div><div flex>A/TO</div><div flex>PER</div>
@@ -83,7 +83,7 @@ md-grid-tile-header figcaption h4 {
         <md-divider ng-if="!$last"></md-divider>
       </md-item>
     </md-list>
-      <md-item ng-repeat="element in staz['stats']">
+      <md-item style="cursor:pointer;" ng-repeat="element in staz['stats']" ng-click="$root.selected={name: 'player', iconurl: '',href: '/player.html'};$root.player_id=element.id">
         <md-item-content>
           <div class="md-tile-content htab" style="color:black;">
             <div layout="row">
@@ -116,7 +116,7 @@ md-grid-tile-header figcaption h4 {
         <md-divider ng-if="!$last"></md-divider>
       </md-item>
     </md-list>
-      <md-item ng-repeat="element in roster">
+      <md-item style="cursor:pointer;" ng-repeat="element in roster" ng-click="$root.selected={name: 'player', iconurl: '',href: '/player.html'};$root.player_id=element.id">
         <md-item-content>
           <div class="md-tile-content htab" style="color:black;">
             <div layout="row">
@@ -172,7 +172,7 @@ md-grid-tile-header figcaption h4 {
         <md-grid-tile ng-repeat="element in leaders"
                       md-rowspan="1"
                       md-colspan="1">
-            <img ng-src="{{element.image}}"></img>
+            <img style="cursor:pointer;" ng-click="$root.selected={name: 'player', iconurl: '',href: '/player.html'};$root.player_id=element.id"ng-src="{{element.image}}"></img>
             <md-grid-tile-header class="head"><h4 style="font-weight: bold;">{{element.name}} {{element.number}}</h4></md-grid-tile-header>
             <md-grid-tile-footer class="foot" ><h3 style="font-weight: bold;">{{element.stat}} {{element.category}}</h3></md-grid-tile-footer>
         </md-grid-tile>
