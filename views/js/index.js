@@ -98,7 +98,7 @@ app.controller("PaginationCtrl", function($scope, $http) {
         var year = todayAll.getFullYear();
         var today = month+'-'+day+'-'+year;
         $scope.nm=false;
-        $scope.today = today;
+        $scope.today = todayAll;
         $http.get("/matches?date="+today)
         .success(function(response) {$scope.results = response;$scope.nm=true;});
     });
@@ -110,7 +110,7 @@ app.controller("PaginationCtrl", function($scope, $http) {
         var year = yesterdayAll.getFullYear();
         var yesterday = month+'-'+day+'-'+year;
         $scope.pm=false;
-        $scope.yesterday = yesterday;
+        $scope.yesterday = yesterdayAll;
         $http.get("/matches?date="+yesterday)
         .success(function(response) {$scope.results = response;$scope.pm=true;});
     });

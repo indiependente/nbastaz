@@ -43,7 +43,7 @@ padding-left:3px;
 <!-- Next matches-->
 <div ng-show=nm style="display: inline-block; position:absolute;" ng-app="nbastaz" ng-controller="nextMatchController" flex>
   <md-toolbar class="md-theme-light" style="width:360px">
-  <h1>{{today}}</h1>
+  <h1>Schedule for {{today.getMonthName()}}, {{today.toFormat("D")}}</h1>
     <h2 class="md-toolbar-tools">
       <div flex>Visitor</div><div flex>Home</div><div flex>Time</div>
     </h2>
@@ -71,7 +71,7 @@ padding-left:3px;
  <!-- A table for every previous match -->
 <div ng-show=pm style="display: inline-block; position:absolute; left:40%;" ng-app="nbastaz" ng-controller="prevMatchController"  flex>
  <md-toolbar class="md-theme-light" style="background-color:#ff1744; width:625px">
- <h1>{{yesterday}}</h1>
+ <h1>Scores for {{yesterday.getMonthName()}}, {{yesterday.toFormat("D")}}</h1>
     <h2 class="md-toolbar-tools">
       <div flex>Team</div><div flex>Q1</div><div flex>Q2</div><div flex>Q3</div><div flex>Q4</div><div flex>OT</div><div flex>Final</div>
     </h2>
