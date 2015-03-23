@@ -155,11 +155,23 @@ app.controller("PaginationCtrl", function($scope, $http) {
     }]);
 
 
-  app.controller('AppCtrl', ['$rootScope','$scope', '$mdSidenav', 'pageService', '$timeout','$log', function($rootScope,$scope, $mdSidenav, pageService, $timeout, $log) {
+  app.controller('AppCtrl', ['$http','$rootScope','$scope', '$mdSidenav', 'pageService', '$timeout','$log', function($http,$rootScope,$scope, $mdSidenav, pageService, $timeout, $log) {
   var allPages = [];
 
   // $rootScope.val = 5;
   
+  $http.get("/news")
+  .success(function(response){
+    $scope.news="";
+    //console.log(response);
+    for(i=0;i<response.length;i++){
+      $scope.news+=response[i].descr;
+      $scope.news+="    ";
+    }
+    //console.log($scope.news);
+  });
+
+
   $rootScope.selected = null;
   $scope.pages = allPages;
   $scope.selectPage = selectPage;

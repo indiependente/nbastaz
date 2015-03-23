@@ -9,6 +9,8 @@
 
   <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
+  <style type="text/css">
+  </style>
 
 </head>
 
@@ -23,7 +25,12 @@
       <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
         <span class="visuallyhidden">Menu</span>
       </button>
-      <img ng-src="logos/nba-2.png" width="25%"></img><!--<img style="position:absolute;right:0px;" ng-src="logos/bball.png" width="11%"></img>-->
+      <img ng-src="logos/nba-2.png" width="25%"></img>
+      <img style="position:absolute;top:78%;left:45%;height:30%" ng-src="img/news.gif"></img>
+      <!--<img style="position:absolute;right:0px;" ng-src="logos/bball.png" width="11%"></img>-->
+    </md-toolbar>
+    <md-toolbar layout="row" style="background:#0069b3;opacity:0.6;">
+    <marquee behavior="scroll" onmouseover="this.stop()" onmouseout="this.start()" hspace="20" vspace="20" direction="left">{{news}}</marquee>
     </md-toolbar>
     <div layout="row" flex class="content-wrapper">
         <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-sm')">
