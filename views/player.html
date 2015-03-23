@@ -1,17 +1,22 @@
 <html ng-app="nbastaz">
 <head>
-	<link rel="stylesheet" href="css/tabs.css">
+	 <link rel="stylesheet" href="css/tabs.css">
+   <style>
+    md-tabs.md-default-theme md-tabs-ink-bar {
+      background-color:#FF5722 ;
+    }
+   </style>
 </head>
 
 <body >
 <div ng-controller="playerCtrl">
 
 	    <md-toolbar>
-      <h2 style="background:#1976D2;" class="md-toolbar-tools">
+      <h2 style="background-color:#0069b3;" class="md-toolbar-tools">
         <span>{{results[0].name}}</span>
       </h2>
     </md-toolbar>
-    <md-tabs class="md-accent" md-selected="data.selectedIndex">
+    <md-tabs md-selected="data.selectedIndex">
       <md-tab id="tab1" aria-controls="tab1-content">
         Bio
       </md-tab>
