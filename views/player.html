@@ -1,0 +1,111 @@
+<html ng-app="nbastaz">
+<head>
+	<link rel="stylesheet" href="css/tabs.css">
+</head>
+
+<body >
+<div ng-controller="playerCtrl">
+
+	    <md-toolbar>
+      <h2 style="background:#1976D2;" class="md-toolbar-tools">
+        <span>{{results[0].name}}</span>
+      </h2>
+    </md-toolbar>
+    <md-tabs class="md-accent" md-selected="data.selectedIndex">
+      <md-tab id="tab1" aria-controls="tab1-content">
+        Bio
+      </md-tab>
+      <md-tab id="tab2" aria-controls="tab2-content">
+        Game Recap
+      </md-tab>
+    </md-tabs>
+
+    <ng-switch on="data.selectedIndex" class="tabpanel-container">
+    	<div role="tabpanel"
+             id="tab1-content"
+             aria-labelledby="tab1"
+             ng-switch-when="0"
+             md-swipe-left="next()"
+             md-swipe-right="previous()" >
+    		
+    		<md-content>
+          <md-card style="height:300px;">
+          <md-card-content>
+    			<img style='position:relative;' ng-src="{{results[0].image}}" width="300" height="300"></img>
+
+          <div style='position:absolute; top:0%; left:35%;'>
+            <md-list>
+              <md-item>
+                <md-item-content>
+                  <div class="md-tile-content">
+                    <div layout="column">
+                      <div flex><span> <span style='font-weight:bold;'>Team:</span> {{results[0].team}}</span></div>
+                      <div flex><span> <span style='font-weight:bold;'>Born:</span> {{results[0].born}}</span></div>
+                      <div flex><span> <span style='font-weight:bold;'>Height and weight:</span> {{results[0].height_weight}}</span></div>
+                      <div flex><span> <span style='font-weight:bold;'>Drafted:</span> {{results[0].drafted}}</span></div>
+                      <div flex><span> <span style='font-weight:bold;'>College:</span> {{results[0].college}}</span></div>
+                      <div flex><span> <span style='font-weight:bold;'>Experience:</span> {{results[0].experience}}</span></div>
+                      <div flex><span> <span style='font-weight:bold;'>Pos:</span> {{results[0].numb_pos}}</span></div>
+                      <div flex><span> <span style='font-weight:bold;'>Season:</span> {{results[0].season}}</span></div>
+                      <div flex><span> <span style='font-weight:bold;'>Salary:</span> {{results[0].salary}}</span></div>
+                      <div flex><span> <span style='font-weight:bold;'>Expiration salary:</span> {{results[0].expiration_salary}}</span></div>
+                      <div flex><span> <span style='font-weight:bold;'>Career points per game:</span> {{results[0].career_ppg}}</span></div>
+                      <div flex><span> <span style='font-weight:bold;'>Career assists per game:</span> {{results[0].career_apg}}</span></div>
+                      <div flex><span> <span style='font-weight:bold;'>Career rebounds per game:</span> {{results[0].career_rpg}}</span></div>
+                      </div>
+                  </div>
+                </md-item-content>
+              </md-item>
+            </md-list>
+        </div>
+
+
+      </md-card-content>
+    </md-card>
+			</md-content>
+		</div>
+
+    	<div role="tabpanel"
+		     id="tab2-content"
+		     aria-labelledby="tab2"
+		     ng-switch-when="1"
+		     md-swipe-left="next()"
+		     md-swipe-right="previous()" >
+	
+			<md-content>
+				
+            <md-list>
+      <md-item>
+        <md-item-content style='width:1400px; text-align:center;'>
+          <div class="md-tile-content" style="background:#f3f6ff;color:black;font-weight:bold;color:black;">
+            <div layout="row">
+            <div flex>Date</div><div flex>Opponent team</div><div flex>Win/Lose</div><div flex>Result</div><div flex>Min</div><div flex>Fgm-Fga</div><div flex>Fg</div><div flex>Pm3-Pa3</div><div flex>P3</div><div flex>Ftm-Fta</div><div flex>Ft</div><div flex>Reb</div><div flex>Ast</div><div flex>Blk</div><div flex>Stl</div><div flex>Pf</div><div flex>To</div><div flex>Pts</div>
+          </div>
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last" style='width:1400px;'></md-divider>
+      </md-item>
+    </md-list>
+      <md-item>
+        <md-item-content data-ng-repeat='i in efr' style='width:1400px; text-align:center;'>
+          <div  class="md-tile-content htab">
+            <div layout="row">
+              <div flex>{{results[0].gamelog.date[i]}}</div><div flex>{{results[0].gamelog.opponent_team[i]}}</div><div flex>{{results[0].gamelog.win_or_lose[i]}}</div><div flex>{{results[0].gamelog.result[i]}}</div><div flex>{{results[0].gamelog.min[i]}}</div><div flex>{{results[0].gamelog.fgm_fga[i]}}</div><div flex>{{results[0].gamelog.fg[i]}}</div><div flex>{{results[0].gamelog.pm3_pa3[i]}}</div><div flex>{{results[0].gamelog.p3[i]}}</div><div flex>{{results[0].gamelog.ftm_fta[i]}}</div><div flex>{{results[0].gamelog.ft[i]}}</div><div flex>{{results[0].gamelog.reb[i]}}</div><div flex>{{results[0].gamelog.ast[i]}}</div><div flex>{{results[0].gamelog.blk[i]}}</div><div flex>{{results[0].gamelog.stl[i]}}</div><div flex>{{results[0].gamelog.pf[i]}}</div><div flex>{{results[0].gamelog.to[i]}}</div><div flex>{{results[0].gamelog.pts[i]}}</div>
+          </div>
+          </div>
+        </md-item-content>
+        <md-divider ng-if="!$last" style='width:1400px;'></md-divider>
+      </md-item>
+    </md-list>
+
+
+
+			</md-content>
+		</div>
+
+	</ng-switch>
+
+
+</div>
+</body>
+</html>

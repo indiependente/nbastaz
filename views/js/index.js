@@ -1,5 +1,21 @@
 var app = angular.module('nbastaz', ['ngMaterial']);
 
+app.controller('playerCtrl', function($rootScope,$scope,$http) {
+    var url = "/player?id="+$rootScope.player_id;
+    
+    $http.get(url)
+    .success(function(response) {
+      $scope.results = response;
+      var size = $scope.results[0].gamelog.date.length;
+      $scope.efr = [];
+      for(i=0; i<size; i++){
+        $scope.efr[i] = i;
+      } 
+    });
+
+});
+
+
 app.controller("PaginationCtrl", function($scope, $http) {
   $scope.itemsPerPage = 24;
   $scope.currentPage = 0;
