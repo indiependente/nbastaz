@@ -35,56 +35,34 @@ app.controller("PaginationCtrl", function($scope, $http) {
  
   });
 
-  $scope.range = function() {
-    var rangeSize = 5;
-    var ret = [];
-    var start;
-    start = $scope.currentPage;
-    if ( start > $scope.pageCount()-rangeSize ) {
-    start = $scope.pageCount()-rangeSize+1;
-    }
-    for (var i=start; i<start+rangeSize; i++) {
-    ret.push(i);
-    }
-    return ret;
-  };
-
-
-  $scope.selectedItem  = null;
   $scope.searchText    = "";
   $scope.isDisabled    = false;
   $scope.querySearch   = $scope.querySearchFunc;
 
   $scope.querySearchFunc= function(query) {
-    $scope.loadAll();
-    console.log("querySearchFunc "+query);
-    console.log("Search "+$scope.searchText);
 
     if($scope.searchText == ""){
-       return $scope.players;
+      $scope.loadAll()
+      return $scope.players;
     } 
+    $scope.players = {}
     lowercase_query = angular.lowercase(query);
-    query_result = {}
-      
-    for (key in $scope.players){
-      lower_key = angular.lowercase(key)
+
+    size = $scope.names.length
+    for (var key=0; key<size; key++){
+      lower_key = angular.lowercase($scope.names[key])
       split_key = lower_key.split(" ")
-      if(split_key[0].indexOf(lowercase_query) === 0 || split_key[1].indexOf(lowercase_query) === 0){
-        query_result[key] = key
+      if(split_key[0].indexOf(lowercase_query) === 0 || split_key[1].indexOf(lowercase_query) === 0 || lower_key.indexOf(lowercase_query) === 0){
+        $scope.players[$scope.names[key]] = $scope.names[key]
         for (item_key in $scope.items){
-          // console.log("Item_key "+item_key+" item_key.name"+$scope.items[item_key].name)
           lower_item_key = angular.lowercase($scope.items[item_key].name)
           split_item_name = lower_item_key.split(' ')
-          if(split_item_name[0].indexOf(lowercase_query) === 0 || split_item_name[1].indexOf(lowercase_query) === 0){
-             // console.log("Match "+key+" and "+$scope.items[item_key].name)
+          if(split_item_name[0].indexOf(lowercase_query) === 0 || split_item_name[1].indexOf(lowercase_query) === 0 || lower_item_key.indexOf(lowercase_query) === 0){
             $scope.items_filtered[item_key] = $scope.items[item_key]
           }
          }
        }
     }
-
-    $scope.players = query_result
-
     return $scope.players;
    }
     
@@ -106,8 +84,8 @@ app.controller("PaginationCtrl", function($scope, $http) {
         return true
       player = angular.lowercase(player)
       split_player = player.split(" ")
-      lower_searchText = $scope.searchText
-      return split_player[0].indexOf(lower_searchText) === 0 || split_player[1].indexOf(lower_searchText) === 0
+      lower_searchText = angular.lowercase($scope.searchText)
+      return split_player[0].indexOf(lower_searchText) === 0 || split_player[1].indexOf(lower_searchText) === 0 || player.indexOf(lower_searchText) === 0
     }
 
 });
