@@ -181,13 +181,6 @@
       "espn":"http://espn.go.com/nba/player/_/id/2594818/james-michael-mcadoo",
       "name":"James Michael Mcadoo"
    },
-   "2488701":{
-      "teamID":30,
-      "image":"http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2488701.png&w=350&h=254",
-      "id":"2488701",
-      "espn":"http://espn.go.com/nba/player/_/id/2488701/jerrelle-benimon",
-      "name":"Jerrelle Benimon"
-   },
    "6590":{
       "teamID":27,
       "image":"http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/6590.png&w=350&h=254",
@@ -209,12 +202,12 @@
       "espn":"http://espn.go.com/nba/player/_/id/6592/john-henson",
       "name":"John Henson"
    },
-   "592":{
-      "teamID":8,
-      "image":"http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/592.png&w=350&h=254",
-      "id":"592",
-      "espn":"http://espn.go.com/nba/player/_/id/592/steve-nash",
-      "name":"Steve Nash"
+   "6593":{
+      "teamID":16,
+      "image":"http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/6593.png&w=350&h=254",
+      "id":"6593",
+      "espn":"http://espn.go.com/nba/player/_/id/6593/bernard-james",
+      "name":"Bernard James"
    },
    "6594":{
       "teamID":21,
@@ -691,13 +684,6 @@
       "id":"3032979",
       "espn":"http://espn.go.com/nba/player/_/id/3032979/dennis-schroder",
       "name":"Dennis Schroder"
-   },
-   "2528803":{
-      "teamID":21,
-      "image":"http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2528803.png&w=350&h=254",
-      "id":"2528803",
-      "espn":"http://espn.go.com/nba/player/_/id/2528803/jarell-eddie",
-      "name":"Jarell Eddie"
    },
    "2991227":{
       "teamID":3,
@@ -1273,13 +1259,6 @@
       "espn":"http://espn.go.com/nba/player/_/id/4182/pablo-prigioni",
       "name":"Pablo Prigioni"
    },
-   "6593":{
-      "teamID":16,
-      "image":"http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/6593.png&w=350&h=254",
-      "id":"6593",
-      "espn":"http://espn.go.com/nba/player/_/id/6593/bernard-james",
-      "name":"Bernard James"
-   },
    "2489785":{
       "teamID":30,
       "image":"http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2489785.png&w=350&h=254",
@@ -1840,6 +1819,13 @@
       "espn":"http://espn.go.com/nba/player/_/id/2799/louis-williams",
       "name":"Louis Williams"
    },
+   "2991143":{
+      "teamID":3,
+      "image":"http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2991143.png&w=350&h=254",
+      "id":"2991143",
+      "espn":"http://espn.go.com/nba/player/_/id/2991143/ricky-ledo",
+      "name":"Ricky Ledo"
+   },
    "2792":{
       "teamID":16,
       "image":"http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2792.png&w=350&h=254",
@@ -1951,6 +1937,13 @@
       "id":"2528787",
       "espn":"http://espn.go.com/nba/player/_/id/2528787/lorenzo-brown",
       "name":"Lorenzo Brown"
+   },
+   "2488689":{
+      "teamID":27,
+      "image":"http://stats.nba.com/media/players/230x185/203930.png",
+      "id":"2488689",
+      "espn":"http://espn.go.com/nba/player/_/id/2488689/sean-kilpatrick",
+      "name":"Sean Kilpatrick"
    },
    "1727":{
       "teamID":16,
@@ -2294,6 +2287,13 @@
       "id":"1975",
       "espn":"http://espn.go.com/nba/player/_/id/1975/carmelo-anthony",
       "name":"Carmelo Anthony"
+   },
+   "4010":{
+      "teamID":9,
+      "image":"http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4010.png&w=350&h=254",
+      "id":"4010",
+      "espn":"http://espn.go.com/nba/player/_/id/4010/a.j.-price",
+      "name":"A.J. Price"
    },
    "4017":{
       "teamID":9,

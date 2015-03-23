@@ -115,6 +115,8 @@ def getPlayersJSON(roster_urls, specific_teams, pathname):
 
 			if playerURL == 'http://espn.go.com/nba/player/_/id/2959753/joffrey-lauvergne':
 				image = 'http://stats.nba.com/media/players/230x185/203530.png'
+			elif playerURL == 'http://espn.go.com/nba/player/_/id/2488689/sean-kilpatrick':
+				image = 'http://stats.nba.com/media/players/230x185/203930.png'
 			else:
 				image = soup.select('#content > .mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.main-headshot > img')[0]['src']
 				image = unicodedata.normalize('NFKD', image).encode('ascii', 'ignore')
@@ -128,8 +130,8 @@ def getPlayersJSON(roster_urls, specific_teams, pathname):
 
 rosters = find_roster_urls('./data/espn_teams.json')
 
-# f = urllib.urlopen('http://espn.go.com/nba/teams')
-# words = f.read().decode('utf-8')
-# teams = re.findall("http\://espn\.go\.com/nba/team/_/name/\w+?/.+?\"\sclass\=\"bi\">(.+?)</a>", words)
+f = urllib.urlopen('http://espn.go.com/nba/teams')
+words = f.read().decode('utf-8')
+teams = re.findall("http\://espn\.go\.com/nba/team/_/name/\w+?/.+?\"\sclass\=\"bi\">(.+?)</a>", words)
 
-# getPlayersJSON(rosters, teams, 'data/espn_players.json')
+getPlayersJSON(rosters, teams, 'data/espn_players.json')
