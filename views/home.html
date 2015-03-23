@@ -56,8 +56,8 @@ padding-left:3px;
         <md-item-content>
           <div class="md-tile-content">
             <div layout="row">
-              <div flex  class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><!-- <h4>{{match.vteam.name}}</h4> --></div>
-              <div flex  class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><!-- <h4>{{match.hteam.name}}</h4> --></div>
+              <div style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=match.vteam.link.split('-')[match.vteam.link.split('-').length-1]" flex  class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><!-- <h4>{{match.vteam.name}}</h4> --></div>
+              <div flex  style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=match.hteam.link.split('-')[match.hteam.link.split('-').length-1]" class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><!-- <h4>{{match.hteam.name}}</h4> --></div>
               <div  class="list"> <h3 class="time">{{match.time}}</h3></div>
               </div>
           </div>
@@ -83,8 +83,8 @@ padding-left:3px;
         <md-item-content>
           <div class="md-tile-content">
             <div layout="row">
-              <div  flex class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><!-- <h4>{{match.vteam.name}} </h4> -->
-              <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><!-- <h4> {{match.hteam.name}}</h4> --></div>
+              <div flex class="list"> <img style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=match.vteam.link.split('-')[match.vteam.link.split('-').length-1]" ng-src="{{ match.vteam.logo }}" width="80" height="80" /><!-- <h4>{{match.vteam.name}} </h4> -->
+              <img style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=match.hteam.link.split('-')[match.hteam.link.split('-').length-1]" ng-src="{{ match.hteam.logo }}" width="80" height="80" /><!-- <h4> {{match.hteam.name}}</h4> --></div>
 			  <div flex class="list"> <h5> {{match.vteam.qtrs[0]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[0]}} </h5> </div>
 			  <div flex class="list"> <h5> {{match.vteam.qtrs[1]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[1]}} </h5> </div>
 			   <div flex class="list"> <h5> {{match.vteam.qtrs[2]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[2]}} </h5> </div>
