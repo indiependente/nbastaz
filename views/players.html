@@ -22,13 +22,28 @@ md-grid-tile-footer figcaption h3 {
   	text-align: center; 
 }
 
+input{
+  height: 35px !important;
+}
+
+ul{
+ /* height:0px !important;*/
+ visibility: hidden;
+}
+
+#cont{
+  position:relative;
+  left:240px;
+  height:200px;
+}
+
 </style>
 </head>
 <body>
 <div ng-controller="PaginationCtrl">
 
-  <div layout="column">
-    <md-content class="md-padding" layout="column">
+  <div layout="column" style='height:100px; width:500px;'>
+    <md-content id="cont" class="md-padding" layout="column">
 
       <md-autocomplete
           ng-disabled="isDisabled"
@@ -38,7 +53,9 @@ md-grid-tile-footer figcaption h3 {
           md-items="item in querySearchFunc(searchText)"
           md-item-text="item"
           md-search-text-change = "querySearchFunc(searchText)"
-          placeholder="Search a player">
+          placeholder="Search a player"
+          style='width:400px;'
+          >
         <span md-highlight-text="searchText">{{item}}</span>
       </md-autocomplete>
     </md-content>
