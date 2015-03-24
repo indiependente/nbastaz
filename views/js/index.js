@@ -93,25 +93,25 @@ app.controller("PaginationCtrl", function($scope, $http) {
 
  app.controller('nextMatchController', function($scope, $http){
         var todayAll = Date.today();
-        var month = todayAll.getMonth()+1;
-        var day = todayAll.toFormat('DD');
-        var year = todayAll.getFullYear();
-        var today = month+'-'+day+'-'+year;
+        // var month = todayAll.getMonth()+1;
+        // var day = todayAll.toFormat('DD');
+        // var year = todayAll.getFullYear();
+        // var today = month+'-'+day+'-'+year;
         $scope.nm=false;
         $scope.today = todayAll;
-        $http.get("/matches?date="+today)
+        $http.get("/matches?date="+$scope.today)
         .success(function(response) {$scope.results = response;$scope.nm=true;});
     });
 
     app.controller('prevMatchController', function($scope, $http){
         var yesterdayAll = Date.yesterday();
-        var month = yesterdayAll.getMonth()+1;
-        var day = yesterdayAll.toFormat('DD');
-        var year = yesterdayAll.getFullYear();
-        var yesterday = month+'-'+day+'-'+year;
+        // var month = yesterdayAll.getMonth()+1;
+        // var day = yesterdayAll.toFormat('DD');
+        // var year = yesterdayAll.getFullYear();
+        // var yesterday = month+'-'+day+'-'+year;
         $scope.pm=false;
         $scope.yesterday = yesterdayAll;
-        $http.get("/matches?date="+yesterday)
+        $http.get("/matches?date="+$scope.yesterday)
         .success(function(response) {$scope.results = response;$scope.pm=true;});
     });
 
@@ -314,25 +314,6 @@ app.service('pageService', ['$q', function($q) {
       //console.log(response);
     });
 
-    // $scope.showAlert = function(ev) {
-    // // Appending dialog to document.body to cover sidenav in docs app
-    // // Modal dialogs should fully cover application
-    // // to prevent interaction outside of dialog
-    // //console.log(ev);
-
-    
-
-
-    // $mdDialog.show(
-    //   $mdDialog.alert()
-    //     .title(roles[$scope.depth[ev].pos])
-    //     .content($scope.depth[ev].names[0])
-    //     .ok('Close')
-    //     .targetEvent(ev)
-    // );}
-
-     
-    
 
     $scope.showAdvanced = function(ev) {
     $rootScope.prange = [];
@@ -366,3 +347,41 @@ function DialogController($scope, $mdDialog) {
   };
 }
 }]);
+
+app.controller('hController',function($scope,$http,$sce){
+
+  $scope.yesterday=Date.yesterday();
+  console.log($scope.yesterday);
+  $http.get("/top?date="+$scope.yesterday).
+  success(function(tp){
+    $scope.top_p = tp;
+    console.log($scope.top_p);
+  });
+
+  $scope.trustSrc = function(src) {
+    return $sce.trustAsResourceUrl(src);
+  }
+
+  $scope.response = [{"team": "grizzlies", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+  {"team": "pistons", "url": "https://www.youtube.com/embed/xMPg10QxUDg"},
+  {"team": "warriors", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+{"team": "suns", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+{"team": "hornets", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+{"team": "timberwolves", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+{"team": "bucks", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+{"team": "76ers", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+{"team": "celtics", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+{"team": "clippers", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+{"team": "pacers", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+{"team": "heat", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+{"team": "hawks", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+{"team": "magic", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+{"team": "raptors", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
+{"team": "kings", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"}];
+
+// console.log($scope.response);
+// console.log($scope.response[0].url)
+
+
+
+});

@@ -1,0 +1,72 @@
+<style>
+md-card md-card-content{
+	text-align: center;
+	font-weight: bold;
+}
+
+</style>
+<div ng-app="nbastaz" ng-controller="hController">
+ <md-toolbar style="background:#1DE9B6;position:relative;"><h1 style="line-height:20px;text-align:center">Top Players for {{yesterday.getMonthName()}}, {{yesterday.toFormat("D")}}</h1></md-toolbar>
+ 	
+  <md-content style="position:absolute; top:90px; left:30px;">
+          <md-card style="height:230px; width:270px;box-shadow:0 2px 10px 0 #FF5722">
+          <md-card-content>
+    			<img style='left:7%; position:absolute;' ng-src="{{top_p[0].image.split('&')[0]}}" width="260" height="180"></img>
+          </md-card-content>
+          </md-card>
+  </md-content>
+
+  <md-content style="position:absolute; top:90px; left:365px;">
+          <md-card style="height:230px; width:270px;box-shadow:0 2px 10px 0 #0a3665">
+          <md-card-content>
+    			<img style='left:7%; position:absolute;' ng-src="{{top_p[1].image.split('&')[0]}}" width="260" height="180"></img>
+          </md-card-content>
+          </md-card>
+  </md-content>
+
+  <md-content style="position:absolute; top:90px; left:700px;">
+          <md-card style="height:230px; width:270px;box-shadow:0 2px 10px 0 #FF5722">
+          <md-card-content>
+    			<img style='left:7%; position:absolute;' ng-src="{{top_p[2].image.split('&')[0]}}" width="260" height="180"></img>
+          </md-card-content>
+          </md-card>
+  </md-content>
+
+  <md-content style="position:absolute;top:335px;left:30px;">
+          <md-card style="height:90px; width:270px;box-shadow:0 2px 10px 0 #0a3665">
+          <md-card-content>
+				<span style="text-align:center">{{top_p[0].name}}</span><br>
+				<span style="text-align:center;font-weight:normal;">{{top_p[0].stats}}</span><br>
+				<span style="text-align:center;">{{top_p[0].team}}</span>
+          </md-card-content>
+          </md-card>
+  </md-content>
+
+  <md-content style="position:absolute; top:335px; left:365px">
+          <md-card style="height:90px; width:270px;box-shadow:0 2px 10px 0 #FF5722">
+          <md-card-content>
+          		<span style="text-align:center">{{top_p[1].name}}</span><br>
+          		<span style="text-align:center;font-weight:normal;">{{top_p[1].stats}}</span><br>
+				<span style="text-align:center;">{{top_p[1].team}}</span>
+          </md-card-content>
+          </md-card>
+  </md-content>
+
+  <md-content style="position:absolute; top:335px; left:700px">
+          <md-card style="height:90px; width:270px;box-shadow:0 2px 10px 0 #0a3665">
+          <md-card-content>
+    			<span style="text-align:center">{{top_p[2].name}}</span><br>
+    			<span style="text-align:center;font-weight:normal;">{{top_p[2].stats}}</span><br>
+				<span style="text-align:center;">{{top_p[2].team}}</span>
+          </md-card-content>
+          </md-card>
+  </md-content>
+  <div style="position:absolute;top:95%;width:97%;">
+  <md-toolbar style="background:#b31217;position:relative;"><h1 style="line-height:20px;text-align:center">YouTube</h1></md-toolbar>
+  <br>
+  <!-- <iframe ng-repeat="x in response" style="position:absolute;left:15%" src="{{trustSrc(x.url)}}" width="720px" height="576px" frameborder="0" allowfullscreen data-hddefault='true'></iframe> -->
+
+  <iframe ng-repeat="x in response" style="position:relative;left:15%" src="{{trustSrc(x.url)}}" width="720px" height="576px" allowfullscreen></iframe>
+
+</div>
+</div>
