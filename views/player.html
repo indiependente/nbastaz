@@ -5,6 +5,11 @@
     md-tabs.md-default-theme md-tabs-ink-bar {
       background-color:#FF5722 ;
     }
+
+    .datacard{
+      width:190px; 
+      height:110px;
+    }
    </style>
 </head>
 
@@ -13,7 +18,8 @@
 
 	    <md-toolbar>
       <h2 style="background-color:#0069b3;" class="md-toolbar-tools">
-        <span>{{results[0].name}}</span>
+        <span>[{{results[0].numb_pos}}] </span> &nbsp;
+          <span>{{results[0].name}}</span>
       </h2>
     </md-toolbar>
     <md-tabs md-selected="data.selectedIndex">
@@ -31,43 +37,140 @@
              aria-labelledby="tab1"
              ng-switch-when="0"
              md-swipe-left="next()"
-             md-swipe-right="previous()" >
+             md-swipe-right="previous()" style='position:relative;' >
     		
     		<md-content>
-          <md-card style="height:300px;">
+          <md-card style="height:230px; width:397px;">
           <md-card-content>
-    			<img style='position:relative;' ng-src="{{results[0].image}}" width="300" height="300"></img>
+    			<img style='left:7%; position:absolute;' ng-src="{{results[0].image}}" width="290" height="180"></img>
+          </md-card-content>
+          </md-card>
+        </md-content>
 
-          <div style='position:absolute; top:0%; left:35%;'>
-            <md-list>
-              <md-item>
-                <md-item-content>
-                  <div class="md-tile-content">
-                    <div layout="column">
-                      <div flex><span> <span style='font-weight:bold;'>Team:</span> {{results[0].team}}</span></div>
-                      <div flex><span> <span style='font-weight:bold;'>Born:</span> {{results[0].born}}</span></div>
-                      <div flex><span> <span style='font-weight:bold;'>Height and weight:</span> {{results[0].height_weight}}</span></div>
-                      <div flex><span> <span style='font-weight:bold;'>Drafted:</span> {{results[0].drafted}}</span></div>
-                      <div flex><span> <span style='font-weight:bold;'>College:</span> {{results[0].college}}</span></div>
-                      <div flex><span> <span style='font-weight:bold;'>Experience:</span> {{results[0].experience}}</span></div>
-                      <div flex><span> <span style='font-weight:bold;'>Pos:</span> {{results[0].numb_pos}}</span></div>
-                      <div flex><span> <span style='font-weight:bold;'>Season:</span> {{results[0].season}}</span></div>
-                      <div flex><span> <span style='font-weight:bold;'>Salary:</span> {{results[0].salary}}</span></div>
-                      <div flex><span> <span style='font-weight:bold;'>Expiration salary:</span> {{results[0].expiration_salary}}</span></div>
-                      <div flex><span> <span style='font-weight:bold;'>Career points per game:</span> {{results[0].career_ppg}}</span></div>
-                      <div flex><span> <span style='font-weight:bold;'>Career assists per game:</span> {{results[0].career_apg}}</span></div>
-                      <div flex><span> <span style='font-weight:bold;'>Career rebounds per game:</span> {{results[0].career_rpg}}</span></div>
-                      </div>
-                  </div>
-                </md-item-content>
-              </md-item>
-            </md-list>
-        </div>
-
-
+        <md-content style="position:absolute; top:0%; left:44%;">
+          <md-card class="datacard">
+          <md-card-content>
+          <div style='text-align:center'>
+            <span style='font-weight:bold'> Team</span> <br><span>{{results[0].team}}</span>
+          </div>
       </md-card-content>
     </md-card>
 			</md-content>
+
+      <md-content style="position:absolute; top:0%; left:66%;">
+          <md-card class="datacard">
+          <md-card-content>
+          <div style='text-align:center'>
+            <span style='font-weight:bold'>Born</span> <br><span>{{results[0].born}}</span>
+          </div>
+        </md-card-content>
+        </md-card>
+      </md-content>
+
+
+      <md-content style="position:absolute; top:100%; left:66%;">
+          <md-card class="datacard">
+          <md-card-content>
+          <div style='text-align:center'>
+            <span style='font-weight:bold'>Height and weight</span> <br><span>{{results[0].height_weight}}</span>
+          </div>
+        </md-card-content>
+        </md-card>
+      </md-content>
+
+      <md-content style="position:absolute; top:50%; left:44%;">
+          <md-card class="datacard">
+          <md-card-content>
+          <div style='text-align:center'>
+            <span style='font-weight:bold'>Drafted</span> <br><span>{{results[0].drafted}}</span>
+          </div>
+        </md-card-content>
+        </md-card>
+      </md-content>
+
+      <md-content style="position:absolute; top:50%; left:66%;">
+          <md-card class="datacard">
+          <md-card-content>
+          <div style='text-align:center'>
+            <span style='font-weight:bold'>College</span> <br><span>{{results[0].college}}</span>
+          </div>
+        </md-card-content>
+        </md-card>
+      </md-content>
+
+
+      <md-content style="position:absolute; top:100%; left:44%;">
+          <md-card class="datacard">
+          <md-card-content>
+          <div style='text-align:center'>
+            <span style='font-weight:bold'>Season</span> <br><span>{{results[0].season}}</span>
+          </div>
+        </md-card-content>
+        </md-card>
+      </md-content>
+
+      <md-content style="position:absolute; top:150%; left:44%;">
+          <md-card class="datacard">
+          <md-card-content>
+          <div style='text-align:center'>
+            <span style='font-weight:bold'>Salary</span> <br><span>{{results[0].salary}}</span>
+          </div>
+        </md-card-content>
+        </md-card>
+      </md-content>
+
+
+      <md-content style="position:absolute; top:150%; left:66%;">
+          <md-card class="datacard">
+          <md-card-content>
+          <div style='text-align:center'>
+            <span style='font-weight:bold'>Expiration salary</span> <br><span>{{results[0].expiration_salary}}</span>
+          </div>
+        </md-card-content>
+        </md-card>
+      </md-content>
+
+
+      <md-content style="position:absolute; top:100%; left:0%;">
+          <md-card class="datacard">
+          <md-card-content>
+          <div style='text-align:center'>
+            <span style='font-weight:bold'>Experience</span> <br><span>{{results[0].experience}}</span>
+          </div>
+        </md-card-content>
+        </md-card>
+      </md-content>
+
+      <md-content style="position:absolute; top:100%; left:22%;">
+          <md-card class="datacard">
+          <md-card-content>
+          <div style='text-align:center'>
+            <span style='font-weight:bold'>Career points per game</span> <br><span>{{results[0].career_ppg}}</span>
+          </div>
+        </md-card-content>
+        </md-card>
+      </md-content>
+
+      <md-content style="position:absolute; top:150%; left:0%;">
+          <md-card class="datacard">
+          <md-card-content>
+          <div style='text-align:center'>
+            <span style='font-weight:bold'>Career assists per game</span> <br><span>{{results[0].career_apg}}</span>
+          </div>
+        </md-card-content>
+        </md-card>
+      </md-content>
+
+      <md-content style="position:absolute; top:150%; left:22%;">
+          <md-card class="datacard">
+          <md-card-content>
+          <div style='text-align:center'>
+            <span style='font-weight:bold'>Career rebounds per game</span> <br><span>{{results[0].career_rpg}}</span>
+          </div>
+        </md-card-content>
+        </md-card>
+      </md-content>
+
 		</div>
 
     	<div role="tabpanel"
