@@ -345,7 +345,7 @@ app.service('pageService', ['$q', function($q) {
     $mdDialog.show({
       controller: DialogController,
       template: '<md-dialog ng-app="nbastaz" ng-controller="teamCtrl as tc">'+
-  '<md-content class="sticky-container">'+
+    '<md-content class="sticky-container">'+
     '<md-toolbar class="md-theme-light"><h1 class="md-toolbar-tools">'+$rootScope.roles[$scope.depth[ev].pos]+'</h1></md-toolbar>'+
     '<div class="dialog-content"><h1 style="color:#0069b3">'+$scope.depth[ev].names[0]+'</h1>'+
     '<md-item data-ng-repeat="i in $root.prange"><md-item-content><div class="md-tile-content">{{depth['+ev+'].names[i]}}</div></md-item-content></md-item>'+
@@ -374,6 +374,7 @@ app.controller('hController',function($scope,$http,$sce){
   var day = date.toFormat('DD');
   var year = date.getFullYear();
   var yesterday = month+'-'+day+'-'+year;
+  $scope.yesterday=date;
   // console.log($scope.yesterday);
   $http.get("/top?date="+yesterday)
   .success(function(tp){
