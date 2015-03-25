@@ -2,7 +2,7 @@ var app = angular.module('nbastaz', ['ngMaterial']);
 
 app.controller('playerCtrl', function($rootScope,$scope,$http) {
     var url = "/player?id="+$rootScope.player_id;
-    
+
     $http.get(url)
     .success(function(response) {
       $scope.results = response;
@@ -10,7 +10,7 @@ app.controller('playerCtrl', function($rootScope,$scope,$http) {
       $scope.efr = [];
       for(i=0; i<size; i++){
         $scope.efr[i] = i;
-      } 
+      }
     });
 
 });
@@ -21,7 +21,7 @@ app.controller("PaginationCtrl", function($scope, $http) {
   $scope.currentPage = 0;
   $scope.items = [];
   $scope.names = [];
-  $http.get("http://localhost:3000/players")
+  $http.get("/players")
         .success(function(response) {
             $scope.results = response;
 
@@ -30,9 +30,9 @@ app.controller("PaginationCtrl", function($scope, $http) {
                 $scope.items.push(response[key]);
                 $scope.names.push(response[key].name);
             }
-            
+
             $scope.loadAll();
- 
+
   });
 
   $scope.searchText    = "";
@@ -44,7 +44,7 @@ app.controller("PaginationCtrl", function($scope, $http) {
     if($scope.searchText == ""){
       $scope.loadAll()
       return $scope.players;
-    } 
+    }
     $scope.players = {}
     lowercase_query = angular.lowercase(query);
 
@@ -65,10 +65,10 @@ app.controller("PaginationCtrl", function($scope, $http) {
     }
     return $scope.players;
    }
-    
-    $scope.loadAll = function() {  
+
+    $scope.loadAll = function() {
       $scope.players = {}
-      $scope.items_filtered = {}    
+      $scope.items_filtered = {}
       size = $scope.names.length
       for (var i=0; i<size; i++){
         $scope.players[$scope.names[i]] = $scope.names[i]
@@ -93,26 +93,45 @@ app.controller("PaginationCtrl", function($scope, $http) {
 
  app.controller('nextMatchController', function($scope, $http){
         var todayAll = Date.today();
-        // var month = todayAll.getMonth()+1;
-        // var day = todayAll.toFormat('DD');
-        // var year = todayAll.getFullYear();
-        // var today = month+'-'+day+'-'+year;
+        var month = todayAll.getMonth()+1;
+        var day = todayAll.toFormat('DD');
+        var year = todayAll.getFullYear();
+        var today = month+'-'+day+'-'+year;
         $scope.nm=false;
         $scope.today = todayAll;
-        $http.get("/matches?date="+$scope.today)
+        $http.get("/matches?date="+today)
         .success(function(response) {$scope.results = response;$scope.nm=true;});
     });
 
     app.controller('prevMatchController', function($scope, $http){
-        var yesterdayAll = Date.yesterday();
-        // var month = yesterdayAll.getMonth()+1;
-        // var day = yesterdayAll.toFormat('DD');
-        // var year = yesterdayAll.getFullYear();
-        // var yesterday = month+'-'+day+'-'+year;
+        var date = Date.yesterday();
+        var month = date.getMonth()+1;
+        var day = date.toFormat('DD');
+        var year = date.getFullYear();
+        var yesterday = month+'-'+day+'-'+year;
         $scope.pm=false;
-        $scope.yesterday = yesterdayAll;
-        $http.get("/matches?date="+$scope.yesterday)
-        .success(function(response) {$scope.results = response;$scope.pm=true;});
+        $scope.yesterday = date;
+        $http.get("/matches?date="+yesterday)
+        .success(function(response) {
+          if (response.length > 0) {
+            $scope.results = response;
+            $scope.pm=true;
+          }
+          else {
+            date.remove({'days' : 1});
+            var month = date.getMonth()+1;
+            var day = date.toFormat('DD');
+            var year = date.getFullYear();
+            var yesterday = month+'-'+day+'-'+year;
+            $http.get("/matches?date="+yesterday)
+            .success(function(response) {
+              if (response.length > 0) {
+                $scope.results = response;
+                $scope.pm=true;
+            }
+            });
+          }
+        });
     });
 
 
@@ -137,7 +156,7 @@ app.controller("PaginationCtrl", function($scope, $http) {
   var allPages = [];
 
   // $rootScope.val = 5;
-  
+
   $http.get("/news")
   .success(function(response){
     $scope.news="";
@@ -154,9 +173,9 @@ app.controller("PaginationCtrl", function($scope, $http) {
   $scope.pages = allPages;
   $scope.selectPage = selectPage;
   $scope.toggleSidenav = toggleSidenav;
-  
+
   loadPages();
-  
+
   //*******************
   // Internal Methods
   //*******************
@@ -168,11 +187,11 @@ app.controller("PaginationCtrl", function($scope, $http) {
         $rootScope.selected = $scope.pages[0];
       })
   }
-  
+
   function toggleSidenav(name) {
     $mdSidenav(name).toggle();
   }
-  
+
   function selectPage(page) {
     $rootScope.selected = angular.isNumber(page) ? $scope.pages[page] : page;
     $scope.toggleSidenav('left');
@@ -218,7 +237,7 @@ app.service('pageService', ['$q', function($q) {
 /*********GRID LIST*******/
 
     app.controller('gridList', ['$rootScope','$scope','$http',function($rootScope,$scope,$http) {
-      
+
 
       $http.get("/teams")
         .success(function(response){
@@ -278,13 +297,13 @@ app.service('pageService', ['$q', function($q) {
 
     var url = "/team?abbr="+$rootScope.team_name;
     $rootScope.roles = {"PG":"Point Guard","SG":"Shooting Guard","PF":"Power Forward","SF":"Small Forward","C":"Center"}
-    
+
     $http.get(url)
     .success(function(response) {
       $scope.results = response;
       //console.log(response);
     });
-    
+
     var url_staz = "/team/stats?abbr="+$rootScope.team_name;
 
     $http.get(url_staz)
@@ -350,34 +369,41 @@ function DialogController($scope, $mdDialog) {
 
 app.controller('hController',function($scope,$http,$sce){
 
-  $scope.yesterday=Date.yesterday();
-  console.log($scope.yesterday);
-  $http.get("/top?date="+$scope.yesterday).
-  success(function(tp){
+  var date = Date.yesterday();
+  var month = date.getMonth()+1;
+  var day = date.toFormat('DD');
+  var year = date.getFullYear();
+  var yesterday = month+'-'+day+'-'+year;
+  // console.log($scope.yesterday);
+  $http.get("/top?date="+yesterday)
+  .success(function(tp){
     $scope.top_p = tp;
     console.log($scope.top_p);
   });
 
-  $scope.trustSrc = function(src) {
+  function trust (src) {
     return $sce.trustAsResourceUrl(src);
   }
 
-  $scope.response = [{"team": "grizzlies", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-  {"team": "pistons", "url": "https://www.youtube.com/embed/xMPg10QxUDg"},
-  {"team": "warriors", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-{"team": "suns", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-{"team": "hornets", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-{"team": "timberwolves", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-{"team": "bucks", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-{"team": "76ers", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-{"team": "celtics", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-{"team": "clippers", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-{"team": "pacers", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-{"team": "heat", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-{"team": "hawks", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-{"team": "magic", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-{"team": "raptors", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"},
-{"team": "kings", "url": "https://www.youtube.com/embed/bDwiCAvz5pA"}];
+  $scope.response =
+  [
+    {"team": "grizzlies",     "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "pistons",       "url": trust("https://www.youtube.com/embed/xMPg10QxUDg")},
+    {"team": "warriors",      "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "suns",          "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "hornets",       "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "timberwolves",  "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "bucks",         "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "76ers",         "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "celtics",       "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "clippers",      "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "pacers",        "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "heat",          "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "hawks",         "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "magic",         "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "raptors",       "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
+    {"team": "kings",         "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")}
+  ];
 
 // console.log($scope.response);
 // console.log($scope.response[0].url)
