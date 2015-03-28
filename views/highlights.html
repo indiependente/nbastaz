@@ -64,9 +64,8 @@ md-card md-card-content{
   <div style="position:absolute;top:95%;width:97%;">
   <md-toolbar style="background:#b31217;position:relative;"><h1 style="line-height:20px;text-align:center">YouTube</h1></md-toolbar>
   <br>
-  <!-- <iframe ng-repeat="x in response" style="position:absolute;left:15%" src="{{trustSrc(x.url)}}" width="720px" height="576px" frameborder="0" allowfullscreen data-hddefault='true'></iframe> -->
 
-  <iframe ng-repeat="x in response" style="position:relative;left:15%" ng-src="{{ x.url }}" width="720px" height="576px" allowfullscreen></iframe>
+  <iframe ng-repeat="url in response" style="position:relative;left:10%" ng-src="{{ url }}" width="940px" height="529px" allowfullscreen data-hddefault='true'></iframe>
 
 </div>
 </div>

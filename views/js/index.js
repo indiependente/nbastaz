@@ -369,45 +369,26 @@ function DialogController($scope, $mdDialog) {
 
 app.controller('hController',function($scope,$http,$sce){
 
+  function trust (src) {
+    return $sce.trustAsResourceUrl(src);
+  }
+
   var date = Date.yesterday();
   var month = date.getMonth()+1;
   var day = date.toFormat('DD');
   var year = date.getFullYear();
   var yesterday = month+'-'+day+'-'+year;
   $scope.yesterday=date;
-  // console.log($scope.yesterday);
+
   $http.get("/top?date="+yesterday)
   .success(function(tp){
     $scope.top_p = tp;
-    console.log($scope.top_p);
   });
 
-  function trust (src) {
-    return $sce.trustAsResourceUrl(src);
-  }
-
-  $scope.response =
-  [
-    {"team": "grizzlies",     "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "pistons",       "url": trust("https://www.youtube.com/embed/xMPg10QxUDg")},
-    {"team": "warriors",      "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "suns",          "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "hornets",       "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "timberwolves",  "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "bucks",         "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "76ers",         "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "celtics",       "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "clippers",      "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "pacers",        "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "heat",          "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "hawks",         "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "magic",         "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "raptors",       "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")},
-    {"team": "kings",         "url": trust("https://www.youtube.com/embed/bDwiCAvz5pA")}
-  ];
-
-// console.log($scope.response);
-// console.log($scope.response[0].url)
+  $http.get("/highlights")
+  .success(function(hl){
+    $scope.response = JSON.parse(hl).map(trust);
+  });
 
 
 

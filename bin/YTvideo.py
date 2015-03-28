@@ -4,20 +4,7 @@ import urllib
 from urllib import urlopen
 from bs4 import BeautifulSoup
 import json
-# TEAM = sys.argv[1]
 
-
-# f = urllib.urlopen('https://www.youtube.com/user/nbagamerecap1/videos')
-# words = f.read().decode('utf-8')
-
-# soup = BeautifulSoup(words)
-# try:
-# 	watch = soup.find('a', title=re.compile(TEAM))['href'][9:]
-
-# 	video = 'http://www.youtube.com/embed/'+watch
-# 	return video
-# except Exception, e:
-# 	pass
 
 
 def scrapeURL(team):
