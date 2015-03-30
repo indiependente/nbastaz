@@ -103,7 +103,7 @@ app.controller("PaginationCtrl", function($scope, $http) {
         .success(function(response) {$scope.results = response;$scope.nm=true;});
     });
 
-    app.controller('prevMatchController', function($scope, $http){
+    app.controller('prevMatchController', function($scope, $http,$rootScope){
         var date = Date.yesterday();
         var month = date.getMonth()+1;
         var day = date.toFormat('DD');
@@ -115,6 +115,7 @@ app.controller("PaginationCtrl", function($scope, $http) {
         .success(function(response) {
           if (response.length > 0) {
             $scope.results = response;
+            $rootScope.prevmatches = response;
             $scope.pm=true;
           }
           else {
@@ -367,7 +368,7 @@ function DialogController($scope, $mdDialog) {
 }
 }]);
 
-app.controller('hController',function($scope,$http,$sce){
+app.controller('hController',function($scope,$http,$sce,$rootScope){
 
   function trust (src) {
     return $sce.trustAsResourceUrl(src);
@@ -385,11 +386,26 @@ app.controller('hController',function($scope,$http,$sce){
     $scope.top_p = tp;
   });
 
-  $http.get("/highlights")
-  .success(function(hl){
-    $scope.response = JSON.parse(hl).map(trust);
-  });
+  // $http.get("/highlights")
+  // .success(function(hl){
+  //   $scope.response = JSON.parse(hl).map(trust);
+  // });
 
+  console.log($rootScope.prevmatches);
+
+
+  i=0;
+  $scope.response = [];
+  while(i<$rootScope.prevmatches.length){
+      $scope.vt = $rootScope.prevmatches[i].vteam.name;
+      console.log("/highlight?abbr="+$scope.vt);
+      $http.get("/highlight?abbr="+$scope.vt).
+      success(function(value){
+        $scope.response[i]=JSON.parse(value).map(x.url);
+      });
+      i++;
+  }
+  
 
 
 });
