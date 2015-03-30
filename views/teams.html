@@ -7,7 +7,7 @@
                       md-rowspan="{{tile.span.row}}"
                       md-colspan="{{tile.span.col}}"
                       ng-class="tile.background" >
-            <a style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=tile.id"><img ng-src="{{tile.icon}}"></img></a>
+            <a style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=tile.id"><img onmouseover="this.style.background='#EEEEEE';" style="background: white;" onmouseout="this.style.background='white'" ng-src="{{tile.icon}}"></img></a>
         </md-grid-tile>
       </md-grid-list>
 </div>
