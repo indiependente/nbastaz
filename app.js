@@ -15,7 +15,8 @@ var team = require('./routes/team');
 var teams = require('./routes/teams');
 var players = require('./routes/players');
 var player = require('./routes/player');
-var highlights = require('./routes/highlights');
+// var highlights = require('./routes/highlights');
+var highlight = require('./routes/highlight');
 
 var app = express();
 
@@ -42,7 +43,8 @@ app.use('/team', team);
 app.use('/teams', teams);
 app.use('/players', players);
 app.use('/player', player);
-app.use('/highlights', highlights);
+// app.use('/highlights', highlights);
+app.use('/highlight', highlight);
 
 
 // catch 404 and forward to error handler
