@@ -401,7 +401,8 @@ app.controller('hController',function($scope,$http,$sce,$rootScope){
       console.log("/highlight?abbr="+$scope.vt);
       $http.get("/highlight?abbr="+$scope.vt).
       success(function(value){
-        $scope.response[i]=JSON.parse(value).map(x.url);
+        console.log(JSON.parse(value));
+        $scope.response.push(trust(JSON.parse(value).url));
       });
       i++;
   }
