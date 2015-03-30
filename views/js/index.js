@@ -263,27 +263,13 @@ app.service('pageService', ['$q', function($q) {
         it.span  = { row : "1", col : "1" };
         it.background = "white";
          switch(j+1) {
-        //   case 1:
-        //     it.background = "red";
-        //     it.span.row = it.span.col = 2;
-        //     break;
-        //   case 2: it.background = "green";         break;
-        //   case 3: it.background = "darkBlue";      break;
-        //   case 4:
-        //     it.background = "blue";
-        //     it.span.col = 2;
-        //     break;
+
           case 5:
             it.span.row = it.span.col = 1;
             it.icon="http://content.sportslogos.net/logos/6/5120/thumbs/512019262015.gif";
             //it.span.row = it.span.col = 1;
             break;
-          // case 6: it.background = "pink";          break;
-          // case 7: it.background = "darkBlue";      break;
-          // case 8: it.background = "purple";        break;
-          // case 9: it.background = "deepBlue";      break;
-          // case 10: it.background = "lightPurple";  break;
-          // case 11: it.background = "yellow";       break;
+
         }
         results.push(it);
         j++;
@@ -386,27 +372,18 @@ app.controller('hController',function($scope,$http,$sce,$rootScope){
     $scope.top_p = tp;
   });
 
-  // $http.get("/highlights")
-  // .success(function(hl){
-  //   $scope.response = JSON.parse(hl).map(trust);
-  // });
-
-  console.log($rootScope.prevmatches);
 
 
-  i=0;
   $scope.response = [];
-  while(i<$rootScope.prevmatches.length){
+  for (var i = 0; i<$rootScope.prevmatches.length; i++){
       $scope.vt = $rootScope.prevmatches[i].vteam.name;
-      console.log("/highlight?abbr="+$scope.vt);
       $http.get("/highlight?abbr="+$scope.vt).
       success(function(value){
-        console.log(JSON.parse(value));
-        $scope.response.push(trust(JSON.parse(value).url));
+        if (value != '')
+          $scope.response.push(trust(JSON.parse(value).url));
       });
-      i++;
   }
-  
+
 
 
 });
