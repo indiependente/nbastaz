@@ -19,8 +19,7 @@ module.exports = {
 
 // from month, day, year it returns a URL from which to start the scraping for espn score or top player of the specific day
 function getUrl(month, day, year){
-
-    if (!Date.validateDay(parseInt(day), parseInt(year), parseInt(month))) // Date sanity check
+    if (!Date.validateDay(parseInt(day), parseInt(year), parseInt(month)-1)) // Date sanity check
     {
         console.error('Invalid date format');
         process.exit(1);
