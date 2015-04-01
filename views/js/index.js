@@ -117,6 +117,10 @@ app.controller("PaginationCtrl", function($scope, $http) {
             $scope.results = response;
             $rootScope.prevmatches = response;
             $scope.pm=true;
+            for (i in $scope.results){
+              $scope.results[i].vteam.style = parseInt($scope.results[i].vteam.finl) > parseInt($scope.results[i].hteam.finl) ? {'font-weight' : 'bold'} : {'font-weight' : 'normal'};
+              $scope.results[i].hteam.style = parseInt($scope.results[i].hteam.finl) > parseInt($scope.results[i].vteam.finl) ? {'font-weight' : 'bold'} : {'font-weight' : 'normal'};
+            }
           }
           else {
             date.remove({'days' : 1});

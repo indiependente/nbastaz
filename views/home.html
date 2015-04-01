@@ -33,6 +33,10 @@ padding-left:3px;
 
   padding-right: 3px;
 }
+
+.winner{
+  font-weight : 'bold';
+}
 </style>
 
     <div style="display: inline-block; position:absolute; top:40%;left:20%;" ng-hide=nm layout="row" layout-sm="column" layout-align="space-around" ng-controller="nextMatchController">
@@ -56,8 +60,8 @@ padding-left:3px;
         <md-item-content>
           <div class="md-tile-content">
             <div layout="row">
-              <div style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=match.vteam.link.split('-')[match.vteam.link.split('-').length-1]" flex  class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" /><!-- <h4>{{match.vteam.name}}</h4> --></div>
-              <div flex  style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=match.hteam.link.split('-')[match.hteam.link.split('-').length-1]" class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" /><!-- <h4>{{match.hteam.name}}</h4> --></div>
+              <div style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=match.vteam.link.split('-')[match.vteam.link.split('-').length-1]" flex  class="list"> <img ng-src="{{ match.vteam.logo }}" width="80" height="80" onmouseover="this.style.background='#EEEEEE';" style="background: white;" onmouseout="this.style.background='white'"/><!-- <h4>{{match.vteam.name}}</h4> --></div>
+              <div flex  style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=match.hteam.link.split('-')[match.hteam.link.split('-').length-1]" class="list">  <img ng-src="{{ match.hteam.logo }}" width="80" height="80" onmouseover="this.style.background='#EEEEEE';" style="background: white;" onmouseout="this.style.background='white'"/><!-- <h4>{{match.hteam.name}}</h4> --></div>
               <div  class="list"> <h3 class="time">{{match.time}}</h3></div>
               </div>
           </div>
@@ -83,8 +87,8 @@ padding-left:3px;
         <md-item-content>
           <div class="md-tile-content">
             <div layout="row">
-              <div flex class="list"> <img style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=match.vteam.link.split('-')[match.vteam.link.split('-').length-1]" ng-src="{{ match.vteam.logo }}" width="80" height="80" /><!-- <h4>{{match.vteam.name}} </h4> -->
-              <img style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=match.hteam.link.split('-')[match.hteam.link.split('-').length-1]" ng-src="{{ match.hteam.logo }}" width="80" height="80" /><!-- <h4> {{match.hteam.name}}</h4> --></div>
+              <div flex class="list"> <img style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=match.vteam.link.split('-')[match.vteam.link.split('-').length-1]" ng-src="{{ match.vteam.logo }}" width="80" height="80" onmouseover="this.style.background='#EEEEEE';" style="background: white;" onmouseout="this.style.background='white'"/><!-- <h4>{{match.vteam.name}} </h4> -->
+              <img style="cursor:pointer;" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=match.hteam.link.split('-')[match.hteam.link.split('-').length-1]" ng-src="{{ match.hteam.logo }}" width="80" height="80" onmouseover="this.style.background='#EEEEEE';" style="background: white;" onmouseout="this.style.background='white'"/><!-- <h4> {{match.hteam.name}}</h4> --></div>
 			  <div flex class="list"> <h5> {{match.vteam.qtrs[0]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[0]}} </h5> </div>
 			  <div flex class="list"> <h5> {{match.vteam.qtrs[1]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[1]}} </h5> </div>
 			   <div flex class="list"> <h5> {{match.vteam.qtrs[2]}} </h5>  <h5 class="secondQtr"> {{match.hteam.qtrs[2]}} </h5> </div>
@@ -94,8 +98,9 @@ padding-left:3px;
               <div flex class="list"> <h5> {{match.vteam.qtrs[2]}} </h5> <h5> {{match.hteam.qtrs[2]}} </h5>  </div> 
               <div flex class="list"> <h5> {{match.vteam.qtrs[3]}} </h5> <h5> {{match.hteam.qtrs[3]}} </h5>  </div> 
               <div flex class="list"> <h5> {{match.vteam.qtrs[4]}} </h5> <h5> {{match.hteam.qtrs[4]}} </h5>  </div>  -->
-              <div flex  class="list"> <h3 class="first_finl">{{match.vteam.finl}}</h3><h3 class="second_finl">{{match.hteam.finl}}</h3></div>
-              </div>
+              <div flex  class="list"> <h3 class="first_finl" ng-style="match.vteam.style">{{match.vteam.finl}}</h3><h3 class="second_finl" ng-style="match.hteam.style">{{match.hteam.finl}}</h3></div>
+              <!-- ng-style="match.vteam.finl > match.hteam.finl ? {'font-weight' : 'bold' }" -->
+              </div>    
           </div>
         </md-item-content>
         <md-divider ng-if="!$last"></md-divider>

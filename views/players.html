@@ -68,8 +68,8 @@ ul{
             md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
             md-row-height-gt-md="1:1" md-row-height="4:3"
             md-gutter="8px" md-gutter-gt-sm="4px" >
-          <md-grid-tile ng-repeat="player in items_filtered" ng-if="filterPlayer(player.name)" onmouseover="this.style.background='#EEEEEE';" style="background: white;" onmouseout="this.style.background='white'">
-              <a style="cursor:pointer;" ng-click="$root.selected={name: 'player', iconurl: '',href: '/player.html'};$root.player_id=player.id"><img ng-src="{{player.image}}" width="120" height="120" ></img></a>
+          <md-grid-tile ng-repeat="player in items_filtered" ng-if="filterPlayer(player.name)" onmouseover="this.style.background='#EEEEEE';" style="background: white;" onmouseout="this.style.background='white'" ng-click="$root.selected={name: 'player', iconurl: '',href: '/player.html'};$root.player_id=player.id">
+              <a style="cursor:pointer;" ><img ng-src="{{player.image}}" width="120" height="120" ></img></a>
                <md-grid-tile-footer class="foot" ><h3 style="font-weight: bold;">{{player.name}}</h3></md-grid-tile-footer>
           </span>
           </md-grid-tile>
