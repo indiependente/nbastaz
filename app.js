@@ -6,16 +6,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var matches = require('./routes/matches');
 var news = require('./routes/news');
 var top_players = require('./routes/top_players');
+var top_season = require('./routes/top_season');
 var standings = require('./routes/standings');
 var team = require('./routes/team');
 var teams = require('./routes/teams');
 var players = require('./routes/players');
 var player = require('./routes/player');
-// var highlights = require('./routes/highlights');
 var highlight = require('./routes/highlight');
 
 var app = express();
@@ -34,16 +33,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'views'))); // this is not the right solution
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/matches', matches);
 app.use('/news', news);
 app.use('/top', top_players);
+app.use('/topseason', top_season);
 app.use('/standings', standings);
 app.use('/team', team);
 app.use('/teams', teams);
 app.use('/players', players);
 app.use('/player', player);
-// app.use('/highlights', highlights);
 app.use('/highlight', highlight);
 
 
