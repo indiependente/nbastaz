@@ -1,9 +1,7 @@
 var express     = require('express'),
     router      = express.Router(),
     dateutils   = require('date-utils'),
-    scores      = require('../bin/espn_scores_top.js'),
-    schedule    = require('../bin/espn_schedule_matches.js')
-
+    scores      = require('../bin/espn_scores_top.js')
 
 
 router.get('/', function (req, res) {
