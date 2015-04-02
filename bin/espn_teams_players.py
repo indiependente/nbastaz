@@ -34,6 +34,8 @@ def find_roster_urls(pathname):
 	roster_urls = {}
 	roster_urls['url'] = list()
 	roster_urls['idTeam'] = list()
+	roster_urls['teamAbbr'] = list()
+	roster_urls['teamName'] = list()
 	teamsToFile = {}
 	i = 1
 	for team in teams:
@@ -51,8 +53,12 @@ def find_roster_urls(pathname):
 			abbr = 'was'
 		else:
 			abbr = abbr_normalize
-		urlLogo = 'http://stats.nba.com/media/img/teams/logos/'+abbr[:3].upper()+'_logo.svg';
-
+		
+		if(team[1]=='charlotte-hornets'):
+			urlLogo = 'http://upload.wikimedia.org/wikipedia/it/3/31/Logo_Charlotte_Hornets_%282014%29.png'
+		else:
+			urlLogo = 'http://stats.nba.com/media/img/teams/logos/'+abbr[:3].upper()+'_logo.svg';
+		
 		team_normalize = unicodedata.normalize('NFKD', team[1]).encode('ascii', 'ignore')
 		team_split = team_normalize.split("-")
 		key = team_split[len(team_split) - 1]
@@ -64,7 +70,9 @@ def find_roster_urls(pathname):
 		teamsToFile[key]['logo'] = urlLogo
 		teamsToFile[key]['stats'] = url.replace('roster', 'stats')
 		teamsToFile[key]['depth'] = url.replace('roster', 'depth')
-
+		roster_urls['teamAbbr'].append(key)
+		roster_urls['teamName'].append(teamsToFile[key]['team'])
+		print key
 		i+=1
 
 	with open(pathname, 'wb') as outfile:
@@ -89,7 +97,7 @@ def getPlayersJSON(roster_urls, specific_teams, pathname):
 	players = {}
 	i = 1
 	for url in roster_urls['url']:
-		print url
+		print '\n',url,'\n'
 		index = roster_urls['url'].index(url)
 
 		response = requests.get(url)
@@ -100,16 +108,23 @@ def getPlayersJSON(roster_urls, specific_teams, pathname):
 
 		for playerURL in playersURL:
 
+			
 			response = requests.get(playerURL)
 			soup = bs4.BeautifulSoup(response.content)
 
 			playerURLsplit = playerURL.split('/')
 			id = playerURLsplit[7]
 
+			name = " ".join(playerURLsplit[8].split("-")).title()
+			if(name == 'Steve Nash' or name == 'Elliot Williams'):
+				continue
+			
 			players[id] = {}
 			players[id]['id'] = id
 			players[id]['teamID'] = roster_urls['idTeam'][index]
-			players[id]['name'] = " ".join(playerURLsplit[8].split("-")).title()
+			players[id]['teamAbbr'] = roster_urls['teamAbbr'][index]
+			players[id]['teamName'] = roster_urls['teamName'][index]
+			players[id]['name'] = name
 			players[id]['espn'] = playerURL
 
 
@@ -117,7 +132,10 @@ def getPlayersJSON(roster_urls, specific_teams, pathname):
 				image = 'http://stats.nba.com/media/players/230x185/203530.png'
 			elif playerURL == 'http://espn.go.com/nba/player/_/id/2488689/sean-kilpatrick':
 				image = 'http://stats.nba.com/media/players/230x185/203930.png'
+			elif playerURL == 'http://espn.go.com/nba/player/_/id/1708/mike-dunleavy':
+				image = 'http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1708.png&w=350&h=254'
 			else:
+				#content > div.mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.main-headshot > img
 				image = soup.select('#content > .mod-container.mod-no-header-footer.mod-page-header > div.mod-content > div.main-headshot > img')[0]['src']
 				image = unicodedata.normalize('NFKD', image).encode('ascii', 'ignore')
 			players[id]['image'] = image
