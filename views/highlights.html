@@ -47,9 +47,9 @@ md-card md-card-content{
   <md-content style="position:absolute; top:335px; left:365px">
           <md-card style="height:90px; width:270px;box-shadow:0 2px 10px 0 #FF5722">
           <md-card-content>
-          		<span style="text-align:center">{{top_p[1].player}}</span><br>
+          		<span style="text-align:center"><a style="cursor:pointer" ng-click="$root.selected={name: 'player', iconurl: '',href: '/player.html'};$root.player_id=top_p[1].id">{{top_p[1].player}}</a></span><br>
           		<span style="text-align:center;">{{top_p[1].category}} {{top_p[1].score}}</span><br>
-				<span style="text-align:center;">{{top_p[1].team}}</span>
+				<span style="text-align:center;"><a style="cursor:pointer" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=top_p[1].abbr_team">{{top_p[1].team}}</a></span>
           </md-card-content>
           </md-card>
   </md-content>
@@ -57,9 +57,9 @@ md-card md-card-content{
   <md-content style="position:absolute; top:335px; left:700px">
           <md-card style="height:90px; width:270px;box-shadow:0 2px 10px 0 #0a3665">
           <md-card-content>
-    			<span style="text-align:center">{{top_p[2].player}}</span><br>
+    			<span style="text-align:center"><a style="cursor:pointer" ng-click="$root.selected={name: 'player', iconurl: '',href: '/player.html'};$root.player_id=top_p[2].id">{{top_p[2].player}}</a></span><br>
     			<span style="text-align:center;">{{top_p[2].category}} {{top_p[2].score}}</span><br>
-				<span style="text-align:center;">{{top_p[2].team}}</span>
+				<span style="text-align:center;"><a style="cursor:pointer" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=top_p[2].abbr_team">{{top_p[2].team}}</a></span>
           </md-card-content>
           </md-card>
   </md-content>
@@ -93,9 +93,9 @@ md-card md-card-content{
   <md-content style="position:absolute;top:695px;left:30px;">
           <md-card style="height:90px; width:270px;box-shadow:0 2px 10px 0 #0a3665">
           <md-card-content>
-        <span style="text-align:center">{{top_p[3].player}}</span><br>
+        <span style="text-align:center"><a style="cursor:pointer" ng-click="$root.selected={name: 'player', iconurl: '',href: '/player.html'};$root.player_id=top_p[3].id">{{top_p[3].player}}</a></span><br>
         <span style="text-align:center;">{{top_p[3].category}} {{top_p[3].score}}</span><br>
-        <span style="text-align:center;">{{top_p[3].team}}</span>
+        <span style="text-align:center;"><a style="cursor:pointer" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=top_p[3].abbr_team">{{top_p[3].team}}</a></span>
           </md-card-content>
           </md-card>
   </md-content>
@@ -103,9 +103,9 @@ md-card md-card-content{
   <md-content style="position:absolute; top:695px; left:365px">
           <md-card style="height:90px; width:270px;box-shadow:0 2px 10px 0 #FF5722">
           <md-card-content>
-              <span style="text-align:center">{{top_p[4].player}}</span><br>
+              <span style="text-align:center"><a style="cursor:pointer" ng-click="$root.selected={name: 'player', iconurl: '',href: '/player.html'};$root.player_id=top_p[4].id">{{top_p[4].player}}</a></span><br>
               <span style="text-align:center;">{{top_p[4].category}} {{top_p[4].score}}</span><br>
-        <span style="text-align:center;">{{top_p[4].team}}</span>
+        <span style="text-align:center;"><a style="cursor:pointer" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=top_p[4].abbr_team">{{top_p[4].team}}</a></span>
           </md-card-content>
           </md-card>
   </md-content>
@@ -113,9 +113,9 @@ md-card md-card-content{
   <md-content style="position:absolute; top:695px; left:700px">
           <md-card style="height:90px; width:270px;box-shadow:0 2px 10px 0 #0a3665">
           <md-card-content>
-          <span style="text-align:center">{{top_p[5].player}}</span><br>
+          <span style="text-align:center"><a style="cursor:pointer" ng-click="$root.selected={name: 'player', iconurl: '',href: '/player.html'};$root.player_id=top_p[5].id">{{top_p[5].player}}</a></span><br>
           <span style="text-align:center;">{{top_p[5].category}} {{top_p[5].score}}</span><br>
-        <span style="text-align:center;">{{top_p[5].team}}</span>
+        <span style="text-align:center;"><a style="cursor:pointer" ng-click="$root.selected={name: 'team', iconurl: '',href: '/team.html'};$root.team_name=top_p[5].abbr_team">{{top_p[5].team}}</a></span>
           </md-card-content>
           </md-card>
   </md-content>
