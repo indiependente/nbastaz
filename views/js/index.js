@@ -371,10 +371,18 @@ app.controller('hController',function($scope,$http,$sce,$rootScope){
   var yesterday = month+'-'+day+'-'+year;
   $scope.yesterday=date;
 
-  $http.get("/top?date="+yesterday)
+  // $http.get("/top?date="+yesterday)
+  // .success(function(tp){
+  //   $scope.top_p = tp;
+  // });
+
+  $http.get("/topseason")
   .success(function(tp){
-    $scope.top_p = tp;
+       $scope.top_p = tp; 
+       console.log($scope.top_p[0]);
   });
+
+
 
 
 
