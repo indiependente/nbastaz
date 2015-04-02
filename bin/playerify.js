@@ -20,5 +20,15 @@ module.exports = {
 		if (players.hasOwnProperty(id))
             return players[id].image
         return {}
+	},
+	getTeamName : function(id){
+		if (players.hasOwnProperty(id))
+			return players[id].teamName
+		return {}
+	},
+	getTeamAbbr : function(id){
+		if (players.hasOwnProperty(id))
+			return players[id].teamAbbr
+		return {}
 	}
 }
