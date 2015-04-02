@@ -378,8 +378,8 @@ app.controller('hController',function($scope,$http,$sce,$rootScope){
 
   $http.get("/topseason")
   .success(function(tp){
-       $scope.top_p = tp; 
-       console.log($scope.top_p[0]);
+       $scope.top_p = tp;
+       // console.log($scope.top_p[0]);
   });
 
 
