@@ -270,7 +270,7 @@ app.service('pageService', ['$q', function($q) {
 
           case 5:
             it.span.row = it.span.col = 1;
-            it.icon="http://content.sportslogos.net/logos/6/5120/thumbs/512019262015.gif";
+            //it.icon="http://content.sportslogos.net/logos/6/5120/thumbs/512019262015.gif";
             //it.span.row = it.span.col = 1;
             break;
 
