@@ -83,7 +83,7 @@ md-grid-tile-header figcaption h4 {
         <md-divider ng-if="!$last"></md-divider>
       </md-item>
     </md-list>
-      <md-item style="cursor:pointer;" ng-repeat="element in staz['stats']" ng-click="$root.selected={name: 'player', iconurl: '',href: '/player.html'};$root.player_id=element.id">
+      <md-item  ng-repeat="element in staz['stats']" > <!-- ng-click="$root.selected={name: 'player', iconurl: '',href: '/player.html'};$root.player_id=element.id" -->
         <md-item-content>
           <div class="md-tile-content htab" style="color:black;">
             <div layout="row">
