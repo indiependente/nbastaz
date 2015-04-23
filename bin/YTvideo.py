@@ -9,10 +9,10 @@ import json
 
 def scrapeURL(team):
 	try:
-		f = urllib.urlopen('https://www.youtube.com/user/nbagamerecap1/videos')
+		f = urllib.urlopen('https://www.youtube.com/channel/UC13m7SQqxoAlGXQDg-uFNvg/videos')
 		words = f.read().decode('utf-8')
 		soup = BeautifulSoup(words)
-		watch = soup.find('a', title=re.compile(team))['href'][9:]
+		watch = soup.find('a', title=re.compile(team+'.*'+'Full'))['href'][9:]
 		return 'http://www.youtube.com/embed/'+watch
 	except Exception, e:
 		pass
