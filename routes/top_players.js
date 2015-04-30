@@ -1,6 +1,6 @@
 var express     = require('express'),
     router      = express.Router(),
-    top    		= require('../bin/espn_scores_top.js')
+    top    		= require('../bin/cbs_scores_top.js')
 
 router.get('/', function (req, res) {
   res.type('json')
