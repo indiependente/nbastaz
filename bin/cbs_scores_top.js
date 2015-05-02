@@ -59,8 +59,7 @@ function scores(url, out){
                 name: 'td.teamName > div.teamLocation > a',
                 logo: 'td.teamName > div.teamLocation > a[href] | getTeam | logofy',
                 link: 'td.teamName > div.teamLocation > a[href]',
-                abbr: 'td.teamName > div.teamLocation > a[href] | getTeam', 
-                //record: '',
+                abbr: 'td.teamName > div.teamLocation > a[href] | getTeam',
                 qtrs: ['td.periodScore'],
                 finl: 'td.finalScore'
             },
@@ -69,8 +68,7 @@ function scores(url, out){
                 name: 'td.teamName > div.teamLocation > a',
                 logo: 'td.teamName > div.teamLocation > a[href] | getTeam | logofy',
                 link: 'td.teamName > div.teamLocation > a[href]',
-                abbr: 'td.teamName > div.teamLocation > a[href] | getTeam', 
-                //record: '',
+                abbr: 'td.teamName > div.teamLocation > a[href] | getTeam',
                 qtrs: ['td.periodScore'],
                 finl: 'td.finalScore'
             }
