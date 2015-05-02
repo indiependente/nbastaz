@@ -97,7 +97,7 @@ function teamRoster(url, out){
 			link: 'td:nth-child(2) > a[href]',								// link to player
 			number: 'td:nth-child(1)',										// number of player
 			pos: 'td:nth-child(3)',											// position
-			age: 'td:nth-child(4)',											// età
+			age: 'td:nth-child(4)',											// age
 			ht: 'td:nth-child(5)',											// height
 			wt: 'td:nth-child(6)',											// weight
 			college: 'td:nth-child(7)',										// college
