@@ -14,8 +14,9 @@ var xray        =   require('x-ray'),
 module.exports = {
     getUrl : getUrl,
     scores : scores,
-    schedule : schedule,
-    topPlayers : topPlayers
+    schedule : schedule
+//    ,
+//    topPlayers : topPlayers
 };
 
 
