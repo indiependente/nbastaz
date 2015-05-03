@@ -2,7 +2,7 @@ var fs 	=	require('fs')
 
 
 var teams = JSON.parse(fs.readFileSync('./bin/data/espn_teams.json', 'utf8'))
-// var teams = JSON.parse(fs.readFileSync('./data/espn_teams.json', 'utf8'))
+
 
 module.exports =
 {
