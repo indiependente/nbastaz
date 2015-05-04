@@ -40,7 +40,7 @@ function teamStats(url, out){
 			stats: [{
 				$root: '#my-players-table > .mod-container.mod-table > div:nth-child(2) > table > tr[class*="row"]',
 				name: 'td:nth-child(1) > a',				// player's name
-				id: 'td:nth-child(1) > a[href] | getID',			// id player
+				id: 'td:nth-child(1) > a[href] | getID',	// id player
 				link: 'td:nth-child(1) > a[href]',			// link to player
 				gp: 'td:nth-child(2)', 						// Games played
 				gs: 'td:nth-child(3)',						// Games started
