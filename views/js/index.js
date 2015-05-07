@@ -389,7 +389,8 @@ app.controller('hController',function($scope,$http,$sce,$rootScope){
   $scope.response = [];
   for (var i = 0; i<$rootScope.prevmatches.length; i++){
       $scope.vt = $rootScope.prevmatches[i].vteam.name;
-      $http.get("/highlight?abbr="+$scope.vt).
+      var t_name = $scope.vt.split(' ');
+      $http.get("/highlight?abbr="+t_name[t_name.length - 1]).
       success(function(value){
         if (value != '')
           $scope.response.push(trust(JSON.parse(value).url));
