@@ -2,7 +2,7 @@
   "name": "nbastaz",
   "version": "1.0.0",
   "description": "NBA Aggregator",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "node ./bin/www"
   },
