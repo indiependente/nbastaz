@@ -117,10 +117,7 @@ app.controller("PaginationCtrl", function($scope, $http) {
             $scope.results = response;
             $rootScope.prevmatches = response;
             $scope.pm=true;
-            for (i in $scope.results){
-              $scope.results[i].vteam.style = parseInt($scope.results[i].vteam.finl) > parseInt($scope.results[i].hteam.finl) ? {'font-weight' : 'bold'} : {'font-weight' : 'normal'};
-              $scope.results[i].hteam.style = parseInt($scope.results[i].hteam.finl) > parseInt($scope.results[i].vteam.finl) ? {'font-weight' : 'bold'} : {'font-weight' : 'normal'};
-            }
+            boldResults($scope);
           }
           else {
             date.remove({'days' : 1});
@@ -133,12 +130,20 @@ app.controller("PaginationCtrl", function($scope, $http) {
               if (response.length > 0) {
                 $scope.results = response;
                 $scope.pm=true;
+                $rootScope.prevmatches = response;
+                boldResults($scope);
             }
             });
           }
         });
     });
 
+    function boldResults (scope) {
+      for (i in scope.results){
+        scope.results[i].vteam.style = parseInt(scope.results[i].vteam.finl) > parseInt(scope.results[i].hteam.finl) ? {'font-weight' : 'bold'} : {'font-weight' : 'normal'};
+        scope.results[i].hteam.style = parseInt(scope.results[i].hteam.finl) > parseInt(scope.results[i].vteam.finl) ? {'font-weight' : 'bold'} : {'font-weight' : 'normal'};
+      }
+    }
 
     app.controller('standingsController',['$rootScope','$scope','$http',function($rootScope,$scope,$http){
         $scope.erange=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
@@ -389,7 +394,8 @@ app.controller('hController',function($scope,$http,$sce,$rootScope){
   $scope.response = [];
   for (var i = 0; i<$rootScope.prevmatches.length; i++){
       $scope.vt = $rootScope.prevmatches[i].vteam.name;
-      $http.get("/highlight?abbr="+$scope.vt).
+      var t_name = $scope.vt.split(' ');
+      $http.get("/highlight?abbr="+t_name[t_name.length - 1]).
       success(function(value){
         if (value != '')
           $scope.response.push(trust(JSON.parse(value).url));
