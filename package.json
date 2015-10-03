@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "NBA Statistics Aggregator",
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/indiependente/nbastaz.git"
+  },
   "scripts": {
     "start": "node ./bin/www"
   },
