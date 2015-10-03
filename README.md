@@ -13,7 +13,7 @@ Make sure you have node.js installed and updated
 
 - Start the server (default port 3000)
 
-`DEBUG=nbastaz ./bin/www`
+`npm start`
 
 - Open your browser and go to
 
