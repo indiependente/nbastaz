@@ -11,7 +11,7 @@ Make sure you have node.js installed and updated
 
 `npm install`
 
-- Start the server (default port 3000)
+- Start the server (default port 8080)
 
 `npm start`
 
