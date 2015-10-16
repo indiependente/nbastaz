@@ -11,7 +11,7 @@ def scrapeURL(team):
 	try:
 		f = urllib.urlopen('https://www.youtube.com/channel/UCfSmFFIZsuPSHoiEVhnSkJA/videos')
 		words = f.read().decode('utf-8')
-		soup = BeautifulSoup(words)
+		soup = BeautifulSoup(words, "html.parser")
 		watch = soup.find('a', title=re.compile(team+'.*'+'Highlights'))['href'][9:]
 		return 'http://www.youtube.com/embed/'+watch
 	except Exception, e:
