@@ -9,16 +9,16 @@ import json
 
 def scrapeURL(team):
 	try:
-		f = urllib.urlopen('https://www.youtube.com/channel/UC13m7SQqxoAlGXQDg-uFNvg/videos')
+		f = urllib.urlopen('https://www.youtube.com/channel/UCfSmFFIZsuPSHoiEVhnSkJA/videos')
 		words = f.read().decode('utf-8')
 		soup = BeautifulSoup(words)
-		watch = soup.find('a', title=re.compile(team+'.*'+'Full'))['href'][9:]
+		watch = soup.find('a', title=re.compile(team+'.*'+'Highlights'))['href'][9:]
 		return 'http://www.youtube.com/embed/'+watch
 	except Exception, e:
 		pass
 
 if __name__ == '__main__':
-	url = scrapeURL(sys.argv[1])
+	url = scrapeURL(sys.argv[1].capitalize())
 	if url is not None:
 		print json.dumps({
 		"team".encode('ascii') : sys.argv[1].lower().encode('ascii'),
