@@ -17,4 +17,4 @@ Make sure you have node.js installed and updated
 
 - Open your browser and go to
 
-`http://localhost:3000`
+`http://localhost:8080`
